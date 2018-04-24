@@ -8,7 +8,7 @@ import Cookie from 'js-cookie'
 import { AUTH_TOKEN } from '~/constants'
 
 export default (ctx) => {
-  const httpLink = new HttpLink({ uri: 'http://localhost:4000/' })
+  const httpLink = new HttpLink({ uri: 'http://165.227.33.8:4000/' })
 
   const authLink = setContext((_, { headers }) => {
     const token = Cookie.get(AUTH_TOKEN)
