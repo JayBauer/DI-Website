@@ -5,7 +5,7 @@ type Query {
   me: User
   user: User!
   booking(id: ID!): Booking
-  bookings(user: UserWhereUniqueInput!): [Bookings!]!
+  bookings(user: UserWhereUniqueInput!): [Booking!]!
 }
 
 type Mutation {

@@ -5,24 +5,24 @@
 # Model Types
 #
 
-type Charge implements Node {
-  id: ID!
-  chargedTo(where: StripeCustomerWhereInput): StripeCustomer!
-  amount: Float!
-  currency: String!
-}
-
-type Quiz implements Node {
+type Booking implements Node {
   id: ID!
   createdAt: DateTime!
   updatedAt: DateTime!
   user(where: UserWhereInput): User!
-  bookingFor: Booking
+  bookingFor: BookingFor
   ontarioRes: IsResident
   bodyParts: Json
   waiver(where: WaiverWhereInput): Waiver!
   referral(where: ReferralWhereInput): Referral!
   payment: Boolean!
+}
+
+type Charge implements Node {
+  id: ID!
+  chargedTo(where: StripeCustomerWhereInput): StripeCustomer!
+  amount: Float!
+  currency: String!
 }
 
 type StripeCustomer implements Node {
@@ -47,7 +47,7 @@ type User implements Node {
   city: String!
   province: String!
   postal: String!
-  quizzes(where: QuizWhereInput, orderBy: QuizOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quiz!]
+  bookings(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Booking!]
   stripe(where: StripeCustomerWhereInput): StripeCustomer
 }
 
@@ -56,11 +56,11 @@ type User implements Node {
 # Other Types
 #
 
-type AggregateCharge {
+type AggregateBooking {
   count: Int!
 }
 
-type AggregateQuiz {
+type AggregateCharge {
   count: Int!
 }
 
@@ -87,10 +87,324 @@ type BatchPayload {
   count: Long!
 }
 
-enum Booking {
+"""
+A connection to a list of items.
+"""
+type BookingConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+  """
+  A list of edges.
+  """
+  edges: [BookingEdge]!
+  aggregate: AggregateBooking!
+}
+
+input BookingCreateInput {
+  bookingFor: BookingFor
+  ontarioRes: IsResident
+  bodyParts: Json
+  payment: Boolean
+  user: UserCreateOneWithoutBookingsInput!
+  waiver: WaiverCreateOneInput!
+  referral: ReferralCreateOneInput!
+}
+
+input BookingCreateManyWithoutUserInput {
+  create: [BookingCreateWithoutUserInput!]
+  connect: [BookingWhereUniqueInput!]
+}
+
+input BookingCreateWithoutUserInput {
+  bookingFor: BookingFor
+  ontarioRes: IsResident
+  bodyParts: Json
+  payment: Boolean
+  waiver: WaiverCreateOneInput!
+  referral: ReferralCreateOneInput!
+}
+
+"""
+An edge in a connection.
+"""
+type BookingEdge {
+  """
+  The item at the end of the edge.
+  """
+  node: Booking!
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+}
+
+enum BookingFor {
   PATIENT
   MYSELF
   CLIENT
+}
+
+enum BookingOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  bookingFor_ASC
+  bookingFor_DESC
+  ontarioRes_ASC
+  ontarioRes_DESC
+  bodyParts_ASC
+  bodyParts_DESC
+  payment_ASC
+  payment_DESC
+}
+
+type BookingPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  bookingFor: BookingFor
+  ontarioRes: IsResident
+  bodyParts: Json
+  payment: Boolean!
+}
+
+type BookingSubscriptionPayload {
+  mutation: MutationType!
+  node: Booking
+  updatedFields: [String!]
+  previousValues: BookingPreviousValues
+}
+
+input BookingSubscriptionWhereInput {
+  """
+  Logical AND on all given filters.
+  """
+  AND: [BookingSubscriptionWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [BookingSubscriptionWhereInput!]
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: BookingWhereInput
+}
+
+input BookingUpdateInput {
+  bookingFor: BookingFor
+  ontarioRes: IsResident
+  bodyParts: Json
+  payment: Boolean
+  user: UserUpdateOneWithoutBookingsInput
+  waiver: WaiverUpdateOneInput
+  referral: ReferralUpdateOneInput
+}
+
+input BookingUpdateManyWithoutUserInput {
+  create: [BookingCreateWithoutUserInput!]
+  connect: [BookingWhereUniqueInput!]
+  disconnect: [BookingWhereUniqueInput!]
+  delete: [BookingWhereUniqueInput!]
+  update: [BookingUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [BookingUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input BookingUpdateWithoutUserDataInput {
+  bookingFor: BookingFor
+  ontarioRes: IsResident
+  bodyParts: Json
+  payment: Boolean
+  waiver: WaiverUpdateOneInput
+  referral: ReferralUpdateOneInput
+}
+
+input BookingUpdateWithWhereUniqueWithoutUserInput {
+  where: BookingWhereUniqueInput!
+  data: BookingUpdateWithoutUserDataInput!
+}
+
+input BookingUpsertWithWhereUniqueWithoutUserInput {
+  where: BookingWhereUniqueInput!
+  update: BookingUpdateWithoutUserDataInput!
+  create: BookingCreateWithoutUserInput!
+}
+
+input BookingWhereInput {
+  """
+  Logical AND on all given filters.
+  """
+  AND: [BookingWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
+  OR: [BookingWhereInput!]
+  id: ID
+  """
+  All values that are not equal to given value.
+  """
+  id_not: ID
+  """
+  All values that are contained in given list.
+  """
+  id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
+  id_not_in: [ID!]
+  """
+  All values less than the given value.
+  """
+  id_lt: ID
+  """
+  All values less than or equal the given value.
+  """
+  id_lte: ID
+  """
+  All values greater than the given value.
+  """
+  id_gt: ID
+  """
+  All values greater than or equal the given value.
+  """
+  id_gte: ID
+  """
+  All values containing the given string.
+  """
+  id_contains: ID
+  """
+  All values not containing the given string.
+  """
+  id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
+  id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
+  id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
+  id_ends_with: ID
+  """
+  All values not ending with the given string.
+  """
+  id_not_ends_with: ID
+  createdAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  createdAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  createdAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  createdAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  createdAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  createdAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  createdAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  """
+  All values that are not equal to given value.
+  """
+  updatedAt_not: DateTime
+  """
+  All values that are contained in given list.
+  """
+  updatedAt_in: [DateTime!]
+  """
+  All values that are not contained in given list.
+  """
+  updatedAt_not_in: [DateTime!]
+  """
+  All values less than the given value.
+  """
+  updatedAt_lt: DateTime
+  """
+  All values less than or equal the given value.
+  """
+  updatedAt_lte: DateTime
+  """
+  All values greater than the given value.
+  """
+  updatedAt_gt: DateTime
+  """
+  All values greater than or equal the given value.
+  """
+  updatedAt_gte: DateTime
+  bookingFor: BookingFor
+  """
+  All values that are not equal to given value.
+  """
+  bookingFor_not: BookingFor
+  """
+  All values that are contained in given list.
+  """
+  bookingFor_in: [BookingFor!]
+  """
+  All values that are not contained in given list.
+  """
+  bookingFor_not_in: [BookingFor!]
+  ontarioRes: IsResident
+  """
+  All values that are not equal to given value.
+  """
+  ontarioRes_not: IsResident
+  """
+  All values that are contained in given list.
+  """
+  ontarioRes_in: [IsResident!]
+  """
+  All values that are not contained in given list.
+  """
+  ontarioRes_not_in: [IsResident!]
+  payment: Boolean
+  """
+  All values that are not equal to given value.
+  """
+  payment_not: Boolean
+  user: UserWhereInput
+  waiver: WaiverWhereInput
+  referral: ReferralWhereInput
+}
+
+input BookingWhereUniqueInput {
+  id: ID
 }
 
 """
@@ -394,31 +708,31 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
-  createQuiz(data: QuizCreateInput!): Quiz!
+  createBooking(data: BookingCreateInput!): Booking!
   createReferral(data: ReferralCreateInput!): Referral!
   createWaiver(data: WaiverCreateInput!): Waiver!
   createStripeCustomer(data: StripeCustomerCreateInput!): StripeCustomer!
   createCharge(data: ChargeCreateInput!): Charge!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateQuiz(data: QuizUpdateInput!, where: QuizWhereUniqueInput!): Quiz
+  updateBooking(data: BookingUpdateInput!, where: BookingWhereUniqueInput!): Booking
   updateStripeCustomer(data: StripeCustomerUpdateInput!, where: StripeCustomerWhereUniqueInput!): StripeCustomer
   updateCharge(data: ChargeUpdateInput!, where: ChargeWhereUniqueInput!): Charge
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteQuiz(where: QuizWhereUniqueInput!): Quiz
+  deleteBooking(where: BookingWhereUniqueInput!): Booking
   deleteStripeCustomer(where: StripeCustomerWhereUniqueInput!): StripeCustomer
   deleteCharge(where: ChargeWhereUniqueInput!): Charge
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertQuiz(where: QuizWhereUniqueInput!, create: QuizCreateInput!, update: QuizUpdateInput!): Quiz!
+  upsertBooking(where: BookingWhereUniqueInput!, create: BookingCreateInput!, update: BookingUpdateInput!): Booking!
   upsertStripeCustomer(where: StripeCustomerWhereUniqueInput!, create: StripeCustomerCreateInput!, update: StripeCustomerUpdateInput!): StripeCustomer!
   upsertCharge(where: ChargeWhereUniqueInput!, create: ChargeCreateInput!, update: ChargeUpdateInput!): Charge!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManyQuizzes(data: QuizUpdateInput!, where: QuizWhereInput): BatchPayload!
+  updateManyBookings(data: BookingUpdateInput!, where: BookingWhereInput): BatchPayload!
   updateManyReferrals(data: ReferralUpdateInput!, where: ReferralWhereInput): BatchPayload!
   updateManyWaivers(data: WaiverUpdateInput!, where: WaiverWhereInput): BatchPayload!
   updateManyStripeCustomers(data: StripeCustomerUpdateInput!, where: StripeCustomerWhereInput): BatchPayload!
   updateManyCharges(data: ChargeUpdateInput!, where: ChargeWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyQuizzes(where: QuizWhereInput): BatchPayload!
+  deleteManyBookings(where: BookingWhereInput): BatchPayload!
   deleteManyReferrals(where: ReferralWhereInput): BatchPayload!
   deleteManyWaivers(where: WaiverWhereInput): BatchPayload!
   deleteManyStripeCustomers(where: StripeCustomerWhereInput): BatchPayload!
@@ -465,17 +779,17 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  quizzes(where: QuizWhereInput, orderBy: QuizOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quiz]!
+  bookings(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Booking]!
   referrals(where: ReferralWhereInput, orderBy: ReferralOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Referral]!
   waivers(where: WaiverWhereInput, orderBy: WaiverOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Waiver]!
   stripeCustomers(where: StripeCustomerWhereInput, orderBy: StripeCustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StripeCustomer]!
   charges(where: ChargeWhereInput, orderBy: ChargeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Charge]!
   user(where: UserWhereUniqueInput!): User
-  quiz(where: QuizWhereUniqueInput!): Quiz
+  booking(where: BookingWhereUniqueInput!): Booking
   stripeCustomer(where: StripeCustomerWhereUniqueInput!): StripeCustomer
   charge(where: ChargeWhereUniqueInput!): Charge
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  quizzesConnection(where: QuizWhereInput, orderBy: QuizOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): QuizConnection!
+  bookingsConnection(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BookingConnection!
   referralsConnection(where: ReferralWhereInput, orderBy: ReferralOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReferralConnection!
   waiversConnection(where: WaiverWhereInput, orderBy: WaiverOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WaiverConnection!
   stripeCustomersConnection(where: StripeCustomerWhereInput, orderBy: StripeCustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StripeCustomerConnection!
@@ -487,320 +801,6 @@ type Query {
   The ID of an object
   """
   id: ID!): Node
-}
-
-"""
-A connection to a list of items.
-"""
-type QuizConnection {
-  """
-  Information to aid in pagination.
-  """
-  pageInfo: PageInfo!
-  """
-  A list of edges.
-  """
-  edges: [QuizEdge]!
-  aggregate: AggregateQuiz!
-}
-
-input QuizCreateInput {
-  bookingFor: Booking
-  ontarioRes: IsResident
-  bodyParts: Json
-  payment: Boolean
-  user: UserCreateOneWithoutQuizzesInput!
-  waiver: WaiverCreateOneInput!
-  referral: ReferralCreateOneInput!
-}
-
-input QuizCreateManyWithoutUserInput {
-  create: [QuizCreateWithoutUserInput!]
-  connect: [QuizWhereUniqueInput!]
-}
-
-input QuizCreateWithoutUserInput {
-  bookingFor: Booking
-  ontarioRes: IsResident
-  bodyParts: Json
-  payment: Boolean
-  waiver: WaiverCreateOneInput!
-  referral: ReferralCreateOneInput!
-}
-
-"""
-An edge in a connection.
-"""
-type QuizEdge {
-  """
-  The item at the end of the edge.
-  """
-  node: Quiz!
-  """
-  A cursor for use in pagination.
-  """
-  cursor: String!
-}
-
-enum QuizOrderByInput {
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  bookingFor_ASC
-  bookingFor_DESC
-  ontarioRes_ASC
-  ontarioRes_DESC
-  bodyParts_ASC
-  bodyParts_DESC
-  payment_ASC
-  payment_DESC
-}
-
-type QuizPreviousValues {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  bookingFor: Booking
-  ontarioRes: IsResident
-  bodyParts: Json
-  payment: Boolean!
-}
-
-type QuizSubscriptionPayload {
-  mutation: MutationType!
-  node: Quiz
-  updatedFields: [String!]
-  previousValues: QuizPreviousValues
-}
-
-input QuizSubscriptionWhereInput {
-  """
-  Logical AND on all given filters.
-  """
-  AND: [QuizSubscriptionWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [QuizSubscriptionWhereInput!]
-  """
-  The subscription event gets dispatched when it's listed in mutation_in
-  """
-  mutation_in: [MutationType!]
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: QuizWhereInput
-}
-
-input QuizUpdateInput {
-  bookingFor: Booking
-  ontarioRes: IsResident
-  bodyParts: Json
-  payment: Boolean
-  user: UserUpdateOneWithoutQuizzesInput
-  waiver: WaiverUpdateOneInput
-  referral: ReferralUpdateOneInput
-}
-
-input QuizUpdateManyWithoutUserInput {
-  create: [QuizCreateWithoutUserInput!]
-  connect: [QuizWhereUniqueInput!]
-  disconnect: [QuizWhereUniqueInput!]
-  delete: [QuizWhereUniqueInput!]
-  update: [QuizUpdateWithWhereUniqueWithoutUserInput!]
-  upsert: [QuizUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input QuizUpdateWithoutUserDataInput {
-  bookingFor: Booking
-  ontarioRes: IsResident
-  bodyParts: Json
-  payment: Boolean
-  waiver: WaiverUpdateOneInput
-  referral: ReferralUpdateOneInput
-}
-
-input QuizUpdateWithWhereUniqueWithoutUserInput {
-  where: QuizWhereUniqueInput!
-  data: QuizUpdateWithoutUserDataInput!
-}
-
-input QuizUpsertWithWhereUniqueWithoutUserInput {
-  where: QuizWhereUniqueInput!
-  update: QuizUpdateWithoutUserDataInput!
-  create: QuizCreateWithoutUserInput!
-}
-
-input QuizWhereInput {
-  """
-  Logical AND on all given filters.
-  """
-  AND: [QuizWhereInput!]
-  """
-  Logical OR on all given filters.
-  """
-  OR: [QuizWhereInput!]
-  id: ID
-  """
-  All values that are not equal to given value.
-  """
-  id_not: ID
-  """
-  All values that are contained in given list.
-  """
-  id_in: [ID!]
-  """
-  All values that are not contained in given list.
-  """
-  id_not_in: [ID!]
-  """
-  All values less than the given value.
-  """
-  id_lt: ID
-  """
-  All values less than or equal the given value.
-  """
-  id_lte: ID
-  """
-  All values greater than the given value.
-  """
-  id_gt: ID
-  """
-  All values greater than or equal the given value.
-  """
-  id_gte: ID
-  """
-  All values containing the given string.
-  """
-  id_contains: ID
-  """
-  All values not containing the given string.
-  """
-  id_not_contains: ID
-  """
-  All values starting with the given string.
-  """
-  id_starts_with: ID
-  """
-  All values not starting with the given string.
-  """
-  id_not_starts_with: ID
-  """
-  All values ending with the given string.
-  """
-  id_ends_with: ID
-  """
-  All values not ending with the given string.
-  """
-  id_not_ends_with: ID
-  createdAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  createdAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  createdAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  createdAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  createdAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  createdAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  createdAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  """
-  All values that are not equal to given value.
-  """
-  updatedAt_not: DateTime
-  """
-  All values that are contained in given list.
-  """
-  updatedAt_in: [DateTime!]
-  """
-  All values that are not contained in given list.
-  """
-  updatedAt_not_in: [DateTime!]
-  """
-  All values less than the given value.
-  """
-  updatedAt_lt: DateTime
-  """
-  All values less than or equal the given value.
-  """
-  updatedAt_lte: DateTime
-  """
-  All values greater than the given value.
-  """
-  updatedAt_gt: DateTime
-  """
-  All values greater than or equal the given value.
-  """
-  updatedAt_gte: DateTime
-  bookingFor: Booking
-  """
-  All values that are not equal to given value.
-  """
-  bookingFor_not: Booking
-  """
-  All values that are contained in given list.
-  """
-  bookingFor_in: [Booking!]
-  """
-  All values that are not contained in given list.
-  """
-  bookingFor_not_in: [Booking!]
-  ontarioRes: IsResident
-  """
-  All values that are not equal to given value.
-  """
-  ontarioRes_not: IsResident
-  """
-  All values that are contained in given list.
-  """
-  ontarioRes_in: [IsResident!]
-  """
-  All values that are not contained in given list.
-  """
-  ontarioRes_not_in: [IsResident!]
-  payment: Boolean
-  """
-  All values that are not equal to given value.
-  """
-  payment_not: Boolean
-  user: UserWhereInput
-  waiver: WaiverWhereInput
-  referral: ReferralWhereInput
-}
-
-input QuizWhereUniqueInput {
-  id: ID
 }
 
 type Referral {
@@ -1267,7 +1267,7 @@ input StripeCustomerWhereUniqueInput {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  quiz(where: QuizSubscriptionWhereInput): QuizSubscriptionPayload
+  booking(where: BookingSubscriptionWhereInput): BookingSubscriptionPayload
   referral(where: ReferralSubscriptionWhereInput): ReferralSubscriptionPayload
   waiver(where: WaiverSubscriptionWhereInput): WaiverSubscriptionPayload
   stripeCustomer(where: StripeCustomerSubscriptionWhereInput): StripeCustomerSubscriptionPayload
@@ -1301,12 +1301,12 @@ input UserCreateInput {
   city: String!
   province: String!
   postal: String!
-  quizzes: QuizCreateManyWithoutUserInput
+  bookings: BookingCreateManyWithoutUserInput
   stripe: StripeCustomerCreateOneWithoutUserInput
 }
 
-input UserCreateOneWithoutQuizzesInput {
-  create: UserCreateWithoutQuizzesInput
+input UserCreateOneWithoutBookingsInput {
+  create: UserCreateWithoutBookingsInput
   connect: UserWhereUniqueInput
 }
 
@@ -1315,7 +1315,7 @@ input UserCreateOneWithoutStripeInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateWithoutQuizzesInput {
+input UserCreateWithoutBookingsInput {
   email: String!
   password: String!
   isAdmin: Boolean
@@ -1342,7 +1342,7 @@ input UserCreateWithoutStripeInput {
   city: String!
   province: String!
   postal: String!
-  quizzes: QuizCreateManyWithoutUserInput
+  bookings: BookingCreateManyWithoutUserInput
 }
 
 """
@@ -1454,16 +1454,16 @@ input UserUpdateInput {
   city: String
   province: String
   postal: String
-  quizzes: QuizUpdateManyWithoutUserInput
+  bookings: BookingUpdateManyWithoutUserInput
   stripe: StripeCustomerUpdateOneWithoutUserInput
 }
 
-input UserUpdateOneWithoutQuizzesInput {
-  create: UserCreateWithoutQuizzesInput
+input UserUpdateOneWithoutBookingsInput {
+  create: UserCreateWithoutBookingsInput
   connect: UserWhereUniqueInput
   delete: Boolean
-  update: UserUpdateWithoutQuizzesDataInput
-  upsert: UserUpsertWithoutQuizzesInput
+  update: UserUpdateWithoutBookingsDataInput
+  upsert: UserUpsertWithoutBookingsInput
 }
 
 input UserUpdateOneWithoutStripeInput {
@@ -1474,7 +1474,7 @@ input UserUpdateOneWithoutStripeInput {
   upsert: UserUpsertWithoutStripeInput
 }
 
-input UserUpdateWithoutQuizzesDataInput {
+input UserUpdateWithoutBookingsDataInput {
   email: String
   password: String
   isAdmin: Boolean
@@ -1501,12 +1501,12 @@ input UserUpdateWithoutStripeDataInput {
   city: String
   province: String
   postal: String
-  quizzes: QuizUpdateManyWithoutUserInput
+  bookings: BookingUpdateManyWithoutUserInput
 }
 
-input UserUpsertWithoutQuizzesInput {
-  update: UserUpdateWithoutQuizzesDataInput!
-  create: UserCreateWithoutQuizzesInput!
+input UserUpsertWithoutBookingsInput {
+  update: UserUpdateWithoutBookingsDataInput!
+  create: UserCreateWithoutBookingsInput!
 }
 
 input UserUpsertWithoutStripeInput {
@@ -2169,9 +2169,9 @@ input UserWhereInput {
   All values not ending with the given string.
   """
   postal_not_ends_with: String
-  quizzes_every: QuizWhereInput
-  quizzes_some: QuizWhereInput
-  quizzes_none: QuizWhereInput
+  bookings_every: BookingWhereInput
+  bookings_some: BookingWhereInput
+  bookings_none: BookingWhereInput
   stripe: StripeCustomerWhereInput
 }
 
