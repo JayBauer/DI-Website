@@ -1,0 +1,57 @@
+/*
+Global Styles: Website Variables
+Author: Jay Bauer
+Organization: Elite Digital
+
+All global project variables should go here
+*/
+
+/* Lost Grid settings for Flexbox */
+@lost gutter 30px;
+@lost flexbox flex;
+@lost cycle none;
+@lost clearing left;
+@lost rounder 100;
+
+/* Colours */
+$black: #262626;
+$white: #fff;
+$off-white: #f4f4f4;
+$gray: #757575;
+$light-gray: #979797;
+$lighter-gray: #d8d8d8;
+$turq: #55b7b3;
+$blue: #1d5480;
+$orange: #f68938;
+$yellow: #f8ca6b;
+$light-blue: #4fafe2;
+$purple: #7b89a9;
+$red: #f37e6a;
+
+/* Project Defaults */
+$header-height: 100px;
+$parallax-amount: 120;
+
+/* Media Query Sizes */
+$phone: 599px;
+$tablet-port: 600px;
+$tablet-land: 900px;
+$desktop: 1200px;
+$desktop-big: 1800px;
+
+@custom-media --for-phone only screen and (width <= $phone);
+@custom-media --for-tablet-port only screen and ($tablet-port <= width <= $tablet-land);
+@custom-media --for-tablet-land only screen and ($tablet-land <= width <= $desktop);
+@custom-media --for-desktop only screen and ($desktop <= width <= $desktop-big);
+@custom-media --for-desktop-big only screen and (width > $desktop-big);
+
+@custom-media --for-tablet-port-up only screen and (width >= $tablet-port);
+@custom-media --for-tablet-land-up only screen and (width >= $tablet-land);
+@custom-media --for-desktop-up only screen and (width >= $desktop);
+
+@custom-media --for-tablet-port-down only screen and (width <= $tablet-port);
+@custom-media --for-tablet-land-down only screen and (width <= $tablet-land);
+@custom-media --for-desktop-down only screen and (width <= $desktop);
+
+@custom-media --nav-menu only screen and (width > 1075px);
+@custom-media --nav-menu-down only screen and (width < 1075px);

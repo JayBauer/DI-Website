@@ -1,0 +1,74 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.5",
+    "@fortawesome/vue-fontawesome": "0.0.22",
+    "ajv-keywords": "^3.1.0",
+    "apollo-link-context": "^1.0.8",
+    "apollo-link-http": "^1.5.3",
+    "bcryptjs": "^2.4.3",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "js-cookie": "^2.2.0",
+    "nuxt": "^1.4.0",
+    "vue-carousel": "^0.6.14",
+    "vue-no-ssr": "^0.2.2",
+    "vue-stripe-elements-plus": "^0.2.8"
+  },
+  "devDependencies": {
+    "@nuxtjs/apollo": "^3.0.6",
+    "babel-eslint": "^8.2.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.15.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "lost": "^8.2.0",
+    "path": "^0.12.7",
+    "postcss": "^6.0.16",
+    "postcss-advanced-variables": "^2.3.0",
+    "postcss-assets": "^5.0.0",
+    "postcss-custom-media": "^6.0.0",
+    "postcss-define-function": "^0.1.1",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-extend-rule": "^1.1.0",
+    "postcss-font-awesome": "^0.4.0",
+    "postcss-font-magician": "^2.1.0",
+    "postcss-hexrgba": "^1.0.0",
+    "postcss-image-set-polyfill": "^0.4.4",
+    "postcss-import": "^11.1.0",
+    "postcss-math": "0.0.10",
+    "postcss-media-minmax": "^3.0.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-pxtorem": "^4.0.1",
+    "postcss-random": "^1.0.9",
+    "postcss-scss": "^1.0.4",
+    "postcss-short": "^4.1.0",
+    "pug": "^2.0.3",
+    "stylelint": "^8.4.0",
+    "stylelint-config-recommended": "^2.0.1"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 9",
+    "ios >= 7"
+  ],
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "8080"
+    }
+  }
+}

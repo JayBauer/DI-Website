@@ -1,0 +1,70 @@
+type User {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  email: String! @unique
+  password: String!
+  isAdmin: Boolean! @default(value: "false")
+  firstName: String!
+  lastName: String!
+  phone: String!
+  address1: String!
+  address2: String
+  city: String!
+  province: String!
+  postal: String!
+  bookings: [Booking!]! @relation(name: "UserBookings", onDelete: CASCADE)
+  stripe: StripeCustomer @relation(name: "Stripe")
+}
+
+type Booking {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User! @relation(name: "UserBookings")
+  bookingFor: BookingFor
+  ontarioRes: IsResident
+  bodyParts: Json
+  waiver: Waiver!
+  referral: Referral!
+  payment: Boolean! @default(value: "false")
+}
+
+type Referral {
+  maple: Boolean! @default(value: "false")
+  upload: String!
+}
+
+type Waiver {
+  party: [String!]!
+  otherParty: Json!
+  agree: Boolean!
+  firstName: String!
+  lastName: String!
+  date: String!
+}
+
+type StripeCustomer {
+  id: ID! @unique
+  stripeId: String! @unique
+  user: User! @relation(name: "Stripe")
+  charges: [Charge!]! @relation(name: "Charges" onDelete: CASCADE)
+}
+
+type Charge {
+  id: ID! @unique
+  chargedTo: StripeCustomer! @relation(name: "Charges")
+  amount: Float!
+  currency: String! @default(value: "CAD")
+}
+
+enum BookingFor {
+  PATIENT
+  MYSELF
+  CLIENT
+}
+
+enum IsResident {
+  YES
+  NO
+}

@@ -1,0 +1,75 @@
+# import User from "./generated/prisma.graphql"
+# import Waiver from "./generated/prisma.graphql"
+
+type Query {
+  me: User
+  user: User!
+  booking(id: ID!): Booking
+  bookings(user: UserWhereUniqueInput!): [Bookings!]!
+}
+
+type Mutation {
+  signup(
+    email: String!,
+    password: String!,
+    isAdmin: Boolean!,
+    firstName: String!,
+    lastName: String!,
+    phone: String!,
+    address1: String!,
+    address2: String,
+    city: String!,
+    province: String!,
+    postal: String!
+  ): AuthPayload!
+
+  login(email: String!, password: String!): AuthPayload!
+
+  updateUser(
+    id: ID!,
+    firstName: String,
+    lastName: String,
+    phone: String,
+    email: String!,
+    password: String,
+    address1: String,
+    address2: String,
+    city: String,
+    province: String,
+    postal: String
+  ): User!
+
+  updatePassword(
+    id: ID!,
+    password: String!
+  ): User!
+
+  saveBooking(
+    id: ID!,
+    user: ID!,
+    bookingFor: BookingFor!,
+    ontarioRes: IsResident!,
+    bodyParts: Json!,
+    waiver: WaiverCreateInput!,
+    referral: ReferralCreateInput!,
+    payment: Boolean
+  ): Booking!
+
+  deleteBooking(id: ID!): Booking!
+
+  saveCustomer(
+    source: String!,
+    email: String!
+  ): StripeCustomer!
+
+  newPayment(
+    customer:StripeCustomerWhereUniqueInput!,
+    amount:Float!,
+    currency:String!
+  ): Charge!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}

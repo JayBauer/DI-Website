@@ -1,0 +1,80 @@
+/*
+Page/Template: Home Page
+Author: Jay Bauer
+Organization: Elite Digital
+
+Organized by section based on the header titles
+Mobile-first, media queries are handled per-section
+*/
+
+/* ************** */
+/* Header Content */
+/* ************** */
+.header-content {
+  display: flex;
+  flex-flow: column;
+  padding: 50px 0;
+  text-align: center;
+  h1 {
+    padding: 0 0 50px;
+    color: $white;
+  }
+  h4 {
+    color: $white;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 0 0 75px 0;
+  }
+  &__buttons {
+    button {
+      white-space: nowrap;
+    }
+  }
+  @media (--for-phone) {
+    h1 {
+      font-size: 36px/36px;
+    }
+    h4 {
+      display: none;
+    }
+    &__buttons {
+      .btn-big {
+        margin: 30px 0;
+      }
+    }
+  }
+  @media (--for-tablet-port-up) {
+    padding: 75px 0 100px;
+    text-align: center;
+    h1 {
+      padding: 10px 0 30px;
+      color: $white;
+    }
+    &__buttons {
+      lost-center: 600px;
+      .btn-big {
+        lost-column: 1/2 0 60px;
+      }
+    }
+  }
+}
+
+/* ********************** */
+/* Home Page Styles Start */
+/* ********************** */
+
+section.home-page {
+  &#benefits {
+    background-color: $off-white;
+    h1 {
+      display: none;
+    }
+    @include card-blocks(210px, 340px, 30px);
+
+    @media (--for-tablet-port-up) {
+      h1 {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,126 @@
+<template lang='pug'>
+  main
+    main-header
+    account-header
+    nuxt-child
+</template>
+
+<script>
+  import MainHeader from '~/components/MainHeader'
+  import AccountHeader from '~/components/account/AccountHeader'
+  import { ME } from '~/queries'
+
+  export default {
+    name: 'Account',
+    data: () => ({
+      me: {},
+      loading: 0
+    }),
+    apollo: {
+      me: {
+        query: ME,
+        loadingKey: 'loading'
+      }
+    },
+    beforeUpdate() {
+      console.log('Update?')
+      this.$apollo.queries.me.refetch()
+    },
+    components: {
+      MainHeader,
+      AccountHeader
+    },
+    head() {
+      return {
+        title: 'Your Account'
+      }
+    }
+  }
+</script>
+
+<style lang="postcss">
+  @import 'global/variables';
+  @import 'components/forms';
+
+  section.account-page {
+    background-color: $white;
+    h4 {
+      text-align: center;
+      font-weight: light;
+    }
+    &#account-head {
+      nav.account-nav {
+        lost-center: 500px;
+        justify-content: space-evenly;
+        padding: 30px * * *;
+        a {
+          &.router-link-active {
+            border-bottom: 1px solid $blue;
+          }
+          h4 {
+            color: $blue;
+          }
+        }
+      }
+      @media (--for-phone) {
+        nav.account-nav {
+          a {
+            h4 {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+    &#profile {
+      padding: 0 * * *;
+      form.profile-form {
+        padding: 30px;
+      }
+      form.password-form {
+        padding: 30px;
+        .form-row input {
+          lost-column: 1/3;
+        }
+      }
+      @media (--for-tablet-port-down) {
+        form.password-form {
+          .form-row input {
+            lost-column: 1/1;
+          }
+        }
+      }
+    }
+    &#order-history {
+      padding: 0 20px;
+      .single-order {
+        lost-center: 1000px;
+        align-items: center;
+        h4 {
+          lost-column: 1/3;
+          word-wrap: break-word;
+        }
+        &--headers {
+          padding: 50px 0 10px 0;
+          margin: * * 30px *;
+          color: $blue;
+          border-bottom: 1px solid $blue;
+        }
+        &--content {
+          padding: 10px *;
+          h4:nth-of-type(-n+2) {
+            font-weight: medium;
+            color: $blue;
+          }
+        }
+      }
+      @media (--for-phone) {
+        .single-order {
+          h4 {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+</style>
