@@ -4,22 +4,22 @@
       div.nav-box__nav-links.nav-box__nav-link--mail
         a.email-link(:href="'mailto:' + email"): i
       div.nav-box__logo
-        //- nuxt-link(:to="{ name: 'index' }")
+        nuxt-link(:to="{ name: 'index' }")
           img(:src="logo.src" :alt="logo.alt")
       div.nav-box__nav-links.nav-box__nav-link--menu
         button.btn-small menu
 
     div.nav-box--desktop
       div.nav-box__logo
-        //- nuxt-link(:to="{ name: 'index' }")
+        nuxt-link(:to="{ name: 'index' }")
           img(:src="logo.src" :alt="logo.alt")
       div.nav-box__nav-menu
         nav.nav-menu__login-nav
-          //- nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") {{ userId == null ? `Welcome ${userName}!` : 'Log In' }}
+          nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") {{ userId == null ? `Welcome ${userName}!` : 'Log In' }}
           a.login-nav__nav-item(:href="'mailto:' + email") {{ email }} {{ userId }}
         nav.nav-menu__main-nav(role="navigation")
-          //- nuxt-link.main-nav__nav-item(:to="{ name: 'booking-id', params: { id: 'new' } }"): h4 Booking
-          //- nuxt-link.main-nav__nav-item(v-for="link in links" :to="{ name: link.name }" :key="link.name"): h4 {{ link.text }}
+          nuxt-link.main-nav__nav-item(:to="{ name: 'booking-id', params: { id: 'new' } }"): h4 Booking
+          nuxt-link.main-nav__nav-item(v-for="link in links" :to="{ name: link.name }" :key="link.name"): h4 {{ link.text }}
     slot
 </template>
 
