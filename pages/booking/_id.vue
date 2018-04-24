@@ -121,7 +121,7 @@
             payment
           }
         }).then(res => {
-          console.log('Successful quiz save, ya done it')
+          console.log('Successful booking save')
         }).catch(err => {
           console.log(err)
         })

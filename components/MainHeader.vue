@@ -15,8 +15,11 @@
           img(:src="logo.src" :alt="logo.alt")
       div.nav-box__nav-menu
         nav.nav-menu__login-nav
-          nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") {{ userId == null ? `Welcome ${userName}!` : 'Log In' }}
-          a.login-nav__nav-item(:href="'mailto:' + email") {{ email }} {{ userId }}
+          template(v-if="userName")
+            nuxt-link.login-nav__nav-item(:to="{ name: 'account-order-history' }") Welcome {{ userName }}!
+          template(v-else)
+            nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") Log In
+          a.login-nav__nav-item(:href="'mailto:' + email") {{ email }}
         nav.nav-menu__main-nav(role="navigation")
           nuxt-link.main-nav__nav-item(:to="{ name: 'booking-id', params: { id: 'new' } }"): h4 Booking
           nuxt-link.main-nav__nav-item(v-for="link in links" :to="{ name: link.name }" :key="link.name"): h4 {{ link.text }}
@@ -24,8 +27,8 @@
 </template>
 
 <script>
-  import { ME } from '~/queries'
-  import { CONTACT, LOGO } from '~/constants'
+  import Cookie from 'js-cookie'
+  import { USER_ID, CONTACT, LOGO } from '~/constants'
 
   export default {
     name: 'Header',
@@ -41,7 +44,7 @@
     }),
     computed: {
       userId() {
-        return this.$store.getters.userId
+        return Cookie.get(USER_ID)
       },
       userName() {
         return this.$store.getters.userName

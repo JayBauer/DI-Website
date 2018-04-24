@@ -52,6 +52,11 @@ div
       HowItWorks,
       BookNow,
       MainFooter
+    },
+    head() {
+      return {
+        title: 'Home'
+      }
     }
   }
 </script>

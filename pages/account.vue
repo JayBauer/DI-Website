@@ -23,8 +23,9 @@
       }
     },
     beforeUpdate() {
-      console.log('Update?')
       this.$apollo.queries.me.refetch()
+      this.$store.dispatch('updateId', this.me.id)
+      this.$store.dispatch('updateName', this.me.firstName)
     },
     components: {
       MainHeader,

@@ -28,12 +28,12 @@ export default (ctx) => {
 
 
 // export default (ctx) => {
-//   const httpLink = new HttpLink({ uri: 'http://localhost:4000/' })
+//   const httpLink = new HttpLink({ uri: 'http://165.227.33.8:4000/' })
 //
 //
 //   // middleware
 //   const middlewareLink = new ApolloLink((operation, forward) => {
-//     const token = process.server ? ctx.req.session : window.__NUXT__.state.session
+//     const token = process.server ? ctx.req.session : window.localStorage.getItem(AUTH_TOKEN)
 //
 //     operation.setContext({
 //       headers: { authorization: `Bearer ${token}` }

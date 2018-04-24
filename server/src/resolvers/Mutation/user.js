@@ -3,7 +3,6 @@ const { getUserId } = require('../../utils')
 const user = {
   async updateUser(parent, { id, ...args }, ctx, info) {
     const userId = getUserId(ctx)
-    console.log(args);
     return ctx.db.mutation.updateUser(
       {
         where: { id: userId },

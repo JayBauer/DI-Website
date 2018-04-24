@@ -43,6 +43,14 @@
 </script>
 
 <style lang="postcss">
+  @import 'global/variables';
+
+  h4 {
+    a {
+      color: $blue;
+      font-weight: medium;
+    }
+  }
   #order-history {
     height: 100%;
   }
