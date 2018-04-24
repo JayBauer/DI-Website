@@ -1,7 +1,7 @@
 {
-  "name": "test",
+  "name": "diagnostic-illumination",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "description": "Diagnostic Illumination",
   "author": "",
   "private": true,
   "scripts": {
