@@ -1,9 +1,9 @@
 const state = {
   user: {
-    id: null,
     isAuth: false,
     firstName: ''
   },
+  currentComponent: '',
   bookingFor: '',
   ontarioRes: '',
   bodyParts: {
@@ -29,8 +29,8 @@ const state = {
 
 const getters = {
   state: state => state,
-  userId: state => state.user.id,
   userName: state => state.user.firstName,
+  currentComponent: state => state.currentComponent,
   bookingFor: state => state.bookingFor,
   ontarioRes: state => state.ontarioRes,
   bodyParts: state => state.bodyParts,
@@ -52,14 +52,14 @@ const getters = {
 }
 
 const mutations = {
-  updateId(state, payload) {
-    state.user.id = payload
-  },
   updateName(state, payload) {
     state.user.firstName = payload
   },
   updateAuth(state, payload) {
     state.user.isAuth = payload
+  },
+  updateComponent(state, payload) {
+    state.currentComponent = payload
   },
   updateBooking(state, payload) {
     state.bookingFor = payload
@@ -82,17 +82,14 @@ const mutations = {
 }
 
 const actions = {
-  // nuxtServerInit({ commit }, payload) {
-  //
-  // },
-  updateId({ commit }, payload) {
-    commit('updateId', payload)
+  updateName({ commit }, payload) {
+    commit('updateName', payload)
   },
   updateAuth({ commit }, payload) {
     commit('updateAuth', payload)
   },
-  updateName({ commit }, payload) {
-    commit('updateName', payload)
+  updateComponent({ commit }, payload) {
+    commit('updateComponent', payload)
   },
   updateBooking({ commit }, payload) {
     commit('updateBooking', payload)
@@ -119,6 +116,14 @@ const actions = {
     commit('updateWaiver', payload.waiver)
     commit('updateReferral', payload.referral)
     commit('updatePayment', payload.payment)
+  },
+  resetBooking({ commit }, payload) {
+    commit('updateBooking', '')
+    commit('updateResident', '')
+    commit('updateBodyParts', { brain: [], spine: [], body: [], extremities: [] })
+    commit('updateWaiver', { party: [], otherParty: { selected: false, text: '' }, agree: false, firstName: '', lastName: '', date: '' })
+    commit('updateReferral', { maple: false, upload: '' })
+    commit('updatePayment', false)
   }
 }
 

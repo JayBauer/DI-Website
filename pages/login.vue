@@ -11,13 +11,13 @@
         div.form-row.form-row--single
           TextInput(v-model="password" type="password" placeholder="Password")
         div.form-row
-          Button(id="login-btn" text="Log In")
+          Button(id="login-btn" classes="btn-big" text="Log In")
       h4 Don't have an account? #[nuxt-link(:to="{ name: 'signup' }") Create one here.]
 </template>
 
 <script>
   import gql from 'graphql-tag'
-  import Cookie from 'js-cookie'
+  import Cookies from 'js-cookie'
   import { LOGIN } from '~/mutations'
   import { USER_ID, AUTH_TOKEN } from '~/constants'
   import MainHeader from '~/components/MainHeader'
@@ -55,9 +55,8 @@
       },
 
       saveUserLogin(id, token) {
-        Cookie.set(USER_ID, id)
-        Cookie.set(AUTH_TOKEN, token)
-        this.$store.dispatch('updateId', Cookie.get(USER_ID))
+        Cookies.set(USER_ID, id, { expires: 7 })
+        Cookies.set(AUTH_TOKEN, token, { expires: 7 })
       }
     },
     components: {

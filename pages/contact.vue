@@ -13,12 +13,12 @@
           div.form-row.form-row--single
             textarea(name='message' placeholder='Message' form='contact-form')
           div.form-row
-            Button(id="submit-btn" text="Submit")
+            Button(id="submit-btn" classes="btn-big" text="Submit")
 
     section#book-now.contact-page
       h1 Book Now
       h4 Get Results back in two weeks.
-      Button(id="book-a-scan-btn" text="Book A Scan")
+      Button(id="book-a-scan-btn" classes="btn-big" text="Book A Scan")
 
     location.contact-page
 </template>

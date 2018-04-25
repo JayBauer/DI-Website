@@ -11,6 +11,8 @@
       div.form-element.form-element--radio
         input(id="booking_client" type="radio" v-model="bookingFor" value="CLIENT")
         label(for="booking_client") A Client
+
+    nav-buttons(next="Resident" @clicked="navigate" :disabled="bookingFor == ''")
 </template>
 
 <script>
@@ -26,8 +28,10 @@
         }
       }
     },
-    beforeDestroy() {
-      this.$store.dispatch('updateBooking', this.bookingFor)
+    methods: {
+      navigate(component) {
+        this.$store.dispatch('updateComponent', component)
+      }
     }
   }
 </script>

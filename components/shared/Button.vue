@@ -1,5 +1,5 @@
 <template lang='pug'>
-  button.btn-big(:id="id" type="submit")
+  button(:id="id" type="submit" :class="classes")
     svg(height="60" width="100%" xmlns="http://www.w3.org/2000/svg")
       rect.shape(height="60" width="100%")
     p {{ text }}
@@ -8,7 +8,7 @@
 <script>
   export default {
     name: 'Button',
-    props: [ 'id', 'text' ],
+    props: [ 'id', 'classes', 'text' ],
   }
 </script>
 
@@ -17,6 +17,7 @@
 
 %btn {
   display: inline-block;
+  position: relative;
   margin: 0 auto;
   max-width: 100%;
   color: $orange;
@@ -38,26 +39,32 @@
     white-space: nowrap;
     text-transform: uppercase;
     pointer-events: none;
+    position: absolute;
+    top: calc(50% - 2px);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 
 .btn-small {
   @extend %btn;
 
-  font-size: 14px/14px;
   border: 3px / solid / $orange;
+  p {
+    font-size: 14px/14px;
+  }
 }
 
 .btn-big {
   @extend %btn;
 
-  position: relative;
   p {
     font-size: 20px/20px;
-    position: absolute;
-    top: calc(50% - 2px);
-    left: 50%;
-    transform: translate(-50%, -50%);
+  }
+  &.small-text {
+    p {
+      font-size: 16px;
+    }
   }
 }
 

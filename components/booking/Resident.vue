@@ -8,6 +8,8 @@
       div.form-element.form-element--radio
         input(id="resident_no" type="radio" v-model="resident" value="NO")
         label(for="resident_no") No
+
+    nav-buttons(next="BodyParts" previous="BookingFor" @clicked="navigate" :disabled="resident == ''")
 </template>
 
 <script>
@@ -23,6 +25,11 @@
         set(value) {
           this.$store.dispatch('updateResident', value)
         }
+      }
+    },
+    methods: {
+      navigate(component) {
+        this.$store.dispatch('updateComponent', component)
       }
     }
   }

@@ -24,14 +24,12 @@
           TextInput(v-model="password" placeholder="Password")
           TextInput(v-model="passwordConfirm" placeholder="Confirm Password")
         div.form-row
-          Button(id="signup-btn" text="Create Account")
+          Button(id="signup-btn" classes="btn-big" text="Create Account")
       h4 Already have an account? #[nuxt-link(:to="{ name: 'login' }") Log in here.]
 </template>
 
 <script>
-  import Cookie from 'js-cookie'
-  import { USER_ID, AUTH_TOKEN } from '~/constants'
-  import { LOGIN, SIGNUP } from '~/mutations'
+  import { SIGNUP } from '~/mutations'
   import MainHeader from '~/components/MainHeader'
 
   export default {
@@ -54,27 +52,6 @@
     },
 
     methods: {
-      validate() {
-
-      },
-
-      login() {
-        const { email, password } = this.$data
-        this.$apollo.mutate({
-          mutation: LOGIN,
-          variables: {
-            email,
-            password
-          }
-        }).then(res => {
-          const token = res.data.login.token
-          const id = res.data.login.user.id
-          this.saveUserLogin(id, token)
-        }).catch(err => {
-          console.log(err)
-        })
-      },
-
       signup() {
         const { email, password, firstName, lastName, phone, address1, address2, city, province, postal } = this.$data
         this.$apollo.mutate({
@@ -92,24 +69,17 @@
             postal
           }
         }).then(res => {
-          const token = res.data.signup.token
-          const id = res.data.signup.user.id
-          this.saveUserLogin(id, token)
           this.$router.push({ name: 'login' })
         }).catch(err => {
           console.log(err)
         })
-      },
-
-      saveUserLogin(id, token) {
-        Cookie.set(USER_ID, id)
-        Cookie.set(AUTH_TOKEN, token)
-        this.$store.dispatch('updateId', Cookie.get(USER_ID))
       }
     },
+
     components: {
       MainHeader
     },
+
     head() {
       return {
         title: 'Sign Up'
@@ -138,13 +108,6 @@
     }
     .btn-big {
       margin: 50px * 30px;
-    }
-    &#login {
-      form.login-form {
-        .form-row {
-          lost-center: 450px;
-        }
-      }
     }
   }
 </style>

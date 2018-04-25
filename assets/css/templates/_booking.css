@@ -243,6 +243,12 @@ section.booking-page {
           }
         }
       }
+      .referral__upload-ref {
+        lost-center: 600px;
+        button {
+          lost-column: 1/2;
+        }
+      }
       .referral__get-ref {
         display: flex;
         flex-flow: column;

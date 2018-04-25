@@ -1,10 +1,9 @@
 <template lang='pug'>
-no-ssr
   div#third-party-waiver
     h3 Third Party Payment Waiver
     h4 In Ontario, the Ontario Health Insurance Act allows third parties, such as private Auto and Health Insurers, Law Firms, WSIB, and Individual Employers and Corporations to purchase an MRI scan for clients.
     h4 I agree that a third party listed below is paying in full for the MRI scan service in question and that I am not paying for this MRI scan service personally.
-
+    h4 {{ $store.getters.waiver }}
     div.third-party-waiver__form.form-group
       div.form-element.form-element--checkbox(v-for="(options, index) in party")
         input(type="checkbox" :id="options.id" :value="options.name" :key="options.id" v-model="selectedParties")
@@ -25,6 +24,8 @@ no-ssr
       TextInput.form-element.form-element--input(v-model="firstName" placeholder="First Name")
       TextInput.form-element.form-element--input(v-model="lastName" placeholder="Last Name")
       TextInput.form-element.form-element--input(v-model="date" placeholder="Date")
+
+    nav-buttons(next="Referral" previous="BodyParts" @clicked="navigate" :disabled="disabled")
 </template>
 
 <script>
@@ -45,27 +46,53 @@ no-ssr
       lastName: '',
       date: ''
     }),
+
+    computed: {
+      disabled() {
+        if(
+          (this.selectedParties.length > 0 || (this.otherPartySelect == true && this.otherPartyText != '')) &&
+          this.agree == true &&
+          this.firstName != '' &&
+          this.lastName != '' &&
+          this.date != ''
+        ) {
+          return false
+        }
+        return true
+      }
+    },
+
     mounted() {
       const { party, otherParty, agree, firstName, lastName, date } = this.$store.getters.waiver
       this.selectedParties = party
-      this.otherParty = otherParty
+      this.otherPartySelect = otherParty.selected
+      this.otherPartyText = otherParty.text
       this.agree = agree
       this.firstName = firstName
       this.lastName = lastName
       this.date = date
     },
-    beforeDestroy() {
-      this.$store.dispatch('updateWaiver', {
-        party: this.selectedParties,
-        otherParty: {
-          selected: this.otherPartySelect,
-          text: this.otherPartyText
-        },
-        agree: this.agree,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        date: this.date
-      })
+
+    methods: {
+      navigate(component) {
+        this.$store.dispatch('updateComponent', component)
+        this.$store.dispatch('updateWaiver', {
+          party: this.selectedParties,
+          otherParty: {
+            selected: this.otherPartySelect,
+            text: this.otherPartyText
+          },
+          agree: this.agree,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          date: this.date
+        })
+      }
     }
   }
 </script>
+
+<style lang="postcss">
+  @import 'global/variables';
+  @import 'components/forms';
+</style>

@@ -6,8 +6,8 @@ div
         h1 Schedule Your MRI Today
         h4 Why wait for an MRI? Schedule your MRI appointment within 24 hours and receive your results within 24 hours post MRI scan completion.
       div.header-content__buttons
-        Button(id="eligibility-btn" text="Am I Eligible?")
-        Button(id="book-now-header-btn" text="Book A Scan")
+        Button(id="eligibility-btn" classes="btn-big" text="Am I Eligible?")
+        Button(id="book-now-header-btn" classes="btn-big" text="Book A Scan")
 
   section#benefits.home-page
     h1 The Benefits

@@ -14,8 +14,10 @@
 </template>
 
 <script>
+  import Cookies from 'js-cookie'
   import Order from '~/components/account/Order'
-  import { ME, USER_BOOKINGS } from '~/queries'
+  import { USER_BOOKINGS } from '~/queries'
+  import { USER_ID } from '~/constants'
 
   export default {
     name: 'Profile',
@@ -30,7 +32,7 @@
         variables() {
           return {
             user: {
-              id: this.$store.getters.userId
+              id: Cookies.get(USER_ID)
             }
           }
         }

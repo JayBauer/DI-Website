@@ -29,6 +29,8 @@
           label(:for="options.id") {{ options.name }}
 
       quote-box(:price="price" :discount="0")
+
+    nav-buttons(next="Waiver" previous="Resident" @clicked="navigate")
 </template>
 
 <script>
@@ -110,5 +112,10 @@
         extremities: this.selectedExtremities
       })
     },
+    methods: {
+      navigate(component) {
+        this.$store.dispatch('updateComponent', component)
+      }
+    }
   }
 </script>

@@ -157,6 +157,20 @@ export const SAVE_CUSTOMER = gql `
   }
 `
 
+export const UPLOAD_FILE = gql `
+  mutation UploadFile(
+    $file: Upload!,
+    $path:String!
+  ) {
+    uploadFile(
+      file:$file,
+      path:$path
+    ) {
+      filename
+    }
+  }
+`
+
 // export const PAYMENT = gql `
 //   mutation NewPayment(
 //     customer:

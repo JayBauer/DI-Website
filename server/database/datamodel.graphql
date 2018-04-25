@@ -58,6 +58,23 @@ type Charge {
   currency: String! @default(value: "CAD")
 }
 
+input Upload {
+  name: String!
+  type: String!
+  size: Int!
+  path: String!
+}
+
+type File {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  filename: String!
+  mimetype: String!
+  encoding: String!
+  url: String! @unique
+}
+
 enum BookingFor {
   PATIENT
   MYSELF

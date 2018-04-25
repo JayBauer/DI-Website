@@ -1,11 +1,13 @@
 # import User from "./generated/prisma.graphql"
 # import Waiver from "./generated/prisma.graphql"
+scalar Upload
 
 type Query {
   me: User
   user: User!
   booking(id: ID!): Booking
   bookings(user: UserWhereUniqueInput!): [Booking!]!
+  file:(id: ID!): File
 }
 
 type Mutation {
@@ -56,6 +58,11 @@ type Mutation {
   ): Booking!
 
   deleteBooking(id: ID!): Booking!
+
+  uploadFile(
+    file: Upload!
+    path: String!
+  ): File!
 
   saveCustomer(
     source: String!,

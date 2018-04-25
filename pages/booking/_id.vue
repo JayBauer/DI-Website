@@ -1,15 +1,14 @@
 <template lang='pug'>
   div
     main-header
-    section#booking-header.booking-page
-      h1 Book a Scan
-      Button(v-if="selectedComponent > 3" id="save-booking-btn" text="Save Progress" @click.native="saveBooking")
-      booking-header-nav(@clicked="navigate")
+    main
+      section#booking-header.booking-page
+        h1 Book a Scan
+        Button(v-if="currentComponent == 'Referral' || currentComponent == 'Payment'" id="save-booking-btn" classes="btn-big" text="Save Progress" @click.native="saveBooking")
+        booking-header-nav(@clicked="navigate")
 
-    section#booking-main.booking-page
-      component(:is="components[selectedComponent]")
-
-    nav-buttons(:next="next" :previous="previous" @clicked="navigate")
+      section#booking-main.booking-page
+        component(:is="currentComponent")
 </template>
 
 <script>
@@ -17,7 +16,6 @@
 
   import MainHeader from '~/components/MainHeader'
   import BookingHeaderNav from '~/components/booking/BookingHeaderNav'
-  import NavButtons from '~/components/booking/NavButtons'
   import BookingFor from '~/components/booking/BookingFor'
   import Resident from '~/components/booking/Resident'
   import BodyParts from '~/components/booking/BodyParts'
@@ -32,27 +30,14 @@
   export default {
     name: 'Booking',
     data: () => ({
-      userId: Cookie.get(USER_ID),
-      components: [
-        'BookingFor',
-        'Resident',
-        'BodyParts',
-        'Waiver',
-        'Referral',
-        'Payment'
-      ],
-      selectedComponent: 0,
       booking: {}
     }),
     computed: {
       currentStore() {
         return this.$store.getters.state
       },
-      next() {
-        return this.selectedComponent + 1;
-      },
-      previous() {
-        return this.selectedComponent - 1;
+      currentComponent() {
+        return this.$store.getters.currentComponent
       }
     },
 
@@ -69,6 +54,14 @@
           this.initialValues(data)
         }
       }
+    },
+
+    mounted() {
+      this.$store.dispatch('updateComponent', 'BookingFor')
+    },
+
+    beforeDestroy() {
+      this.$store.dispatch('resetBooking')
     },
 
     methods: {
@@ -105,7 +98,7 @@
           mutation: SAVE_BOOKING,
           variables: {
             id: this.$route.params.id,
-            user: this.userId,
+            user: Cookie.get(USER_ID),
             bookingFor,
             ontarioRes,
             bodyParts,
@@ -130,8 +123,7 @@
 
     components: {
       MainHeader,
-      'booking-header-nav': BookingHeaderNav,
-      'nav-buttons': NavButtons,
+      BookingHeaderNav,
       BookingFor,
       Resident,
       BodyParts,

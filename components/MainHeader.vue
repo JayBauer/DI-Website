@@ -15,7 +15,7 @@
           img(:src="logo.src" :alt="logo.alt")
       div.nav-box__nav-menu
         nav.nav-menu__login-nav
-          template(v-if="userName")
+          template(v-if="userId")
             nuxt-link.login-nav__nav-item(:to="{ name: 'account-order-history' }") Welcome {{ userName }}!
           template(v-else)
             nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") Log In

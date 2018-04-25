@@ -8,25 +8,9 @@
 <script>
   import MainHeader from '~/components/MainHeader'
   import AccountHeader from '~/components/account/AccountHeader'
-  import { ME } from '~/queries'
 
   export default {
     name: 'Account',
-    data: () => ({
-      me: {},
-      loading: 0
-    }),
-    apollo: {
-      me: {
-        query: ME,
-        loadingKey: 'loading'
-      }
-    },
-    beforeUpdate() {
-      this.$apollo.queries.me.refetch()
-      this.$store.dispatch('updateId', this.me.id)
-      this.$store.dispatch('updateName', this.me.firstName)
-    },
     components: {
       MainHeader,
       AccountHeader

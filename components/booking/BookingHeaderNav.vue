@@ -1,5 +1,5 @@
 <template lang='pug'>
-  nav.booking-nav
+  nav
     custom-svg(src="head.svg" :color="iconColor" width="35" height="45")
     custom-svg(src="small-circle.svg" :color="circleColor" width="12" height="12")
     custom-svg(src="small-circle.svg" :color="iconColor" width="12" height="12")
@@ -33,10 +33,10 @@
   }
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
   @import 'global/variables';
 
-  nav.booking-nav {
+  nav {
     lost-center: 600px;
     justify-content: space-between;
     align-items: center;

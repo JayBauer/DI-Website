@@ -16,7 +16,7 @@
         br
         h5: a(:href="'mailto:' + email") {{ email }}
 
-        Button(id="contact-btn" text="Contact Us")
+        Button(id="contact-btn" classes="btn-big" text="Contact Us")
 </template>
 
 <script>

@@ -4,7 +4,7 @@
       h1 Book Now
     slot(name="content")
       h4 Get Results back in two weeks.
-    Button(id="book-now-btn" text="Book A Scan")
+    Button(id="book-now-btn" classes="btn-big" text="Book A Scan")
 </template>
 
 <script>
