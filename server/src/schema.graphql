@@ -7,7 +7,7 @@ type Query {
   user: User!
   booking(id: ID!): Booking
   bookings(user: UserWhereUniqueInput!): [Booking!]!
-  file:(id: ID!): File
+  file(id: ID!): File
 }
 
 type Mutation {
