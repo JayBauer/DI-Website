@@ -3,7 +3,7 @@
     h1 How It Works
     ul.how-it-works__list
       li.how-it-works__item(v-for="item, index in list")
-        img(:src="'/img/' + item.src" :alt="item.alt")
+        custom-svg(:src="item.src" color="#F68938" :width="item.width" :height="item.height" :viewbox="`0 0 ${item.width} ${item.height}`")
         h2 {{ index + 1 }}.
         div.how-it-works__item__content
           h2 {{ item.text }}
@@ -15,41 +15,13 @@
     name: "HowItWorks",
     data: () => ({
       list: [
-        {
-          src: 'airplane.svg',
-          alt: 'Paper Airplane Icon',
-          text: 'Select Area to Be Scanned'
-        },
-        {
-          src: 'money-orange.svg',
-          alt: 'Money Icon',
-          text: 'See Quote'
-        },
-        {
-          src: 'pencil-clipboard.svg',
-          alt: 'Pencil and Clipboard Icon',
-          text: 'Sign Third Party Payment Waiver'
-        },
-        {
-          src: 'upload-paper.svg',
-          alt: 'Paper with Upload Symbol',
-          text: 'Upload/Get Referral'
-        },
-        {
-          src: 'phone-arrow.svg',
-          alt: 'Phone with Arrow Icon',
-          text: 'Schedule Appointment with Hospital'
-        },
-        {
-          src: 'scan.svg',
-          alt: 'Scanning Icon',
-          text: 'Scan'
-        },
-        {
-          src: 'results-orange.svg',
-          alt: 'Clipboard Icon',
-          text: 'See Results'
-        }
+        { src: 'airplane.svg', text: 'Select Area to Be Scanned', width: '42', height: '42' },
+        { src: 'money.svg', text: 'See Quote', width: '54', height: '32' },
+        { src: 'pencil.svg', text: 'Sign Third Party Payment Waiver', width: '40', height: '50' },
+        { src: 'arrow.svg', text: 'Upload/Get Referral', width: '41', height: '51' },
+        { src: 'phone.svg', text: 'Schedule Appointment with Hospital', width: '45', height: '45' },
+        { src: 'shock.svg', text: 'Scan', width: '52', height: '54' },
+        { src: 'results.svg', text: 'See Results', width: '38', height: '52' }
       ]
     })
   }
@@ -70,7 +42,7 @@
         margin: 0 auto;
         padding: 40px 50px 0;
         text-align: center;
-        img {
+        .simple-svg-wrapper {
           margin: 10px 0;
         }
         h2 {
@@ -93,7 +65,7 @@
           flex-flow: row;
           align-items: flex-start;
           text-align: left;
-          img {
+          .simple-svg-wrapper {
             padding-right: 20px;
             transform: translateY(-20%);
           }

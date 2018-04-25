@@ -27,28 +27,28 @@
       h1 Susceptibility Weighted Imaging Scans
       div.circle-list
         div.circle-list__list-item
-          img(src="/img/small-circle.svg" alt="circle")
+          custom-svg(src="small-circle.svg" color="#000" width="12" height="12")
           h4 Susceptibility Weighted Imaging is a new MRI sequence that relies on the magnetic susceptibility of tissues or compounds in the brain, such as iron-rich hemosiderin, which is a byproduct of hemorrhage.
         div.circle-list__list-item
-          img(src="/img/small-circle.svg" alt="circle")
+          custom-svg(src="small-circle.svg" color="#000" width="12" height="12")
           h4 Because of the Blood Brain Barrier, hemosiderin deposits remain in the brain for a very long time after the initial trauma.
         div.circle-list__list-item
-          img(src="/img/small-circle.svg" alt="circle")
+          custom-svg(src="small-circle.svg" color="#000" width="12" height="12")
           h4 SWI has been shown in several studies and in clinical application to be much more sensitive in detecting micro-hemorrhages than conventional methods, such as T2*-gradient echo (including 3 Tesla imaging).
 
     section#swi-benefits.litigation-page
       h1 Benefits Utilizing SWI for Litigation
       div.card-blocks
         div.card-blocks--left
-          Card(color="orange" src="target.svg" alt="Target Icon")
+          Card(color="orange" src="target.svg" width="87" height="87")
             p Provides the highest level of sensitivity and detectability of the smallest brain injuries
-          Card(color="red" src="half-circle.svg" alt="Half-Circle Icon")
+          Card(color="red" src="half-circle.svg" width="83" height="83")
             p Non-invasive, non-contrast imaging
         div.card-blocks__divider
         div.card-blocks--right
-          Card(color="light-blue" src="magnifying-glass.svg" alt="Magnifying Glass Icon")
+          Card(color="light-blue" src="magnifying-glass.svg" width="74" height="74")
             p Provides high resolution visualization of abnormalities caused by small hemorrhages and microscopic tears
-          Card(color="purple" src="venn-diagram.svg" alt="Diagram Icon")
+          Card(color="purple" src="venn.svg" width="100" height="66")
             p Objective findings may be utilized to address an injured Insured clients’ Minor Injury Guideline (MIG) status either placing them within the MIG or outside of the MIG.
 
     section#swi-accuracy.litigation-page
