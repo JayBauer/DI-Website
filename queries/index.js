@@ -48,7 +48,9 @@ export const GET_BOOKING = gql `
       }
       referral {
         maple
-        upload
+        upload {
+          filename
+        }
       }
       payment
     }

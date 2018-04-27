@@ -1,14 +1,12 @@
-# the name for the service (will be part of the service's HTTP endpoint)
-service: diagnostic-illumination
-
-# the cluster and stage the service is deployed to
-stage: ${env:PRISMA_STAGE}
-
-# to disable authentication:
-# disableAuth: true
-secret: ${env:PRISMA_SECRET}
-
-# the file path pointing to your data model
+# service: ${env:PRISMA_SERVICE}
+# cluster: ${env:PRISMA_CLUSTER}
+# stage: ${env:PRISMA_STAGE}
 datamodel: datamodel.graphql
+secret: ${env:PRISMA_SECRET}
+endpoint: ${env:PRISMA_ENDPOINT}
 
-cluster: ${env:PRISMA_CLUSTER}
+hooks:
+  post-deploy:
+    # - echo "Deployment finished"
+    - graphql get-schema --project database
+    - graphql prepare

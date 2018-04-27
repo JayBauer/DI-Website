@@ -22,7 +22,7 @@ const state = {
   },
   referral: {
     maple: false,
-    upload: ''
+    upload: {}
   },
   payment: false
 }

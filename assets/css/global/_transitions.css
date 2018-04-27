@@ -1,0 +1,21 @@
+.page-enter-active, .page-leave-active {
+  position: absolute;
+  max-width: 725.328px;
+  transition: all 0.2s ease;
+}
+
+.page-enter {
+  left: -100%;
+}
+
+.page-enter-to {
+  left: 0;
+}
+
+.page-leave {
+  opacity: 1;
+}
+
+.page-leave-to {
+  opacity: 0;
+}

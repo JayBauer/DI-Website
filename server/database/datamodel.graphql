@@ -32,7 +32,7 @@ type Booking {
 
 type Referral {
   maple: Boolean! @default(value: "false")
-  upload: String!
+  upload: File!
 }
 
 type Waiver {

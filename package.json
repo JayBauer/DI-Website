@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@nuxtjs/apollo": "^3.0.6",
+    "apollo-upload-client": "^8.0.0",
     "babel-eslint": "^8.2.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.15.0",

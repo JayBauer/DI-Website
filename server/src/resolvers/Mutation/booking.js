@@ -1,9 +1,8 @@
-const { createWriteStream } = require('fs')
+const { createWriteStream, unlink } = require('fs')
 const mkdirp = require('mkdirp')
 const shortid = require('shortid')
 
 const uploadDir = './uploads'
-
 mkdirp.sync(uploadDir)
 
 const storeUpload = ({ stream, filename }, path, sid) =>
@@ -14,12 +13,19 @@ const storeUpload = ({ stream, filename }, path, sid) =>
       .on("error", reject)
 )
 
+function removeFile(url) {
+  unlink(url, (err) => {
+    if(err) {
+      console.log('File does not exist?')
+    }
+  })
+  console.log('Deleted ' + url)
+}
+
 const booking = {
   async saveBooking(parent, { id, user, bookingFor, ontarioRes, bodyParts, waiver, referral, payment }, ctx, info) {
     const bookingExists = await ctx.db.query.booking({ where: { id } })
-    console.log(waiver)
     if(!bookingExists) {
-      console.log('No booking!')
       return ctx.db.mutation.createBooking(
         {
           data: {
@@ -35,7 +41,6 @@ const booking = {
         info
       )
     } else {
-      console.log('Booking Found!')
       return ctx.db.mutation.updateBooking(
         {
           where: { id },
@@ -65,7 +70,7 @@ const booking = {
     return ctx.db.mutation.createFile(
       {
         data: {
-          filename: sid + filename,
+          filename,
           mimetype,
           encoding,
           url: path + sid + filename
@@ -73,6 +78,16 @@ const booking = {
       },
       info
     )
+  },
+
+  async deleteFile(parent, { url }, ctx, info) {
+    const fileExists = await ctx.db.query.file({ where: { url } })
+    if(fileExists) {
+      removeFile(url)
+      return ctx.db.mutation.deleteFile({ where: { url } })
+    } else {
+      throw new Error('File not found!')
+    }
   }
 }
 

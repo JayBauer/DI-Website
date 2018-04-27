@@ -4,13 +4,13 @@
     h4 Attach a file from your computer below to continue to book your MRI scan
     div.dropbox(v-if="!image")
       div
-        input(type="file" @change="onFileChange" class="input-file")
+        input(type="file" class="input-file" @change="onFileChange")
         p Drag your file(s) here
           br
           | or click to browse
     div(v-else)
       h4 {{ image.name }}
-      Button(id="upload-btn" classes="btn-big small-text" text="Confirm Upload" @click.native="upload")
+      Button(id="upload-btn" classes="btn-big small-text" text="Confirm Upload" @click.native="readyUpload")
       Button(id="remove-upload-btn" classes="btn-big small-text" text="Delete File" @click.native="removeImage")
 </template>
 
@@ -27,21 +27,25 @@
       onFileChange(e) {
         var files = e.target.files || e.dataTransfer.files
         if (!files.length) return
-        this.success = true
         this.image = files[0]
-
-        const uploadPath = `./uploads/${this.image.name}`
+        this.success = true
+      },
+      removeImage(e) {
+        this.image = ''
+        this.success = false
+      },
+      readyUpload() {
         this.$apollo.mutate({
           mutation: UPLOAD_FILE,
           variables: {
             file: this.image,
-            path: uploadPath
+            path: './uploads/'
           }
+        }).then(() => {
+          console.log('Uploaded successfully')
+        }).catch(err => {
+          console.log(err)
         })
-      },
-      removeImage: function (e) {
-        this.image = ''
-        this.success = false
       }
     }
   }

@@ -8,6 +8,7 @@ type Query {
   booking(id: ID!): Booking
   bookings(user: UserWhereUniqueInput!): [Booking!]!
   file(id: ID!): File
+  files: [File!]!
 }
 
 type Mutation {
@@ -63,6 +64,8 @@ type Mutation {
     file: Upload!
     path: String!
   ): File!
+
+  deleteFile(url: String!): File!
 
   saveCustomer(
     source: String!,

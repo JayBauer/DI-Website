@@ -59,9 +59,11 @@
         Cookies.set(AUTH_TOKEN, token, { expires: 7 })
       }
     },
+
     components: {
       MainHeader
     },
+
     head() {
       return {
         title: 'Log In'
