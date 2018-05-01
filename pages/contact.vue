@@ -1,19 +1,18 @@
 <template lang="pug">
   div
-    main-header
-      section#contact.contact-page
-        h1 Contact
-        form#contact-form.contact-form
-          div.form-row
-            input(type='text' name='fname' placeholder='First Name')
-            input(type='text' name='lname' placeholder='Last Name')
-          div.form-row
-            input(type='text' name='phone' placeholder='Phone Number')
-            input(type='text' name='email' placeholder='Email Address')
-          div.form-row.form-row--single
-            textarea(name='message' placeholder='Message' form='contact-form')
-          div.form-row
-            Button(id="submit-btn" classes="btn-big" text="Submit")
+    section#contact.contact-page
+      h1 Contact
+      form#contact-form.contact-form
+        div.form-row
+          input(type='text' name='fname' placeholder='First Name')
+          input(type='text' name='lname' placeholder='Last Name')
+        div.form-row
+          input(type='text' name='phone' placeholder='Phone Number')
+          input(type='text' name='email' placeholder='Email Address')
+        div.form-row.form-row--single
+          textarea(name='message' placeholder='Message' form='contact-form')
+        div.form-row
+          Button(id="submit-btn" classes="btn-big" text="Submit")
 
     section#book-now.contact-page
       h1 Book Now
@@ -24,7 +23,6 @@
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
   import Location from '~/components/main/Location'
 
   export default {
@@ -33,7 +31,6 @@
 
     }),
     components: {
-      MainHeader,
       Location
     },
     head() {

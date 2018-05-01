@@ -1,6 +1,5 @@
 <template lang='pug'>
   div
-    main-header
     section#signup.login-page
       h1 Create Account
       h4 Create an account here to save your quote and continue along the booking process.
@@ -30,7 +29,6 @@
 
 <script>
   import { SIGNUP } from '~/mutations'
-  import MainHeader from '~/components/MainHeader'
 
   export default {
     name: 'SignUp',
@@ -74,10 +72,6 @@
           console.log(err)
         })
       }
-    },
-
-    components: {
-      MainHeader
     },
 
     head() {

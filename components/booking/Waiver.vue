@@ -3,7 +3,6 @@
     h3 Third Party Payment Waiver
     h4 In Ontario, the Ontario Health Insurance Act allows third parties, such as private Auto and Health Insurers, Law Firms, WSIB, and Individual Employers and Corporations to purchase an MRI scan for clients.
     h4 I agree that a third party listed below is paying in full for the MRI scan service in question and that I am not paying for this MRI scan service personally.
-    h4 {{ $store.getters.waiver }}
     div.third-party-waiver__form.form-group
       div.form-element.form-element--checkbox(v-for="(options, index) in party")
         input(type="checkbox" :id="options.id" :value="options.name" :key="options.id" v-model="selectedParties")

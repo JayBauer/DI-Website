@@ -14,18 +14,31 @@
         h5: span M3M 0B2
         br
         br
-        h5: a(:href="'mailto:' + email") {{ email }}
+        h5: a(:href="'mailto:' + email")
+          font-awesome-icon(:icon="icon")
+          | {{ email }}
 
         Button(id="contact-btn" classes="btn-big" text="Contact Us")
 </template>
 
 <script>
   import { CONTACT } from '~/constants'
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+  import { faEnvelope } from '@fortawesome/fontawesome-free-solid'
+
   export default {
     name: 'Location',
     data: () => ({
       email: CONTACT.email
-    })
+    }),
+    computed: {
+      icon() {
+        return faEnvelope
+      }
+    },
+    components: {
+      FontAwesomeIcon
+    }
   }
 </script>
 
@@ -55,10 +68,9 @@
       h5 {
         a {
           position: relative;
-          &::before {
+          svg {
             position: absolute;
             left: -30px;
-            font-awesome: envelope;
             color: $orange;
           }
         }

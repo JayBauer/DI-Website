@@ -1,18 +1,15 @@
 <template lang='pug'>
   main
-    main-header
     account-header
     nuxt-child
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
   import AccountHeader from '~/components/account/AccountHeader'
 
   export default {
     name: 'Account',
     components: {
-      MainHeader,
       AccountHeader
     },
     head() {

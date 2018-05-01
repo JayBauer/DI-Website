@@ -1,11 +1,13 @@
 <template lang="pug">
 div.main-container
   div.parallax-bg
+  main-header
   nuxt
   main-footer
 </template>
 <script>
   import Cookies from 'js-cookie'
+  import MainHeader from '~/components/MainHeader'
   import MainFooter from '~/components/MainFooter'
   import { ME } from '~/queries'
   import { USER_ID, AUTH_TOKEN } from '~/constants'
@@ -30,16 +32,18 @@ div.main-container
       }
     },
     components: {
+      MainHeader,
       MainFooter
     },
-    middleware: 'getUser',
-    transition: 'page'
+    middleware: 'getUser'
   }
 </script>
 
 <style lang="postcss">
+@import 'global/fonts';
 @import 'global/variables';
 @import 'global/reset';
 @import 'global/defaults';
 @import 'global/sticky-footer';
+@import 'global/transitions';
 </style>

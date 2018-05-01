@@ -1,10 +1,11 @@
 <template lang="pug">
   div
-    main-header
-
     section#services.services-page
       h1 Services
       div.service-blocks
+        //- scroll-view
+        //-   template(slot-scope="markers")
+        //-     scroll-marker(name="slide-right" :key="slide-right" )
         div.service-blocks--left
           div.service-block
             h4 Are you eligible for a private MRI in Ontario?
@@ -40,7 +41,7 @@
               | Diagnostic Illumination’s objective is to reward clients who choose to order more than one MRI scan by decreasing the overall fee per scan.  Ultimately, the risk, reward favors the client because the chance of identifying pathology is increased in this scenario.
 
     section#benefits.services-page
-      h1 Benefits of Multiple Part MRI Scans
+      h1 Benefits of Multiple Body Part MRI Scans
       div.circle-list
         div.circle-list__list-item
           div.half-circle-spinner
@@ -67,13 +68,11 @@
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
   import BookNow from '~/components/main/BookNow'
 
   export default {
     name: 'Services',
     components: {
-      MainHeader,
       BookNow
     },
     head() {

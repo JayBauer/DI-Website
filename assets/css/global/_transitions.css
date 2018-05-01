@@ -1,21 +1,41 @@
-.page-enter-active, .page-leave-active {
-  position: absolute;
-  max-width: 725.328px;
-  transition: all 0.2s ease;
+.page-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.page-leave-active {
+  transition: all 0.3s ease-in;
 }
 
 .page-enter {
-  left: -100%;
+  opacity: 0;
+  transform: translateX(-30%);
 }
 
 .page-enter-to {
-  left: 0;
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .page-leave {
   opacity: 1;
+  transform: translateX(0);
 }
 
 .page-leave-to {
   opacity: 0;
+  transform: translateX(30%);
+}
+
+/* Slide In Right */
+.slide-right-enter-active {
+  transition: all 1s ease;
+}
+
+.slide-right-enter {
+  transform: translateX(-100%);
+}
+
+.slide-right-enter-to {
+  transition-delay: 1s;
+  transform: translateX(0);
 }

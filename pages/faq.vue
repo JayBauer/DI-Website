@@ -1,43 +1,50 @@
 <template lang="pug">
 div
-  main-header
   section#questions.faq-page
     h1 Frequently Asked Questions
     div.question-blocks
       div.question-blocks--left
-        Question(v-for="question, index in questions" :key="question.id" :id="question.id")
-          h4(slot="title") {{ question.title }}
-          p(slot="answer") {{ question.answer }}
+        Question(v-for="question, index in leftQuestions" :key="'left-question-' + (index+1)" :id="'left-question-' + (index+1)")
+          h4(slot="title" v-html="question.title")
+          span(slot="answer" v-html="question.answer")
       div.question-blocks__divider
       div.question-blocks--right
+        Question(v-for="question, index in rightQuestions" :key="'right-question-' + (index+1)" :id="'right-question-' + (index+1)")
+          h4(slot="title" v-html="question.title")
+          span(slot="answer" v-html="question.answer")
   how-it-works.faq-page
   book-now.faq-page
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
   import Question from '~/components/main/Question'
   import HowItWorks from '~/components/main/HowItWorks'
   import BookNow from '~/components/main/BookNow'
 
+  import { questions } from '~/components/questions'
+
   export default {
     name: 'FAQ',
     data: () => ({
-      questions: [
-        {
-          id: 'test',
-          title: 'Test Title',
-          answer: 'Answer?'
-        },
-        {
-          id: 'question-1',
-          title: 'What is the MRI scanner comprised of?',
-          answer: 'Magnetic Resonance Imaging, commonly called MRI, is a non-invasive, painless procedure that produces very detailed pictures of soft body tissue and organs without using ionizing radiation, as with other diagnostic procedures such as X-ray and Computed Tomography (CT). Using a large magnet, radio waves and complex computer and software technology, MRI scans the patient\'s body and produces two or three-dimensional images of body tissues. MRI is important as both a screening and diagnostic tool due to its ability to detect many cardiovascular, neurological, oncological and musculoskeletal diseases/injuries earlier and more accurately than other modalities.'
-        }
-      ]
+      questions
     }),
+    computed: {
+      leftQuestions() {
+        let leftQuestions = [];
+        for(let i = 0; i < this.questions.length; i+=2) {
+          leftQuestions.push(this.questions[i])
+        }
+        return leftQuestions
+      },
+      rightQuestions() {
+        let rightQuestions = [];
+        for(let i = 1; i < this.questions.length; i+=2) {
+          rightQuestions.push(this.questions[i])
+        }
+        return rightQuestions
+      }
+    },
     components: {
-      MainHeader,
       Question,
       HowItWorks,
       BookNow
@@ -61,6 +68,39 @@ div
       }
       .question-blocks {
         lost-center: 800px;
+        ul {
+          padding: * 25px;
+          li {
+            margin: * 25px;
+            list-style-type: lower-roman;
+          }
+        }
+        table {
+          padding: 25px;
+          margin: 25px;
+          th {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+            padding: * * 25px *;
+          }
+          tr {
+            td {
+              padding: 15px * * *;
+              width: 50%;
+              &:first-of-type {
+                font-weight: bold;
+              }
+              ul {
+                padding: 0;
+                li {
+                  margin: 0;
+                  list-style-type: none;
+                }
+              }
+            }
+          }
+        }
       }
       @media (--for-tablet-port-up) {
         padding: * 30px;
@@ -74,6 +114,7 @@ div
           position: relative;
           &--left {
             lost-column: 1/2 0 60px;
+            transform: translateY(36px);
           }
           &__divider {
             position: absolute 0 * * 50%;
@@ -84,7 +125,6 @@ div
           }
           &--right {
             lost-column: 1/2 0 60px;
-            transform: translateY(36px);
           }
         }
       }

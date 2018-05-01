@@ -1,13 +1,12 @@
 <template lang="pug">
 div
-  main-header
-    div.header-content
-      div.header-content__text
-        h1 Schedule Your MRI Today
-        h4 Why wait for an MRI? Schedule your MRI appointment within 24 hours and receive your results within 24 hours post MRI scan completion.
-      div.header-content__buttons
-        Button(id="eligibility-btn" classes="btn-big" text="Am I Eligible?")
-        Button(id="book-now-header-btn" classes="btn-big" text="Book A Scan")
+  div.header-content
+    div.header-content__text
+      h1 Schedule Your MRI Today
+      h4 Why wait for an MRI? Schedule your MRI appointment within 24 hours and receive your results within 24 hours post MRI scan completion.
+    div.header-content__buttons
+      Button(id="eligibility-btn" classes="btn-big" text="Am I Eligible?")
+      Button(id="book-now-header-btn" classes="btn-big" text="Book A Scan")
 
   section#benefits.home-page
     h1 The Benefits
@@ -36,7 +35,6 @@ div
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
   import Card from '~/components/main/Card'
   import Location from '~/components/main/Location'
   import HowItWorks from '~/components/main/HowItWorks'
@@ -46,7 +44,6 @@ div
   export default {
     name: 'HomePage',
     components: {
-      MainHeader,
       Card,
       Location,
       HowItWorks,

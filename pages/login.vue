@@ -1,7 +1,5 @@
 <template lang="pug">
   div
-    main-header
-
     section#login.login-page
       h1 Log In
       h4 Log in to your account and continue along the booking process.
@@ -20,7 +18,6 @@
   import Cookies from 'js-cookie'
   import { LOGIN } from '~/mutations'
   import { USER_ID, AUTH_TOKEN } from '~/constants'
-  import MainHeader from '~/components/MainHeader'
 
   export default {
     name: 'LogIn',
@@ -58,10 +55,6 @@
         Cookies.set(USER_ID, id, { expires: 7 })
         Cookies.set(AUTH_TOKEN, token, { expires: 7 })
       }
-    },
-
-    components: {
-      MainHeader
     },
 
     head() {

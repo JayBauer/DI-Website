@@ -20,18 +20,24 @@ module.exports = {
   ** Customize the progress bar color
   */
   loading: { color: '#3B8070' },
+
   apollo: {
     clientConfigs: {
       default: '~/apollo/default.js'
     }
   },
+
   router: {
     middleware: 'getUser'
   },
+
+  plugins: ['~plugins/global.js'],
+
+  css: ['@fortawesome/fontawesome/styles.css'],
+
   /*
   ** Build configuration
   */
-  plugins: ['~plugins/global.js'],
   build: {
     postcss: [
       require('stylelint'),
@@ -49,12 +55,11 @@ module.exports = {
       require('lost'),
 
       // Utilities
-      require('postcss-font-magician')({ foundries: ['hosted google'], variants: { 'Muli': {} }, hosted: ['./assets/fonts'] }),
+      require('postcss-font-awesome'),
       require('postcss-pxtorem')(),
       require('postcss-custom-media'),
       require('postcss-media-minmax'),
-      require('postcss-font-awesome'),
-      require('postcss-assets')({ loadPaths: [ 'assets/img', 'static/img' ] }),
+      require('postcss-assets')({ loadPaths: [ 'static/img' ] }),
       require('postcss-short'),
       require('postcss-image-set-polyfill')
     ],

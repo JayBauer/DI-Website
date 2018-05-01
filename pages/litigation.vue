@@ -1,7 +1,5 @@
 <template lang="pug">
   div
-    main-header
-
     section#mri-benefits.litigation-page
       h1 Benefits Utilizing MRI for Litigation
       div.circle-list
@@ -88,17 +86,16 @@
           p Suffered at loss of consciousness as a consequence of the trauma
 
     book-now.litigation-page
+      h4(name="content") Recieve results within 48 hours.
 </template>
 
 <script>
-  import MainHeader from '~/components/MainHeader'
   import Card from '~/components/main/Card'
   import BookNow from '~/components/main/BookNow'
 
   export default {
     name: 'Litigation',
     components: {
-      MainHeader,
       Card,
       BookNow
     },

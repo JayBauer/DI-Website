@@ -1,20 +1,18 @@
 <template lang='pug'>
-  div
-    main-header
-    main
-      section#booking-header.booking-page
-        h1 Book a Scan
-        Button(v-if="currentComponent == 'Referral' || currentComponent == 'Payment'" id="save-booking-btn" classes="btn-big" text="Save Progress" @click.native="saveBooking")
-        booking-header-nav(@clicked="navigate")
+  main
+    section#booking-header.booking-page
+      h1 Book a Scan
+      Button(v-if="currentComponent == 'Referral' || currentComponent == 'Payment'" id="save-booking-btn" classes="btn-big" text="Save Progress" @click.native="saveBooking")
+      booking-header-nav(@clicked="navigate")
 
-      section#booking-main.booking-page
+    section#booking-main.booking-page
+      transition(name="page" mode="out-in")
         component(:is="currentComponent")
 </template>
 
 <script>
   import Cookie from 'js-cookie'
 
-  import MainHeader from '~/components/MainHeader'
   import BookingHeaderNav from '~/components/booking/BookingHeaderNav'
   import BookingFor from '~/components/booking/BookingFor'
   import Resident from '~/components/booking/Resident'
@@ -122,7 +120,6 @@
     },
 
     components: {
-      MainHeader,
       BookingHeaderNav,
       BookingFor,
       Resident,

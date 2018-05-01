@@ -2,7 +2,8 @@
   header
     div.nav-box--mobile
       div.nav-box__nav-links.nav-box__nav-link--mail
-        a.email-link(:href="'mailto:' + email"): i
+        a.email-link(:href="'mailto:' + email")
+          font-awesome-icon(:icon="icon")
       div.nav-box__logo
         nuxt-link(:to="{ name: 'index' }")
           img(:src="logo.src" :alt="logo.alt")
@@ -19,7 +20,9 @@
             nuxt-link.login-nav__nav-item(:to="{ name: 'account-order-history' }") Welcome {{ userName }}!
           template(v-else)
             nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") Log In
-          a.login-nav__nav-item(:href="'mailto:' + email") {{ email }}
+          a.login-nav__nav-item(:href="'mailto:' + email")
+            font-awesome-icon(:icon="icon")
+            | {{ email }}
         nav.nav-menu__main-nav(role="navigation")
           nuxt-link.main-nav__nav-item(:to="{ name: 'booking-id', params: { id: 'new' } }"): h4 Booking
           nuxt-link.main-nav__nav-item(v-for="link in links" :to="{ name: link.name }" :key="link.name"): h4 {{ link.text }}
@@ -29,6 +32,8 @@
 <script>
   import Cookie from 'js-cookie'
   import { USER_ID, CONTACT, LOGO } from '~/constants'
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+  import { faEnvelope } from '@fortawesome/fontawesome-free-solid'
 
   export default {
     name: 'Header',
@@ -48,7 +53,13 @@
       },
       userName() {
         return this.$store.getters.userName
+      },
+      icon() {
+        return faEnvelope
       }
+    },
+    components: {
+      FontAwesomeIcon
     }
   }
 </script>
@@ -66,9 +77,6 @@
         a.email-link {
           font-size: 30px/30px;
           color: $orange;
-          i::before {
-            font-awesome: envelope;
-          }
         }
       }
       .nav-box__logo {
@@ -119,11 +127,10 @@
               color: $orange;
             }
             &:nth-of-type(2) {
-              &::before {
+              svg {
                 margin-right: 10px;
                 color: $orange;
                 font-size: 20px;
-                font-awesome: envelope;
               }
             }
           }

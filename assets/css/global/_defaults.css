@@ -6,8 +6,6 @@ Organization: Elite Digital
 Default body and text settings, along with cross-page constants such as parallax background
 */
 
-@import url('https://fonts.googleapis.com/css?family=Muli');
-
 body {
   font-family: "Avenir", "Helvetica", Arial, sans-serif;
   font-size: 14px/16px;
@@ -18,6 +16,11 @@ body {
 
 section {
   padding: 50px 0;
+}
+
+main {
+  min-height: calc(100vh - 188px);
+  background-color: $white;
 }
 
 /* ******* */
