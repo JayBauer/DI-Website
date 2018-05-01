@@ -48,6 +48,7 @@
     "postcss-define-function": "^0.1.1",
     "postcss-easy-import": "^3.0.0",
     "postcss-extend-rule": "^1.1.0",
+    "postcss-font-awesome": "^0.4.0",
     "postcss-hexrgba": "^1.0.0",
     "postcss-image-set-polyfill": "^0.4.4",
     "postcss-import": "^11.1.0",
