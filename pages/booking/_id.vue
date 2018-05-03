@@ -2,7 +2,7 @@
   main
     section#booking-header.booking-page
       h1 Book a Scan
-      Button(v-if="currentComponent == 'Referral' || currentComponent == 'Payment'" id="save-booking-btn" classes="btn-big" text="Save Progress" @click.native="saveBooking")
+      Button(v-if="currentComponent == 'Referral' || currentComponent == 'Payment'" id="save-booking-btn" size="big" text="Save Progress" @click.native="saveBooking")
       booking-header-nav(@clicked="navigate")
 
     section#booking-main.booking-page
@@ -48,11 +48,18 @@
             id: this.$route.params.id
           }
         },
+        error(err) {
+          console.log('Error! ' + err)
+        },
         result(data) {
           this.initialValues(data)
         }
       }
     },
+
+    // validate({ params }) {
+    //   return /^\d+$/.test(params.id)
+    // },
 
     mounted() {
       this.$store.dispatch('updateComponent', 'BookingFor')

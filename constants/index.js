@@ -7,6 +7,7 @@ export const CONTACT = {
 }
 export const LOGO = {
   src: '/img/diagnostic-logo.png',
+  blue: '/img/diagnostic-logo-blue.svg',
   alt: 'Diagnostic Illumination Logo',
   text: {
     src: '/img/di-logo-text.svg',

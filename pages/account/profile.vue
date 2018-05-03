@@ -21,7 +21,7 @@
         div.form-row
           TextInput(v-model="postal" type="text" placeholder="Postal Code")
         div.form-row
-          Button(id="save-profile-btn" classes="btn-big" text="Save" @click="saveUser")
+          Button(id="save-profile-btn" size="big" text="Save" @click="saveUser")
 
       h4 Change Password
       form.account-form.password-form
@@ -30,7 +30,7 @@
           TextInput(v-model="newPassword" type="password" placeholder="New Password")
           TextInput(v-model="confirmPassword" type="password" placeholder="Confirm Password")
         div.form-row
-          Button(id="update-pass-btn" classes="btn-big" text="update" @click="updatePassword")
+          Button(id="update-pass-btn" size="big" text="update" @click="updatePassword")
 </template>
 
 <script>

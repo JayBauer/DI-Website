@@ -13,6 +13,15 @@
 @font-face {
   font-family: "Klinic Slab";
   font-style: normal;
+  font-weight: medium;
+  src:
+    local("Klinic Slab Medium"),
+    url('~static/fonts/KlinicSlab/KlinicSlabMedium.otf');
+}
+
+@font-face {
+  font-family: "Klinic Slab";
+  font-style: normal;
   font-weight: bold;
   src:
     local("Klinic Slab Bold"),

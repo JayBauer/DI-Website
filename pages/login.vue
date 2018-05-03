@@ -9,7 +9,7 @@
         div.form-row.form-row--single
           TextInput(v-model="password" type="password" placeholder="Password")
         div.form-row
-          Button(id="login-btn" classes="btn-big" text="Log In")
+          Button(id="login-btn" size="big" text="Log In" @click.native="login")
       h4 Don't have an account? #[nuxt-link(:to="{ name: 'signup' }") Create one here.]
 </template>
 

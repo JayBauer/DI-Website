@@ -6,14 +6,17 @@
           font-awesome-icon(:icon="icon")
       div.nav-box__logo
         nuxt-link(:to="{ name: 'index' }")
-          img(:src="logo.src" :alt="logo.alt")
+          img(:src="showNav ? logo.blue : logo.src" :alt="logo.alt")
       div.nav-box__nav-links.nav-box__nav-link--menu
-        button.btn-small menu
+        Button(id="mobile-menu-btn" size="small" :text="showNav ? 'close' : 'menu'" @click.native="navToggle")
+
+    transition(name="mobile-nav")
+      mobile-menu(v-if="showNav" @click.native="navToggle")
 
     div.nav-box--desktop
       div.nav-box__logo
         nuxt-link(:to="{ name: 'index' }")
-          img(:src="logo.src" :alt="logo.alt")
+          img(:src="showNav ? logo.blue : logo.src" :alt="logo.alt")
       div.nav-box__nav-menu
         nav.nav-menu__login-nav
           template(v-if="userId")
@@ -34,10 +37,12 @@
   import { USER_ID, CONTACT, LOGO } from '~/constants'
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
   import { faEnvelope } from '@fortawesome/fontawesome-free-solid'
+  import MobileMenu from '~/components/MobileMenu'
 
   export default {
     name: 'Header',
     data: () => ({
+      showNav: false,
       email: CONTACT.email,
       logo: LOGO,
       links: [
@@ -58,8 +63,15 @@
         return faEnvelope
       }
     },
+    methods: {
+      navToggle() {
+        this.showNav = !this.showNav
+        document.body.style.overflow = this.showNav ? 'hidden' : 'auto'
+      }
+    },
     components: {
-      FontAwesomeIcon
+      FontAwesomeIcon,
+      MobileMenu
     }
   }
 </script>
@@ -70,16 +82,27 @@
   header {
     padding: 30px 40px;
     .nav-box--mobile {
+      position: relative;
       lost-flex-container: row;
-      justify-content: space-between;
       align-items: center;
+      z-index: 99999;
       .nav-box__nav-links {
+        flex: 1;
+        display: flex;
+        justify-content: center;
         a.email-link {
+          margin-right: auto;
           font-size: 30px/30px;
           color: $orange;
         }
+        a.btn-small {
+          margin: 0 0 0 auto;
+        }
       }
       .nav-box__logo {
+        flex: 1;
+        display: flex;
+        justify-content: center;
         img {
           width: 100%;
           max-width: 250px;

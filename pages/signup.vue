@@ -23,7 +23,7 @@
           TextInput(v-model="password" placeholder="Password")
           TextInput(v-model="passwordConfirm" placeholder="Confirm Password")
         div.form-row
-          Button(id="signup-btn" classes="btn-big" text="Create Account")
+          Button(id="signup-btn" size="big" text="Create Account")
       h4 Already have an account? #[nuxt-link(:to="{ name: 'login' }") Log in here.]
 </template>
 

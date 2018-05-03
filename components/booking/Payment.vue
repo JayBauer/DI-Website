@@ -11,7 +11,7 @@
     div.payment__form
       template(v-if="paymentOpen")
         card.stripe-card(:class="{ complete }" stripe="pk_test_7UqM3uMBb0D7cfMYdOT7mBJN" :options="stripeOptions" @change="complete = $event.complete")
-      Button(id="pay-now-btn" classes="btn-big" :text="paymentOpen ? 'Complete Payment' : 'Pay Now'" @click.native="pay")
+      Button(id="pay-now-btn" size="big" :text="paymentOpen ? 'Complete Payment' : 'Pay Now'" @click.native="pay")
 
     nav-buttons(next="Referral" @clicked="navigate")
 </template>

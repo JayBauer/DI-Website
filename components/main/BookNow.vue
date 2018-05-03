@@ -4,7 +4,7 @@
       h1 Book Now
     slot(name="content")
       h4 Get Results back in two weeks.
-    Button(id="book-now-btn" classes="btn-big" text="Book A Scan")
+    Button(id="book-now-btn" size="big" text="Book A Scan" link="booking-id")
 </template>
 
 <script>
@@ -17,6 +17,7 @@
   @import 'global/variables';
 
   section#book-now.book-now {
+    padding: * 20px;
     text-align: center;
     color: $white;
     h1 {

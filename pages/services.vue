@@ -3,44 +3,44 @@
     section#services.services-page
       h1 Services
       div.service-blocks
-        //- scroll-view
-        //-   template(slot-scope="markers")
-        //-     scroll-marker(name="slide-right" :key="slide-right" )
         div.service-blocks--left
-          div.service-block
-            h4 Are you eligible for a private MRI in Ontario?
-            p
-              | In Ontario, the Health Insurance Act (i.e. HIA) prohibits / prevents insured persons under the Ontario Health Insurance Plan (i.e. OHIP) from paying for insured services, such as an MRI scan.  However, there are exceptions to the rule rendering an MRI examination an “uninsured service.”  The exceptions to the rule are as follows:
-              br
-              br
-              | All Non-Residents of Ontario are Eligible for a private MRI scan in Ontario.
-              br
-              br
-              | NON-RESIDENTS: Only persons who are ordinarily resident in Ontario, as well as certain other persons deemed to be residents under provincial regulations, are entitled to receive OHIP-insured services without charge. Therefore, medical services provided to non-residents in Ontario are not insured by OHIP.
+          transition(name="slide-up" appear)
+            div.service-block
+              h4 Are you eligible for a private MRI in Ontario?
+              p
+                | In Ontario, the Health Insurance Act (i.e. HIA) prohibits / prevents insured persons under the Ontario Health Insurance Plan (i.e. OHIP) from paying for insured services, such as an MRI scan.  However, there are exceptions to the rule rendering an MRI examination an “uninsured service.”  The exceptions to the rule are as follows:
+                br
+                br
+                | All Non-Residents of Ontario are Eligible for a private MRI scan in Ontario.
+                br
+                br
+                | NON-RESIDENTS: Only persons who are ordinarily resident in Ontario, as well as certain other persons deemed to be residents under provincial regulations, are entitled to receive OHIP-insured services without charge. Therefore, medical services provided to non-residents in Ontario are not insured by OHIP.
         div.service-blocks__divider
         div.service-blocks--right
-          div.service-block
-            h4 MRI (Magnetic Resonance Imaging)
-            p
-              | Magnetic Resonance Imaging, commonly called MRI, is a NON-INVASIVE, PAINLESS PROCEDURE that produces very detailed pictures of soft body tissue and organs without using ionizing radiation, as with other diagnostic procedures such as X-ray and Computed Tomography (CT).
-              br
-              br
-              | Using a large magnet, radio waves and complex computer and software technology, MRI scans the patient's body and produces two or three-dimensional images of body tissues.
-              br
-              br
-              | MRI is important as both a screening and diagnostic tool due to its ability to detect many cardiovascular, neurological, oncological and musculoskeletal diseases and or injuries earlier and more accurately than other modalities.
-          div.service-block
-            h4 Bespoke Client Specific Packages
-            p
-              | Medical Imaging via MRI is a powerful tool in personal injury litigation, which offers litigators and their clients concrete diagnostic evidence when attempting to manage a clients’ case.
-              br
-              br
-              | Diagnostic Illumination offers a customized approach to MRI imaging by providing clients with MRI imaging packages that incorporate a multipronged approach to discovering objective diagnostic findings for patients suffering from the debilitating effects of a trauma.
-              br
-              br
-              | Diagnostic Illumination’s objective is to reward clients who choose to order more than one MRI scan by decreasing the overall fee per scan.  Ultimately, the risk, reward favors the client because the chance of identifying pathology is increased in this scenario.
+          transition(name="slide-up" appear)
+            div.service-block
+              h4 MRI (Magnetic Resonance Imaging)
+              p
+                | Magnetic Resonance Imaging, commonly called MRI, is a NON-INVASIVE, PAINLESS PROCEDURE that produces very detailed pictures of soft body tissue and organs without using ionizing radiation, as with other diagnostic procedures such as X-ray and Computed Tomography (CT).
+                br
+                br
+                | Using a large magnet, radio waves and complex computer and software technology, MRI scans the patient's body and produces two or three-dimensional images of body tissues.
+                br
+                br
+                | MRI is important as both a screening and diagnostic tool due to its ability to detect many cardiovascular, neurological, oncological and musculoskeletal diseases and or injuries earlier and more accurately than other modalities.
+          transition(name="slide-up" appear)
+            div.service-block
+              h4 Bespoke Client Specific Packages
+              p
+                | Medical Imaging via MRI is a powerful tool in personal injury litigation, which offers litigators and their clients concrete diagnostic evidence when attempting to manage a clients’ case.
+                br
+                br
+                | Diagnostic Illumination offers a customized approach to MRI imaging by providing clients with MRI imaging packages that incorporate a multipronged approach to discovering objective diagnostic findings for patients suffering from the debilitating effects of a trauma.
+                br
+                br
+                | Diagnostic Illumination’s objective is to reward clients who choose to order more than one MRI scan by decreasing the overall fee per scan.  Ultimately, the risk, reward favors the client because the chance of identifying pathology is increased in this scenario.
 
-    section#benefits.services-page
+    section#benefits.services-page(v-scrolled)
       h1 Benefits of Multiple Body Part MRI Scans
       div.circle-list
         div.circle-list__list-item
@@ -197,4 +197,19 @@
     }
   }
 
+  /* Slide In Up */
+  .slide-up-enter-active {
+    transition: all 0.6s ease;
+    transition-delay: 0.2s;
+  }
+
+  .slide-up-enter {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .slide-up-enter-to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>

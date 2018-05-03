@@ -10,8 +10,8 @@
           | or click to browse
     div(v-else)
       h4 {{ image.name }}
-      Button(id="upload-btn" classes="btn-big small-text" text="Confirm Upload" @click.native="readyUpload")
-      Button(id="remove-upload-btn" classes="btn-big small-text" text="Delete File" @click.native="removeImage")
+      Button.small-text(id="upload-btn" size="big" text="Confirm Upload" @click.native="readyUpload")
+      Button.small-text(id="remove-upload-btn" size="big" text="Delete File" @click.native="removeImage")
 </template>
 
 <script>
