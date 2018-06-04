@@ -19,7 +19,7 @@
           img(:src="showNav ? logo.blue : logo.src" :alt="logo.alt")
       div.nav-box__nav-menu
         nav.nav-menu__login-nav
-          template(v-if="userId")
+          template(v-if="userName")
             nuxt-link.login-nav__nav-item(:to="{ name: 'account-order-history' }") Welcome {{ userName }}!
           template(v-else)
             nuxt-link.login-nav__nav-item(:to="{ name: 'login' }") Log In
@@ -34,7 +34,7 @@
 
 <script>
   import Cookie from 'js-cookie'
-  import { USER_ID, CONTACT, LOGO } from '~/constants'
+  import { CONTACT, LOGO } from '~/constants'
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
   import { faEnvelope } from '@fortawesome/fontawesome-free-solid'
   import MobileMenu from '~/components/MobileMenu'
@@ -53,9 +53,6 @@
       ]
     }),
     computed: {
-      userId() {
-        return Cookie.get(USER_ID)
-      },
       userName() {
         return this.$store.getters.userName
       },

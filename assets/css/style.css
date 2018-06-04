@@ -10,10 +10,7 @@
 /* @import "global/mixins"; */
 
 /* Components */
-/* @import "components/*"; */
-
-/* Modules */
-/* @import "modules/*"; */
+@import "components/spinners";
 
 /* Templates */
 /* @import "templates/*"; */

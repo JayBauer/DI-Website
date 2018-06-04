@@ -5,33 +5,40 @@
       div.circle-list
         div.circle-list--left
           div.circle-list__list-item
+            SpinningIcon(color="blue")
             h4 MRI is the gold standard for diagnosing and assessing soft tissue injuries in personal injury claimants.
           div.circle-list__list-item
+            SpinningIcon(color="yellow")
             h4 MRI Scans Are Booked Within 24 Hours Of Receiving The Completed Referral Form
           div.circle-list__list-item
+            SpinningIcon(color="purple")
             h4 MRI Scans Occur Within 1-2 Weeks Of Receiving The Completed Referral
           div.circle-list__list-item
+            SpinningIcon(color="red")
             h4 MRI is universally accepted not only because of its accuracy but also because of the objectivity of its ﬁndings. It matters not whether the claimant is sent for the test at the request of the plaintiff or defendant, the resulting report will be the same.
         div.circle-list__divider
         div.circle-list--right
           div.circle-list__list-item
+            SpinningIcon(color="orange")
             h4 Urgent MRI Scans can be performed within 24 hours
           div.circle-list__list-item
+            SpinningIcon(color="blue")
             h4 Comprehensive Radiological Reports Are Provided Within 24 Hours Following The MRI Scan
           div.circle-list__list-item
+            SpinningIcon(color="yellow")
             h4 MRI results can be accessed through secure, encrypted, password protected hospital portal within 24 hours following MRI scan completion.
 
     section#weighted-imaging.litigation-page
       h1 Susceptibility Weighted Imaging Scans
       div.circle-list
         div.circle-list__list-item
-          custom-svg(src="small-circle.svg" color="#000" width="12" height="12")
+          SpinningIcon(color="blue")
           h4 Susceptibility Weighted Imaging is a new MRI sequence that relies on the magnetic susceptibility of tissues or compounds in the brain, such as iron-rich hemosiderin, which is a byproduct of hemorrhage.
         div.circle-list__list-item
-          custom-svg(src="small-circle.svg" color="#000" width="12" height="12")
+          SpinningIcon(color="orange")
           h4 Because of the Blood Brain Barrier, hemosiderin deposits remain in the brain for a very long time after the initial trauma.
         div.circle-list__list-item
-          custom-svg(src="small-circle.svg" color="#000" width="12" height="12")
+          SpinningIcon(color="red")
           h4 SWI has been shown in several studies and in clinical application to be much more sensitive in detecting micro-hemorrhages than conventional methods, such as T2*-gradient echo (including 3 Tesla imaging).
 
     section#swi-benefits.litigation-page
@@ -67,22 +74,30 @@
         div.circle-list__list-item
           h4 Indication to order an SWI
         div.circle-list__list-item
+          SpinningIcon(color="blue" size="28")
           p Has your client suffered a head trauma secondary to a Motor Vehicle Collision?
         div.circle-list__list-item
+          SpinningIcon(color="light-blue" size="28")
           p Has your client suffered a head trauma secondary to a Slip and Fall Injury?
         div.circle-list__list-item
           h4 Is your client experiencing any one of the following symptoms?
         div.circle-list__list-item
+          SpinningIcon(color="orange" size="28")
           p Persistent headaches
         div.circle-list__list-item
+          SpinningIcon(color="yellow" size="28")
           p Confusion or diminished cognitive abilities
         div.circle-list__list-item
+          SpinningIcon(color="light-blue" size="28")
           p Inability to concentrate
         div.circle-list__list-item
+          SpinningIcon(color="blue" size="28")
           p Fatigue that does not diminish with rest
         div.circle-list__list-item
+          SpinningIcon(color="purple" size="28")
           p Increased irritability or changes in personality
         div.circle-list__list-item
+          SpinningIcon(color="red" size="28")
           p Suffered at loss of consciousness as a consequence of the trauma
 
     book-now.litigation-page
@@ -92,12 +107,14 @@
 <script>
   import Card from '~/components/main/Card'
   import BookNow from '~/components/main/BookNow'
+  import SpinningIcon from '~/components/shared/SpinningIcon'
 
   export default {
     name: 'Litigation',
     components: {
       Card,
-      BookNow
+      BookNow,
+      SpinningIcon
     },
     head() {
       return {
@@ -240,6 +257,7 @@
     &#when-to-order-swi {
       background-color: $white;
       .circle-list__list-item {
+        align-items: center;
         max-width: 500px;
         padding: 25px * * *;
         h4 {
@@ -247,6 +265,7 @@
         }
         p {
           font-family: "Muli", sans-serif;
+          padding: * * * 15px;
         }
       }
     }

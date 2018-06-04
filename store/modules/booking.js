@@ -1,8 +1,4 @@
 const state = {
-  user: {
-    isAuth: false,
-    firstName: ''
-  },
   currentComponent: '',
   bookingFor: '',
   ontarioRes: '',
@@ -28,8 +24,6 @@ const state = {
 }
 
 const getters = {
-  state: state => state,
-  userName: state => state.user.firstName,
   currentComponent: state => state.currentComponent,
   bookingFor: state => state.bookingFor,
   ontarioRes: state => state.ontarioRes,
@@ -52,12 +46,6 @@ const getters = {
 }
 
 const mutations = {
-  updateName(state, payload) {
-    state.user.firstName = payload
-  },
-  updateAuth(state, payload) {
-    state.user.isAuth = payload
-  },
   updateComponent(state, payload) {
     state.currentComponent = payload
   },
@@ -82,12 +70,6 @@ const mutations = {
 }
 
 const actions = {
-  updateName({ commit }, payload) {
-    commit('updateName', payload)
-  },
-  updateAuth({ commit }, payload) {
-    commit('updateAuth', payload)
-  },
   updateComponent({ commit }, payload) {
     commit('updateComponent', payload)
   },

@@ -50,6 +50,11 @@ div
       BookNow,
       MainFooter
     },
+    methods: {
+      scrolled() {
+        console.log("SCROLLED BRUH")
+      }
+    },
     head() {
       return {
         title: 'Home'

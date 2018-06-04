@@ -57,6 +57,8 @@
       confirmPassword: ''
     }),
 
+    middleware: 'auth',
+
     apollo: {
       me: {
         query: ME,

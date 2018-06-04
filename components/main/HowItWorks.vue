@@ -2,12 +2,12 @@
   section#how-it-works.how-it-works
     h1 How It Works
     ul.how-it-works__list
-      li.how-it-works__item(v-for="item, index in list")
+      li.how-it-works__item(v-for="item, index in list" v-scrolled:modify="200")
         custom-svg(:src="item.src" color="#F68938" :width="item.width" :height="item.height" :viewbox="`0 0 ${item.width} ${item.height}`")
         h2 {{ index + 1 }}.
-        div.how-it-works__item__content
+        div
           h2 {{ item.text }}
-          p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+          p.how-it-works__item__content Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
 </template>
 
 <script>
@@ -51,6 +51,23 @@
         }
         > h2 {
           font-size: 36px/36px;
+        }
+        &.before-scroll {
+          opacity: 0;
+          .how-it-works__item__content {
+            opacity: 0;
+            transform: translateY(50%);
+          }
+        }
+        &.after-scroll {
+          opacity: 1;
+          transition: opacity 0.4s linear;
+          .how-it-works__item__content {
+            opacity: 1;
+            transform: translateY(0);
+            transition: transform 0.3s ease, opacity 0.3s linear;
+            transition-delay: 0.3s;
+          }
         }
       }
     }

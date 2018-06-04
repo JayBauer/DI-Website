@@ -40,7 +40,8 @@
     },
     components: {
       Order
-    }
+    },
+    middleware: 'auth'
   }
 </script>
 

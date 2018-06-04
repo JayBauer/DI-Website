@@ -44,22 +44,13 @@
       h1 Benefits of Multiple Body Part MRI Scans
       div.circle-list
         div.circle-list__list-item
-          div.half-circle-spinner
-            div.half-circle-spinner__inner
-            div.circle.circle-1
-            div.circle.circle-2
+          SpinningIcon(color="blue")
           h4 Increases the likelihood of discovering pathology post trauma
         div.circle-list__list-item
-          div.half-circle-spinner
-            div.half-circle-spinner__inner
-            div.circle.circle-1
-            div.circle.circle-2
+          SpinningIcon(color="red")
           h4 Results afford medical providers, insurers and their litigators the task of identifying the right treatment strategies and medical evaluations instrumental in rehabilitating the client.
         div.circle-list__list-item
-          div.half-circle-spinner
-            div.half-circle-spinner__inner
-            div.circle.circle-1
-            div.circle.circle-2
+          SpinningIcon(color="yellow")
           h4 Objective findings may be utilized to address an injured Insured clients’ Minor Injury Guideline (MIG) status either placing them within the MIG or outside of the MIG.
 
     book-now
@@ -69,11 +60,13 @@
 
 <script>
   import BookNow from '~/components/main/BookNow'
+  import SpinningIcon from '~/components/shared/SpinningIcon'
 
   export default {
     name: 'Services',
     components: {
-      BookNow
+      BookNow,
+      SpinningIcon
     },
     head() {
       return {

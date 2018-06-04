@@ -4,12 +4,12 @@
       h1 Contact
       form#contact-form.contact-form
         div.form-row
-          input(type='text' name='fname' placeholder='First Name')
-          input(type='text' name='lname' placeholder='Last Name')
+          TextInput(type='text' name='fname' placeholder='First Name')
+          TextInput(type='text' name='lname' placeholder='Last Name')
         div.form-row
-          input(type='text' name='phone' placeholder='Phone Number')
-          input(type='text' name='email' placeholder='Email Address')
-        div.form-row.form-row--single
+          TextInput(type='text' name='phone' placeholder='Phone Number')
+          TextInput(type='text' name='email' placeholder='Email Address')
+        div.form-row.form-row--single.form-input
           textarea(name='message' placeholder='Message' form='contact-form')
         div.form-row
           Button(id="submit-btn" size="big" text="Submit")
@@ -57,7 +57,6 @@
             color: $white;
             border-color: $white;
             background-color: rgba(#7b89a9, 0.38);
-            margin: 15px *;
             &::placeholder {
               color: $white;
               opacity: 1;

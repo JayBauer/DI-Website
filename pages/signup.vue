@@ -5,23 +5,23 @@
       h4 Create an account here to save your quote and continue along the booking process.
       form(@submit.prevent='signup')
         div.form-row
-          TextInput(v-model="firstName" placeholder="First Name")
-          TextInput(v-model="lastName" placeholder="Last Name")
+          TextInput(v-model="firstName" placeholder="First Name" type="name")
+          TextInput(v-model="lastName" placeholder="Last Name" type="name")
         div.form-row
-          TextInput(v-model="phone" placeholder="Phone Number")
-          TextInput(v-model="email" placeholder="Email Address")
+          TextInput(v-model="phone" placeholder="Phone Number" type="phone")
+          TextInput(v-model="email" placeholder="Email Address" type="email")
         div.form-row.form-row--single
-          TextInput(v-model="address1" placeholder="Address")
+          TextInput(v-model="address1" placeholder="Address" type="text")
         div.form-row.form-row--single
-          TextInput(v-model="address2" placeholder="Address Line 2")
+          TextInput(v-model="address2" placeholder="Address Line 2" type="text")
         div.form-row
-          TextInput(v-model="city" placeholder="City")
-          TextInput(v-model="province" placeholder="Province")
+          TextInput(v-model="city" placeholder="City" type="text")
+          TextInput(v-model="province" placeholder="Province" type="text")
         div.form-row
-          TextInput(v-model="postal" placeholder="Postal Code")
+          TextInput(v-model="postal" placeholder="Postal Code" type="postal")
         div.form-row
-          TextInput(v-model="password" placeholder="Password")
-          TextInput(v-model="passwordConfirm" placeholder="Confirm Password")
+          TextInput(v-model="password" placeholder="Password" type="password")
+          TextInput(v-model="passwordConfirm" placeholder="Confirm Password" type="password")
         div.form-row
           Button(id="signup-btn" size="big" text="Create Account")
       h4 Already have an account? #[nuxt-link(:to="{ name: 'login' }") Log in here.]

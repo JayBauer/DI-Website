@@ -1,10 +1,10 @@
 <template lang="pug">
   section#location.location
-    div.location__map
+    div.location__map(v-scrolled:modify="500")
       div.location__map__image
         img(src="/img/di-map.png" alt="Location Map")
     div.location__divider
-    div.location__info
+    div.location__info(v-scrolled:modify="500")
       div.location__info__text
         h1 Location
         br
@@ -55,6 +55,15 @@
       .location__map__image img {
         width: 100%;
       }
+      &.before-scroll {
+        opacity: 0;
+        transform:translateX(-30%);
+      }
+      &.after-scroll {
+        transition: all 0.5s;
+        opacity: 1;
+        transform:translateX(0);
+      }
     }
     .location__divider {
       margin: 15px 0;
@@ -77,6 +86,15 @@
       }
       #contact-btn {
         margin-top: 40px;
+      }
+      &.before-scroll {
+        opacity: 0;
+        transform:translateX(30%);
+      }
+      &.after-scroll {
+        transition: all 0.5s;
+        opacity: 1;
+        transform:translateX(0);
       }
     }
 

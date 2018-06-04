@@ -20,9 +20,9 @@
         label(for="agree") I agree to the terms stated above
 
     div.third-party-waiver__form.form-group
-      TextInput.form-element.form-element--input(v-model="firstName" placeholder="First Name")
-      TextInput.form-element.form-element--input(v-model="lastName" placeholder="Last Name")
-      TextInput.form-element.form-element--input(v-model="date" placeholder="Date")
+      TextInput.form-element.form-element--input(v-model="firstName" placeholder="First Name" type="name")
+      TextInput.form-element.form-element--input(v-model="lastName" placeholder="Last Name" type="name")
+      TextInput.form-element.form-element--input(v-model="date" placeholder="Date" type="date")
 
     nav-buttons(next="Referral" previous="BodyParts" @clicked="navigate" :disabled="disabled")
 </template>

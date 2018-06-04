@@ -3,20 +3,10 @@ input {
 }
 
 form {
-  input, textarea {
-    font-family: "Muli", "Klinic Slab", sans-serif;
-    font-size: 15px/17px;
-    padding: 15px 20px;
-    color: $gray;
-    border: 1px solid;
-    border-color: $light-gray;
-    &::placeholder {
-      color: $light-gray;
-    }
-  }
   .form-row {
     lost-center: 650px;
-    input {
+    padding: * 25px;
+    .form-input {
       lost-column: 1/1;
       margin-bottom: 30px;
     }
@@ -24,11 +14,11 @@ form {
       width: 100%;
     }
     @media (--for-tablet-port-up) {
-      input {
+      .form-input {
         lost-column: 1/2;
       }
       &--single {
-        input {
+        .form-input {
           lost-column: 1/1;
         }
       }

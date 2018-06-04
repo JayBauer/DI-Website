@@ -5,17 +5,19 @@
       h4 Log in to your account and continue along the booking process.
       form.login-form(@submit.prevent="login")
         div.form-row.form-row--single
-          TextInput(v-model="email" placeholder="Email Address")
+          TextInput(v-model="email" placeholder="Email Address" type="email")
         div.form-row.form-row--single
           TextInput(v-model="password" type="password" placeholder="Password")
         div.form-row
+          div.error-message(v-show="formError")
+            p {{ formError }}
           Button(id="login-btn" size="big" text="Log In" @click.native="login")
       h4 Don't have an account? #[nuxt-link(:to="{ name: 'signup' }") Create one here.]
 </template>
 
 <script>
   import gql from 'graphql-tag'
-  import Cookies from 'js-cookie'
+  import Cookie from 'js-cookie'
   import { LOGIN } from '~/mutations'
   import { USER_ID, AUTH_TOKEN } from '~/constants'
 
@@ -24,13 +26,12 @@
     data: () => ({
       email: '',
       password: '',
-      loggedIn: false
+      formError: null
     }),
 
     methods: {
       login() {
         const { email, password } = this.$data
-
         this.email = ''
         this.password = ''
 
@@ -43,20 +44,18 @@
         }).then(res => {
           const token = res.data.login.token
           const id = res.data.login.user.id
-          this.loggedIn = true
-          this.saveUserLogin(id, token)
+          this.$store.commit('login', { id, token })
           this.$router.push({ name: 'account-order-history' })
         }).catch(err => {
-          console.log(err)
+          if(err.graphQLErrors) {
+            this.formError = err.message.replace('GraphQL error:', ' ').trim()
+          }
+          if(err.networkError) {
+            this.formError = 'Unable to connect to server'
+          }
         })
-      },
-
-      saveUserLogin(id, token) {
-        Cookies.set(USER_ID, id, { expires: 7 })
-        Cookies.set(AUTH_TOKEN, token, { expires: 7 })
       }
     },
-
     head() {
       return {
         title: 'Log In'
@@ -92,6 +91,15 @@
           lost-center: 450px;
         }
       }
+    }
+  }
+  .form-row {
+    position: relative;
+    .error-message {
+      position: absolute;
+      width: 100%;
+      color: $error;
+      text-align: center;
     }
   }
 </style>

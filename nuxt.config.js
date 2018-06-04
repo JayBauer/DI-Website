@@ -33,7 +33,7 @@ module.exports = {
 
   plugins: ['~plugins/global.js'],
 
-  css: ['@fortawesome/fontawesome/styles.css'],
+  css: ['@fortawesome/fontawesome/styles.css', 'vuetify/dist/vuetify.min.css'],
 
   /*
   ** Build configuration

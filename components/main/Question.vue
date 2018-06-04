@@ -1,21 +1,40 @@
 <template lang="pug">
-  div.question-block
-    input(:id="id" type='radio' @click="open = !open")
-    div.question-block__title
-      label(:for="id")
-        slot(name="title")
-        img(src="/img/faq-arrow.svg" alt="FAQ Arrow")
-    div.question-block__answer(v-show="open")
-      slot(name="answer")
+  transition(name="expand" :css="false" v-on:before-enter="beforeEnter" v-on:enter="enter")
+    div.question-block
+      input(:id="id" type='radio' @click="open = !open")
+      div.question-block__title
+        label(:for="id")
+          slot(name="title")
+          FaqArrow(:color="color" :isOpen="open")
+      div.question-block__answer(v-if="open")
+        slot(name="answer")
 </template>
 
 <script>
+  import FaqArrow from '~/components/shared/FaqArrow'
+
   export default {
     name: 'Question',
-    props: [ 'id' ],
+    props: [ 'id', 'color' ],
     data: () => ({
       open: false
-    })
+    }),
+    methods: {
+      beforeEnter(el) {
+        el.style.opacity = 0
+        el.style.transform = 'translateY(100vh)'
+      },
+      enter(el, done) {
+        var delay = 500
+        setTimeout(function () {
+          el.style.opacity = 1
+          el.style.transform = 'translateY(0)'
+        }, delay)
+      }
+    },
+    components: {
+      FaqArrow
+    }
   }
 </script>
 
@@ -23,6 +42,7 @@
   @import 'global/variables';
 
   .question-block {
+    flex: 1;
     margin: 15px *;
     background-color: $white;
     input {

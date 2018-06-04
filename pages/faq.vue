@@ -4,12 +4,12 @@ div
     h1 Frequently Asked Questions
     div.question-blocks
       div.question-blocks--left
-        Question(v-for="question, index in leftQuestions" :key="'left-question-' + (index+1)" :id="'left-question-' + (index+1)")
+        Question(v-for="question, index in leftQuestions" :key="'left-question-' + (index+1)" :id="'left-question-' + (index+1)" :color="question.color")
           h4(slot="title" v-html="question.title")
           span(slot="answer" v-html="question.answer")
       div.question-blocks__divider
       div.question-blocks--right
-        Question(v-for="question, index in rightQuestions" :key="'right-question-' + (index+1)" :id="'right-question-' + (index+1)")
+        Question(v-for="question, index in rightQuestions" :key="'right-question-' + (index+1)" :id="'right-question-' + (index+1)" :color="question.color")
           h4(slot="title" v-html="question.title")
           span(slot="answer" v-html="question.answer")
   how-it-works.faq-page
