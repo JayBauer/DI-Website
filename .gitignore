@@ -15,6 +15,13 @@ dist
 .env
 
 
+# Remove docker-compose
+# There should only be one global compose file to maintain database consistency
+docker-compose.yml
+
+# Temporarily removed admin directory
+admin/
+
 .DS_Store
 *.log
 .idea
@@ -23,7 +30,3 @@ dist
 *.ntvs*
 *.njsproj
 *.sln
-
-
-# Temporarily removed admin directory
-admin/
