@@ -32,3 +32,40 @@
     }
   }
 </script>
+
+<style lang="postcss">
+  @import 'global/variables';
+
+  #referral {
+    h4 {
+      padding: * * 75px *;
+    }
+    .referral__nav {
+      lost-center: 600px;
+      a {
+        lost-column: 1/1;
+        padding: 20px;
+        @media (--for-tablet-port-up) {
+          lost-column: 1/2;
+        }
+      }
+      > button {
+        lost-column: 1/2;
+        button {
+          font-size: 16px;
+        }
+      }
+    }
+    .referral__upload-ref {
+      lost-center: 600px;
+      button {
+        lost-column: 1/2;
+      }
+    }
+    .referral__get-ref {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+    }
+  }
+</style>

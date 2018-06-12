@@ -4,6 +4,7 @@
       :type="type"
       :value="value"
       :placeholder="placeholder"
+      :disabled="disabled"
       @input="$emit('input', $event.target.value)"
       ref="input"
       @blur="blurred = true")
@@ -13,13 +14,13 @@
         p(v-if="type == 'password' && !validPassword(value)") Must contain at least 8 characters and one number
         p(v-if="type == 'phone' && !validPhone(value)") Invalid phone number
         p(v-if="type == 'postal' && !validPostal(value)") Invalid postal code
-        p(v-if="type == 'date' && !validDate(value)") Date format should be MM/DD/YYYY
+        //- p(v-if="type == 'date' && !validDate(value)") Date format should be MM/DD/YYYY
 </template>
 
 <script>
   export default {
     name: 'TextInput',
-    props: [ 'value', 'placeholder', 'type' ],
+    props: [ 'value', 'placeholder', 'type', 'disabled' ],
     data: () => ({
       blurred: false
     }),

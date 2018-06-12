@@ -84,3 +84,28 @@
     }
   }
 </script>
+
+<style lang="postcss">
+  #payment {
+    lost-flex-container: column;
+    .payment__totals {
+      lost-center: 300px;
+      padding: 100px 0;
+      h3 {
+        width: 100%;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
+      }
+    }
+    .payment__form {
+      lost-center: 400px;
+      > div {
+        width: 400px;
+      }
+      .stripe-card {
+        padding: * * 50px *;
+      }
+    }
+  }
+</style>

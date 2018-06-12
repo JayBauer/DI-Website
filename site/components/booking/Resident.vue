@@ -34,3 +34,12 @@
     }
   }
 </script>
+
+<style lang="postcss">
+  #ontario-res {
+    .ontario-res__form {
+      lost-center: 600px;
+      justify-content: space-around;
+    }
+  }
+</style>

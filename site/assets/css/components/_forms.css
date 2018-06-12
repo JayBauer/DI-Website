@@ -2,26 +2,106 @@ input {
   outline: none;
 }
 
-form {
-  .form-row {
-    lost-center: 650px;
-    padding: * 25px;
+.form-row {
+  lost-center: 650px;
+  padding: * 25px;
+  .form-input {
+    lost-column: 1/1;
+    margin-bottom: 30px;
+  }
+  textarea, input {
+    width: 100%;
+  }
+  @media (--for-tablet-port-up) {
     .form-input {
-      lost-column: 1/1;
-      margin-bottom: 30px;
+      lost-column: 1/2;
     }
-    textarea, input {
-      width: 100%;
-    }
-    @media (--for-tablet-port-up) {
+    &--single {
       .form-input {
-        lost-column: 1/2;
+        lost-column: 1/1;
       }
-      &--single {
-        .form-input {
-          lost-column: 1/1;
+    }
+  }
+}
+
+.form-group {
+  padding: * 20px;
+  .form-element {
+    &--radio {
+      font-family: 'Raleway', sans-serif;
+      font-size: 20px;
+      position: relative;
+      text-align: center;
+      input[type="radio"] {
+        display: none;
+        & + label {
+          display: block;
+          position: relative;
+          color: $gray;
+          cursor: pointer;
+          user-select: none;
+          &::after {
+            content: '';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px auto 0;
+            size: 28px;
+            border-radius: 100%;
+            border: 1px solid $light-gray;
+          }
+        }
+        &:checked + label::after {
+          font-awesome: circle;
+          font-size: 25px;
+          color: $orange;
+          border-color: $light-gray;
         }
       }
+    }
+    &--checkbox {
+      font-family: 'Muli', sans-serif;
+      font-size: 15px;
+      padding: 5px 15px;
+      input[type="checkbox"] {
+        display: none;
+        & + label {
+          display: inline-flex;
+          width: 100%;
+          align-items: center;
+          position: relative;
+          color: $gray;
+          cursor: pointer;
+          user-select: none;
+          .form-element--input {
+            position: absolute * * * 160px;
+            @media (--for-phone) {
+              left: 50px;
+            }
+          }
+          &::before {
+            content: '';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: * 10px * *;
+            size: 28px;
+            border: 1px solid $light-gray;
+          }
+        }
+        &:checked + label::before {
+          font-awesome: check;
+          font-size: 25px;
+          color: $orange;
+          border-color: $light-gray;
+        }
+      }
+    }
+    &--input {
+      font-family: 'Muli', sans-serif;
+      font-size: 15px;
+      padding: 10px 15px;
+      color: $gray;
     }
   }
 }

@@ -13,7 +13,7 @@
 </script>
 
 <style lang="postcss">
-  @import '../../assets/css/global/variables';
+  @import 'global/variables';
 
   %btn {
     display: inline-block;

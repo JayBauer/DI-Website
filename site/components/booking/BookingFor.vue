@@ -35,3 +35,15 @@
     }
   }
 </script>
+
+<style lang="postcss">
+  @import 'global/variables';
+  @import 'components/forms';
+
+  #booking-for {
+    .booking-for__form {
+      lost-center: 600px;
+      justify-content: space-around;
+    }
+  }
+</style>
