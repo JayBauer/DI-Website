@@ -1,8 +1,9 @@
 {
   "name": "diagnostic-illumination-database",
-  "description": "Database for Diagnostic Illumination Website",
+  "description": "Server for Diagnostic Illumination website",
   "author": "Jay Bauer (Elite Digital)",
   "version": "1.0.0",
+  "private": true,
   "main": "src/index.js",
   "keywords": [
     "diagnostic",

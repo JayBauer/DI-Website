@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  modules: ['@nuxtjs/apollo'],
+  modules: ['@nuxtjs/apollo', '@nuxtjs/dotenv'],
   /*
   ** Headers of the page
   */
