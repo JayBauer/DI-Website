@@ -1,6 +1,7 @@
 version: '3'
 services:
   prisma:
+    container_name: prisma_api
     image: prismagraphql/prisma:1.7
     restart: always
     ports:
@@ -17,7 +18,9 @@ services:
             user: root
             password: prisma
   db:
+    container_name: mysql_prisma_db
     image: mysql:5.7
     restart: always
     environment:
+      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: prisma
