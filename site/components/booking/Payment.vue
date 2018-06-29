@@ -9,7 +9,7 @@
         h3 Referral: #[span ${{ refPayment }}]
       h3 Total: #[span ${{ total }}]
     template(v-if="paymentOpen")
-      PaymentCard(stripe="pk_test_7UqM3uMBb0D7cfMYdOT7mBJN")
+      PaymentCard(stripe="process.env.STRIPE_PK")
     Button(id="pay-now-btn" size="big" :text="paymentOpen ? 'Complete Payment' : 'Pay Now'" @click.native="pay")
 
     nav-buttons(previous="Referral" @clicked="navigate")

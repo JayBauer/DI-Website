@@ -25,6 +25,7 @@
 <script>
   import { CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
   export default {
+    name: 'PaymentCard',
     props: [ 'stripe' ],
     data: () => ({
       complete: false,

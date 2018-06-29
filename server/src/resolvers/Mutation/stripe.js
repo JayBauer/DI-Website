@@ -1,5 +1,5 @@
 const { getUserId } = require('../../utils')
-const stripeApi = require('stripe')('sk_test_1IJ888VLPuZ4Ce0FUALcxoGF')
+const stripeApi = require('stripe')(process.env.STRIPE_SK)
 
 const stripe = {
   async makePayment(parent, { source, amount, currency }, ctx, info) {
