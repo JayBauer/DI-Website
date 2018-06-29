@@ -9,9 +9,8 @@
         h3 Referral: #[span ${{ refPayment }}]
       h3 Total: #[span ${{ total }}]
     template(v-if="paymentOpen")
-      PaymentCard(stripe="process.env.STRIPE_PK")
+      PaymentCard(:stripe="publicKey")
     Button(id="pay-now-btn" size="big" :text="paymentOpen ? 'Complete Payment' : 'Pay Now'" @click.native="pay")
-
     nav-buttons(previous="Referral" @clicked="navigate")
 </template>
 
@@ -25,9 +24,7 @@
     data: () => ({
       paymentOpen: false,
       complete: false,
-      stripeOptions: {
-        // see https://stripe.com/docs/stripe.js#element-options for details
-      }
+      publicKey: process.env.STRIPE_PK
     }),
     computed: {
       cost() {
