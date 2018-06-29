@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import PaymentCard from '~/components/booking/Paymentcard'
+  import PaymentCard from '~/components/booking/PaymentCard'
   import { createToken } from 'vue-stripe-elements-plus'
   import { PAYMENT } from '~/mutations'
 
