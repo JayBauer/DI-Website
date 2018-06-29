@@ -1,6 +1,6 @@
 {
   "name": "diagnostic-illumination",
-  "description": "Diagnostic Illumination front-end, built using Nuxt.js and Apollo.",
+  "description": "Diagnostic Intelligence front-end, built using Nuxt.js and Apollo.",
   "author": "Jay Bauer (Elite Digital)",
   "version": "1.0.0",
   "private": true,

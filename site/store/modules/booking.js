@@ -17,13 +17,15 @@ const state = {
     date: ''
   },
   referral: {
-    maple: false,
-    upload: {}
+    pay: false,
+    upload: null,
+    previousImage: '',
   },
   payment: false
 }
 
 const getters = {
+  store: state => state,
   currentComponent: state => state.currentComponent,
   bookingFor: state => state.bookingFor,
   ontarioRes: state => state.ontarioRes,
@@ -33,7 +35,7 @@ const getters = {
   payment: state => state.payment,
   totalPrice: state => {
     var price = 0
-    if(state.referral.maple == true) {
+    if(state.referral.pay == true) {
       price += 100
     }
     for(let i of [state.bodyParts.brain, state.bodyParts.spine, state.bodyParts.body, state.bodyParts.extremities]) {
@@ -64,6 +66,10 @@ const mutations = {
   updateReferral(state, payload) {
     state.referral = payload
   },
+  updateReferralPay(state, payload) {
+    state.referral.pay = payload.pay
+    state.referral.upload = payload.upload
+  },
   updatePayment(state, payload) {
     state.payment = payload
   }
@@ -85,8 +91,8 @@ const actions = {
   updateWaiver({ commit }, payload) {
     commit('updateWaiver', payload)
   },
-  updateReferral({ commit }, payload) {
-    commit('updateReferral', payload)
+  updateReferralPay({ commit }, payload) {
+    commit('updateReferralPay', payload)
   },
   updatePayment({ commit }, payload) {
     commit('updatePayment', payload)
@@ -104,7 +110,7 @@ const actions = {
     commit('updateResident', '')
     commit('updateBodyParts', { brain: [], spine: [], body: [], extremities: [] })
     commit('updateWaiver', { party: [], otherParty: { selected: false, text: '' }, agree: false, firstName: '', lastName: '', date: '' })
-    commit('updateReferral', { maple: false, upload: '' })
+    commit('updateReferral', { pay: false, upload: null })
     commit('updatePayment', false)
   }
 }

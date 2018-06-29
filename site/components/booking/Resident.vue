@@ -13,8 +13,6 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   export default {
     name: 'Resident',
     computed: {
@@ -36,10 +34,22 @@
 </script>
 
 <style lang="postcss">
+  @import 'global/variables';
+
   #ontario-res {
     .ontario-res__form {
       lost-center: 600px;
       justify-content: space-around;
+      .form-element--radio {
+        @media (--for-tablet-port-down) {
+          input[type="radio"] {
+            & + label {
+              max-width: 100px;
+              margin: 0 auto;
+            }
+          }
+        }
+      }
     }
   }
 </style>

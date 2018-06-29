@@ -7,6 +7,7 @@ export const LOGIN = gql `
       user {
         id
         email
+        firstName
       }
     }
   }
@@ -108,7 +109,7 @@ mutation UpsertBooking(
   $ontarioRes: IsResident!,
   $bodyParts: Json!,
   $waiver: WaiverCreateInput!,
-  $referral: ReferralCreateInput!,
+  $referral: ReferralCreateInput,
   $payment: Boolean!
 ) {
   saveBooking(
@@ -132,23 +133,31 @@ mutation UpsertBooking(
       agree
     }
     referral {
-      maple
-      upload
+      pay
+      upload {
+        id
+      }
     }
     payment
   }
 }
 `
-export const SAVE_CUSTOMER = gql `
-  mutation NewCustomer(
+export const PAYMENT = gql `
+  mutation NewPayment(
     $source:String!,
-    $email:String!
+    $amount:Float!,
+    $currency:String!
   ) {
-    saveCustomer(
+    makePayment(
       source:$source
-      email:$email
+      amount:$amount
+      currency:$currency
     ) {
-      stripeId
+      chargedTo {
+        user {
+          id
+        }
+      }
     }
   }
 `
@@ -164,6 +173,7 @@ export const UPLOAD_FILE = gql `
     ) {
       id
       filename
+      url
     }
   }
 `

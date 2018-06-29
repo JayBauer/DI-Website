@@ -8,7 +8,7 @@ mkdirp.sync(uploadDir)
 const storeUpload = ({ stream, filename }, path, sid) =>
   new Promise((resolve, reject) =>
     stream
-      .pipe(createWriteStream(path + sid + filename))
+      .pipe(createWriteStream('.' + path + sid + filename))
       .on("finish", () => resolve())
       .on("error", reject)
 )
@@ -24,6 +24,7 @@ function removeFile(url) {
 
 const booking = {
   async saveBooking(parent, { id, user, bookingFor, ontarioRes, bodyParts, waiver, referral, payment }, ctx, info) {
+    console.log('Save Booking')
     const bookingExists = await ctx.db.query.booking({ where: { id } })
     if(!bookingExists) {
       return ctx.db.mutation.createBooking(
@@ -34,7 +35,12 @@ const booking = {
             ontarioRes,
             bodyParts,
             waiver: { create: waiver },
-            referral: { create: referral },
+            referral: {
+              create: {
+                pay: referral.pay,
+                upload: referral.upload
+              }
+            },
             payment
           }
         },
@@ -64,7 +70,8 @@ const booking = {
   },
 
   async uploadFile(parent, { file, path }, ctx, info) {
-    let sid = shortid.generate() + '-'
+    console.log('Upload File')
+    const sid = shortid.generate() + '-'
     const { stream, filename, encoding, mimetype } = await file
     await storeUpload({ stream, filename }, path, sid)
     return ctx.db.mutation.createFile(

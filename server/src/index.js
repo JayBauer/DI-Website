@@ -16,4 +16,11 @@ const server = new GraphQLServer({
   }),
 })
 
-server.start({ port: process.env.SERVER_PORT }, () => console.log(`Server is running on port ${process.env.SERVER_PORT}, listening for changes.`))
+const options = {
+  port: 8101,
+  endpoint: '/',
+  subscriptions: '/subscriptions',
+  playground: '/playground',
+}
+
+server.start(options, ({ port }) => console.log(`Server is running on port ${port}, listening for changes.`))

@@ -6,11 +6,11 @@
     template(v-else)
       form.account-form.profile-form
         div.form-row
-          TextInput(v-model="firstName" type="text" placeholder="First Name")
-          TextInput(v-model="lastName" type="text" placeholder="Last Name")
+          TextInput(v-model="firstName" type="name" placeholder="First Name")
+          TextInput(v-model="lastName" type="name" placeholder="Last Name")
         div.form-row
-          TextInput(v-model="phone" type="text" placeholder="Phone Number")
-          TextInput(v-model="email" type="text" placeholder="Email Address")
+          TextInput(v-model="phone" type="phone" placeholder="Phone Number")
+          TextInput(v-model="email" type="email" placeholder="Email Address")
         div.form-row.form-row--single
           TextInput(v-model="address1" type="text" placeholder="Address")
         div.form-row.form-row--single
@@ -19,7 +19,7 @@
           TextInput(v-model="city" type="text" placeholder="City")
           TextInput(v-model="province" type="text" placeholder="Province")
         div.form-row
-          TextInput(v-model="postal" type="text" placeholder="Postal Code")
+          TextInput(v-model="postal" type="postal" placeholder="Postal Code")
         div.form-row
           Button(id="save-profile-btn" size="big" text="Save" @click="saveUser")
 
@@ -127,3 +127,18 @@
     }
   }
 </script>
+
+<style lang="postcss">
+  #profile {
+    padding: 0 * * *;
+    form.profile-form {
+      padding: 30px;
+    }
+    form.password-form {
+      padding: 30px;
+      .form-input {
+        lost-column: 1/3;
+      }
+    }
+  }
+</style>

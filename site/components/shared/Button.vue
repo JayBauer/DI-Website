@@ -1,5 +1,5 @@
 <template lang='pug'>
-  nuxt-link(:to="{ name: link }" :id="id" :class="'btn-' + size")
+  nuxt-link(:to="link" :id="id" :class="'btn-' + size")
     svg(:height="size == 'big' ? '60' : '40'" :width="size == 'big' ? '100%' : '100'" xmlns="http://www.w3.org/2000/svg")
       rect.shape(:height="size == 'big' ? '60' : '40'" :width="size == 'big' ? '100%' : '100'")
     p {{ text }}
@@ -8,7 +8,21 @@
 <script>
   export default {
     name: 'Button',
-    props: [ 'id', 'size', 'text', 'link' ]
+    props: {
+      id: {
+        type: String
+      },
+      size: {
+        type: String
+      },
+      text: {
+        type: String
+      },
+      link: {
+        type: Object,
+        default: () => ({})
+      }
+    }
   }
 </script>
 

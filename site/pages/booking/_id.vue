@@ -2,7 +2,7 @@
   main
     section#booking-header.booking-page
       h1 Book a Scan
-      Button(v-if="currentComponent == 'Referral' || currentComponent == 'Payment'" id="save-booking-btn" size="big" text="Save Progress" @click.native="saveBooking")
+      SaveBooking
       booking-header-nav(@clicked="navigate")
 
     section#booking-main.booking-page
@@ -18,12 +18,14 @@
   import Resident from '~/components/booking/Resident'
   import BodyParts from '~/components/booking/BodyParts'
   import Waiver from '~/components/booking/Waiver'
+  import LogIn from '~/components/booking/LogInAuthWall'
+  import SignUp from '~/components/booking/SignUpAuthWall'
   import Referral from '~/components/booking/Referral'
   import Payment from '~/components/booking/Payment'
+  import SaveBooking from '~/components/booking/SaveBooking'
 
   import { USER_ID } from '~/constants'
   import { GET_BOOKING } from '~/queries'
-  import { SAVE_BOOKING } from '~/mutations'
 
   export default {
     name: 'Booking',
@@ -31,9 +33,6 @@
       booking: {}
     }),
     computed: {
-      currentStore() {
-        return this.$store.getters.state
-      },
       currentComponent() {
         return this.$store.getters.currentComponent
       }
@@ -89,40 +88,14 @@
               date: waiver.date
             },
             referral: {
-              maple: referral.maple,
-              upload: referral.upload
+              pay: referral.pay,
+              upload: null,
+              previousImage: referral.upload.url
             },
             payment
           }
           this.$store.dispatch('setStore', newStore)
         }
-      },
-      saveBooking() {
-        const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment } = this.currentStore
-        this.$apollo.mutate({
-          mutation: SAVE_BOOKING,
-          variables: {
-            id: this.$route.params.id,
-            user: Cookie.get(USER_ID),
-            bookingFor,
-            ontarioRes,
-            bodyParts,
-            waiver: {
-              party: { set: waiver.party },
-              otherParty: waiver.otherParty,
-              agree: waiver.agree,
-              firstName: waiver.firstName,
-              lastName: waiver.lastName,
-              date: waiver.date
-            },
-            referral,
-            payment
-          }
-        }).then(res => {
-          console.log('Successful booking save')
-        }).catch(err => {
-          console.log(err)
-        })
       }
     },
 
@@ -132,8 +105,11 @@
       Resident,
       BodyParts,
       Waiver,
+      LogIn,
+      SignUp,
       Referral,
-      Payment
+      Payment,
+      SaveBooking
     },
 
     head() {

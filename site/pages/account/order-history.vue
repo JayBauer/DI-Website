@@ -38,6 +38,9 @@
         }
       }
     },
+    mounted() {
+      this.$apollo.queries.bookings.refetch()
+    },
     components: {
       Order
     },
@@ -48,13 +51,42 @@
 <style lang="postcss">
   @import 'global/variables';
 
-  h4 {
-    a {
-      color: $blue;
-      font-weight: medium;
-    }
-  }
   #order-history {
     height: 100%;
+    padding: 0 20px;
+    h4 {
+      a {
+        color: $blue;
+        font-weight: medium;
+      }
+    }
+    .single-order {
+      lost-center: 1000px;
+      align-items: center;
+      h4 {
+        lost-column: 1/3;
+        word-wrap: break-word;
+      }
+      &--headers {
+        padding: 50px 0 10px 0;
+        margin: * * 30px *;
+        color: $blue;
+        border-bottom: 1px solid $blue;
+      }
+      &--content {
+        padding: 10px *;
+        h4:nth-of-type(-n+2) {
+          font-weight: medium;
+          color: $blue;
+        }
+      }
+    }
+    @media (--for-phone) {
+      .single-order {
+        h4 {
+          font-size: 16px;
+        }
+      }
+    }
   }
 </style>

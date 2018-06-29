@@ -1,5 +1,5 @@
-# source: http://localhost:4466/default/default
-# timestamp: Thu Apr 26 2018 12:50:03 GMT-0400 (EDT)
+# source: http://localhost:4466/diagnostic-illumination/dev
+# timestamp: Thu Jun 28 2018 16:06:45 GMT-0400 (EDT)
 
 type AggregateBooking {
   count: Int!
@@ -43,7 +43,7 @@ type Booking implements Node {
   ontarioRes: IsResident
   bodyParts: Json
   waiver(where: WaiverWhereInput): Waiver!
-  referral(where: ReferralWhereInput): Referral!
+  referral(where: ReferralWhereInput): Referral
   payment: Boolean!
 }
 
@@ -64,7 +64,7 @@ input BookingCreateInput {
   payment: Boolean
   user: UserCreateOneWithoutBookingsInput!
   waiver: WaiverCreateOneInput!
-  referral: ReferralCreateOneInput!
+  referral: ReferralCreateOneInput
 }
 
 input BookingCreateManyWithoutUserInput {
@@ -78,7 +78,7 @@ input BookingCreateWithoutUserInput {
   bodyParts: Json
   payment: Boolean
   waiver: WaiverCreateOneInput!
-  referral: ReferralCreateOneInput!
+  referral: ReferralCreateOneInput
 }
 
 """An edge in a connection."""
@@ -702,6 +702,7 @@ input FileUpdateInput {
 input FileUpdateOneInput {
   create: FileCreateInput
   connect: FileWhereUniqueInput
+  disconnect: Boolean
   delete: Boolean
   update: FileUpdateDataInput
   upsert: FileUpsertNestedInput
@@ -1081,8 +1082,8 @@ type Query {
 }
 
 type Referral {
-  maple: Boolean!
-  upload(where: FileWhereInput): File!
+  pay: Boolean!
+  upload(where: FileWhereInput): File
 }
 
 """A connection to a list of items."""
@@ -1096,8 +1097,8 @@ type ReferralConnection {
 }
 
 input ReferralCreateInput {
-  maple: Boolean
-  upload: FileCreateOneInput!
+  pay: Boolean
+  upload: FileCreateOneInput
 }
 
 input ReferralCreateOneInput {
@@ -1114,8 +1115,8 @@ type ReferralEdge {
 }
 
 enum ReferralOrderByInput {
-  maple_ASC
-  maple_DESC
+  pay_ASC
+  pay_DESC
   id_ASC
   id_DESC
   updatedAt_ASC
@@ -1125,7 +1126,7 @@ enum ReferralOrderByInput {
 }
 
 type ReferralPreviousValues {
-  maple: Boolean!
+  pay: Boolean!
 }
 
 type ReferralSubscriptionPayload {
@@ -1168,17 +1169,18 @@ input ReferralSubscriptionWhereInput {
 }
 
 input ReferralUpdateDataInput {
-  maple: Boolean
+  pay: Boolean
   upload: FileUpdateOneInput
 }
 
 input ReferralUpdateInput {
-  maple: Boolean
+  pay: Boolean
   upload: FileUpdateOneInput
 }
 
 input ReferralUpdateOneInput {
   create: ReferralCreateInput
+  disconnect: Boolean
   delete: Boolean
   update: ReferralUpdateDataInput
   upsert: ReferralUpsertNestedInput
@@ -1198,10 +1200,10 @@ input ReferralWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [ReferralWhereInput!]
-  maple: Boolean
+  pay: Boolean
 
   """All values that are not equal to given value."""
-  maple_not: Boolean
+  pay_not: Boolean
   upload: FileWhereInput
 }
 

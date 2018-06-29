@@ -8,13 +8,13 @@
             div.service-block
               h4 Are you eligible for a private MRI in Ontario?
               p
-                | In Ontario, the Health Insurance Act (i.e. HIA) prohibits / prevents insured persons under the Ontario Health Insurance Plan (i.e. OHIP) from paying for insured services, such as an MRI scan.  However, there are exceptions to the rule rendering an MRI examination an “uninsured service.”  The exceptions to the rule are as follows:
+                | In Ontario, the Health Insurance Act (i.e. HIA) prohibits / prevents insured persons under the Ontario Health Insurance Plan (i.e. OHIP) from paying for insured services, such as an MRI scan. However, there are exceptions to the rule rendering an MRI examination an “uninsured service.”  The exceptions to the rule are as follows:
                 br
                 br
                 | All Non-Residents of Ontario are Eligible for a private MRI scan in Ontario.
                 br
                 br
-                | NON-RESIDENTS: Only persons who are ordinarily resident in Ontario, as well as certain other persons deemed to be residents under provincial regulations, are entitled to receive OHIP-insured services without charge. Therefore, medical services provided to non-residents in Ontario are not insured by OHIP.
+                | NON-RESIDENTS: Only persons who are ordinarily residents in Ontario, as well as certain other persons deemed to be residents under provincial regulations, are entitled to receive OHIP-insured services without charge. Therefore, medical services provided to non-residents in Ontario are not insured by OHIP.
         div.service-blocks__divider
         div.service-blocks--right
           transition(name="slide-up" appear)
@@ -30,15 +30,15 @@
                 | MRI is important as both a screening and diagnostic tool due to its ability to detect many cardiovascular, neurological, oncological and musculoskeletal diseases and or injuries earlier and more accurately than other modalities.
           transition(name="slide-up" appear)
             div.service-block
-              h4 Bespoke Client Specific Packages
+              h4 Customized Client Specific Packages
               p
-                | Medical Imaging via MRI is a powerful tool in personal injury litigation, which offers litigators and their clients concrete diagnostic evidence when attempting to manage a clients’ case.
+                | Medical Imaging via MRI is a powerful tool in personal injury litigation, which offers litigators and their clients concrete diagnostic evidence when attempting to manage a clients' case.
                 br
                 br
-                | Diagnostic Illumination offers a customized approach to MRI imaging by providing clients with MRI imaging packages that incorporate a multipronged approach to discovering objective diagnostic findings for patients suffering from the debilitating effects of a trauma.
+                | Diagnostic Intelligence offers a customized approach to MRI imaging by providing clients with MRI imaging packages that incorporate a multipronged approach to discovering objective diagnostic findings for patients suffering from the debilitating effects of a trauma.
                 br
                 br
-                | Diagnostic Illumination’s objective is to reward clients who choose to order more than one MRI scan by decreasing the overall fee per scan.  Ultimately, the risk, reward favors the client because the chance of identifying pathology is increased in this scenario.
+                | Diagnostic Intelligence's objective is to reward clients who choose to order more than one MRI scan by decreasing the overall fee per scan.  Ultimately, the risk, reward favors the client because the chance of identifying pathology is increased in this scenario.
 
     section#benefits.services-page(v-scrolled)
       h1 Benefits of Multiple Body Part MRI Scans
@@ -51,7 +51,7 @@
           h4 Results afford medical providers, insurers and their litigators the task of identifying the right treatment strategies and medical evaluations instrumental in rehabilitating the client.
         div.circle-list__list-item
           SpinningIcon(color="yellow")
-          h4 Objective findings may be utilized to address an injured Insured clients’ Minor Injury Guideline (MIG) status either placing them within the MIG or outside of the MIG.
+          h4 Objective findings may be utilized to address an injured Insured clients' Minor Injury Guideline (MIG) status either placing them within the MIG or outside of the MIG.
 
     book-now
       h1(slot="title") Customized Pricing

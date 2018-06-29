@@ -54,7 +54,7 @@
           Card(color="light-blue" src="magnifying-glass.svg" width="74" height="74")
             p Provides high resolution visualization of abnormalities caused by small hemorrhages and microscopic tears
           Card(color="purple" src="venn.svg" width="100" height="66")
-            p Objective findings may be utilized to address an injured Insured clients’ Minor Injury Guideline (MIG) status either placing them within the MIG or outside of the MIG.
+            p Objective findings may be utilized to address an injured Insured clients' Minor Injury Guideline (MIG) status either placing them within the MIG or outside of the MIG.
 
     section#swi-accuracy.litigation-page
       h1 SWI Can Accurately Diagnose:
@@ -98,7 +98,7 @@
           p Increased irritability or changes in personality
         div.circle-list__list-item
           SpinningIcon(color="red" size="28")
-          p Suffered at loss of consciousness as a consequence of the trauma
+          p Suffered a loss of consciousness as a consequence of the trauma
 
     book-now.litigation-page
       h4(name="content") Recieve results within 48 hours.

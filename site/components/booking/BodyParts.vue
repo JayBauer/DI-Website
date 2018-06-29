@@ -43,47 +43,47 @@
     },
     data: () => ({
       brain: [
-        { name: 'Routine Brain', id: 'brain_routine', price: 800 },
-        { name: 'Facial Bones', id: 'brain_facial', price: 1300 },
-        { name: 'Brain with Susceptibility Weighted Imaging (SWI)', id: 'brain_swi', price: 800 },
-        { name: 'Temporomandibular Joints (no brain included) - (Jaw)', id: 'brain_jaw', price: 800 },
+        { name: 'Routine Brain', id: 'brain_routine', price: 850 },
+        { name: 'Facial Bones', id: 'brain_facial', price: 850 },
+        { name: 'Brain with Susceptibility Weighted Imaging (SWI)', id: 'brain_swi', price: 850 },
+        { name: 'Temporomandibular Joints (no brain included) - (Jaw)', id: 'brain_jaw', price: 850 },
       ],
       selectedBrain: [],
       spine: [
-        { name: 'Cervical (neck)', id: 'spine_cervical', price: 800 },
-        { name: 'Thoracic (midback)', id: 'spine_thoracic', price: 800 },
-        { name: 'Lumbar (lowerback)', id: 'spine_lumbar', price: 800 },
-        { name: 'Sacrum', id: 'spine_sacrum', price: 800 },
-        { name: 'Sacroiliac Joints', id: 'spine_sacroiliac', price: 800 },
-        { name: 'Coccyx (tailbone)', id: 'spine_coccyx', price: 800 },
-        { name: 'Lumbar Spine Sacrum Combination', id: 'spine_lumbar-sacrum', price: 1300 },
-        { name: 'Lumbar Spine Sacroiliac Joints Combination', id: 'spine_lumbar-sacroiliac', price: 1300 }
+        { name: 'Cervical (neck)', id: 'spine_cervical', price: 750 },
+        { name: 'Thoracic (midback)', id: 'spine_thoracic', price: 750 },
+        { name: 'Lumbar (lowerback)', id: 'spine_lumbar', price: 750 },
+        { name: 'Sacrum', id: 'spine_sacrum', price: 750 },
+        { name: 'Sacroiliac Joints', id: 'spine_sacroiliac', price: 750 },
+        { name: 'Coccyx (tailbone)', id: 'spine_coccyx', price: 750 },
+        { name: 'Lumbar Spine Sacrum Combination', id: 'spine_lumbar-sacrum', price: 1200 },
+        { name: 'Lumbar Spine Sacroiliac Joints Combination', id: 'spine_lumbar-sacroiliac', price: 1200 }
       ],
       selectedSpine: [],
       body: [
-        { name: 'Thorax', id: 'body_thorax', price: 800 },
-        { name: 'Abdomen', id: 'body_abdomen', price: 800 },
-        { name: 'Pelvis', id: 'body_pelvis', price: 800 },
+        { name: 'Thorax', id: 'body_thorax', price: 850 },
+        { name: 'Abdomen', id: 'body_abdomen', price: 850 },
+        { name: 'Pelvis', id: 'body_pelvis', price: 850 },
         { name: 'Prostate', id: 'body_prostate', price: 1000 },
-        { name: 'Liver', id: 'body_liver', price: 800 },
-        { name: 'Chest', id: 'body_chest', price: 800 },
+        { name: 'Liver', id: 'body_liver', price: 850 },
+        { name: 'Chest', id: 'body_chest', price: 850 },
       ],
       selectedBody: [],
       extremities: [
-        { name: 'Left Shoulder', id: 'extrem_l-shoulder', price: 800 },
-        { name: 'Right Shoulder', id: 'extrem_r-shoulder', price: 800 },
-        { name: 'Left Elbow', id: 'extrem_l-elbow', price: 800 },
-        { name: 'Right Elbow', id: 'extrem_r-elbow', price: 800 },
-        { name: 'Left Wrist', id: 'extrem_l-wrist', price: 800 },
-        { name: 'Right Wrist', id: 'extrem_r-wrist', price: 800 },
-        { name: 'Left Hip', id: 'extrem_l-hip', price: 800 },
-        { name: 'Right Hip', id: 'extrem_r-hip', price: 800 },
-        { name: 'Left Knee', id: 'extrem_l-knee', price: 800 },
-        { name: 'Right Knee', id: 'extrem_r-knee', price: 800 },
-        { name: 'Left Ankle', id: 'extrem_l-ankle', price: 800 },
-        { name: 'Right Ankle', id: 'extrem_r-ankle', price: 800 },
-        { name: 'Left Foot', id: 'extrem_l-foot', price: 800 },
-        { name: 'Right Foot', id: 'extrem_r-foot', price: 800 }
+        { name: 'Left Shoulder', id: 'extrem_l-shoulder', price: 750 },
+        { name: 'Right Shoulder', id: 'extrem_r-shoulder', price: 750 },
+        { name: 'Left Elbow', id: 'extrem_l-elbow', price: 750 },
+        { name: 'Right Elbow', id: 'extrem_r-elbow', price: 750 },
+        { name: 'Left Wrist', id: 'extrem_l-wrist', price: 750 },
+        { name: 'Right Wrist', id: 'extrem_r-wrist', price: 750 },
+        { name: 'Left Hip', id: 'extrem_l-hip', price: 750 },
+        { name: 'Right Hip', id: 'extrem_r-hip', price: 750 },
+        { name: 'Left Knee', id: 'extrem_l-knee', price: 750 },
+        { name: 'Right Knee', id: 'extrem_r-knee', price: 750 },
+        { name: 'Left Ankle', id: 'extrem_l-ankle', price: 750 },
+        { name: 'Right Ankle', id: 'extrem_r-ankle', price: 750 },
+        { name: 'Left Foot', id: 'extrem_l-foot', price: 750 },
+        { name: 'Right Foot', id: 'extrem_r-foot', price: 750 }
       ],
       selectedExtremities: [],
     }),
@@ -122,7 +122,7 @@
 
 <style lang="postcss">
   @import 'global/variables';
-  
+
   #body-parts {
     .form-group {
       lost-center: 1200px;
@@ -148,50 +148,6 @@
       }
       @media (--for-tablet-land-down) {
         padding: * 30px * *;
-      }
-    }
-    .quote-box {
-      background-color: $blue;
-      @media (--for-tablet-land-up) {
-        position: absolute;
-        top: 650px;
-        right: 0;
-        width: 266px;
-        &.fixed {
-          position: fixed;
-          top: 0;
-        }
-      }
-      @media (--nav-menu-down) {
-        top: 600px;
-      }
-      .quote-box__top {
-        padding: 30px * 50px;
-        lost-center: 180px;
-        h1 {
-          color: $white;
-        }
-        h4 {
-          justify-content: flex-start;
-          font-size: 20px;
-          font-weight: light;
-          text-align: left;
-          color: $white;
-        }
-        .quote-box__cost {
-          padding: 40px *;
-          h4 {
-            font-weight: bold;
-            color: $orange;
-            padding: * * 0 *;
-          }
-        }
-      }
-      .quote-box__bottom {
-        background-color: $white;
-        @media (--for-tablet-land-down) {
-          display: none;
-        }
       }
     }
   }

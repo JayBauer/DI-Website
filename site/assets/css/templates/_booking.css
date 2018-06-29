@@ -5,7 +5,7 @@ section.booking-page {
   }
   h3, h4 {
     lost-center: 600px;
-    justify-content: space-around;
+    justify-content: center;
     text-align: center;
   }
   &#booking-header {

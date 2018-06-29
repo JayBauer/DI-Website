@@ -26,13 +26,13 @@ type Booking {
   ontarioRes: IsResident
   bodyParts: Json
   waiver: Waiver!
-  referral: Referral!
+  referral: Referral @relation(name: "BookingReferral" onDelete: CASCADE)
   payment: Boolean! @default(value: "false")
 }
 
 type Referral {
-  maple: Boolean! @default(value: "false")
-  upload: File!
+  pay: Boolean! @default(value: "false")
+  upload: File @relation(name: "ReferralUpload" onDelete: CASCADE)
 }
 
 type Waiver {

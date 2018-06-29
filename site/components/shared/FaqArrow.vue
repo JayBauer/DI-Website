@@ -4,8 +4,7 @@
       g(:class="isOpen ? 'open' : 'closed'")
         path.path(:style="`stroke: ${arrowColor}`" d="M17.64,11.52A37.26,37.26,0,0,1,73.35,22.79")
         path.path(:style="`stroke: ${arrowColor}`" d="M73.36,58.65A37.22,37.22,0,1,1,8.11,22.81")
-        polygon.circle(:style="'fill: ' + arrowColor + '; opacity:' + (isOpen ? '0' : '1')" points="40.68 56.87 58.73 32.99 22.63 32.99 40.68 56.87")
-        polygon.circle(:style="'fill: ' + arrowColor + '; opacity:' + (isOpen ? '1' : '0')" points="44.65 40.66 55.57 29.74 51.74 25.91 40.82 36.83 29.89 25.9 26.06 29.73 37 40.66 26.05 51.6 29.88 55.43 40.82 44.49 51.75 55.42 55.58 51.59 44.65 40.66")
+        polygon.arrow(:style="'fill: ' + arrowColor + ';'" points="40.68 56.87 58.73 32.99 22.63 32.99 40.68 56.87")
 </template>
 
 <script>
@@ -60,8 +59,9 @@
             animation: drawIn 1s ease-in-out;
           }
         }
-        .circle {
-          transition: opacity 0.5s ease;
+        .arrow {
+          transform-origin: 40.7px 40.81px;
+          animation: spinHalfLeft 1s ease-in-out forwards;
         }
       }
       &.closed {
@@ -72,10 +72,12 @@
           }
           &:nth-of-type(2) {
             animation: drawOut 1s ease-in-out;
+            animation-fill-mode: forwards;
           }
         }
-        .circle {
-          transition: opacity 0.5s ease;
+        .arrow {
+          transform-origin: 40.7px 40.81px;
+          animation: spinHalfRight 1s ease-in-out forwards;
         }
       }
     }
@@ -127,6 +129,22 @@
   @keyframes spinRight {
     0% {
       transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+  @keyframes spinHalfLeft {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(-180deg);
+    }
+  }
+  @keyframes spinHalfRight {
+    0% {
+      transform: rotate(-180deg);
     }
     100% {
       transform: rotate(0);

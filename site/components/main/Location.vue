@@ -18,7 +18,7 @@
           font-awesome-icon(:icon="icon")
           | {{ email }}
 
-        Button(id="contact-btn" size="big" text="Contact Us" link="contact")
+        Button(id="contact-btn" size="big" text="Contact Us" :link="{ name: 'contact' }")
 </template>
 
 <script>

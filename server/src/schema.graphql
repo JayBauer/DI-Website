@@ -1,14 +1,15 @@
 # import User from "./generated/prisma.graphql"
-# import Waiver from "./generated/prisma.graphql"
 scalar Upload
 
 type Query {
   me: User
-  user: User!
+  user(id: ID!): User!
+  users: [User!]!
   booking(id: ID!): Booking
   bookings(user: UserWhereUniqueInput!): [Booking!]!
   file(id: ID!): File
   files: [File!]!
+  stripe(where: StripeCustomerWhereInput!): StripeCustomer
 }
 
 type Mutation {
@@ -54,7 +55,7 @@ type Mutation {
     ontarioRes: IsResident!,
     bodyParts: Json!,
     waiver: WaiverCreateInput!,
-    referral: ReferralCreateInput!,
+    referral: ReferralCreateInput,
     payment: Boolean
   ): Booking!
 
@@ -67,16 +68,13 @@ type Mutation {
 
   deleteFile(url: String!): File!
 
-  saveCustomer(
+  makePayment(
     source: String!,
-    email: String!
-  ): StripeCustomer!
-
-  newPayment(
-    customer:StripeCustomerWhereUniqueInput!,
     amount:Float!,
     currency:String!
   ): Charge!
+
+  deleteStripeCustomer(stripeId: String!): StripeCustomer!
 }
 
 type AuthPayload {

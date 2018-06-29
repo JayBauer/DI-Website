@@ -3,8 +3,8 @@
     slot(name="title")
       h1 Book Now
     slot(name="content")
-      h4 Get Results back in two weeks.
-    Button(id="book-now-btn" size="big" text="Book A Scan" link="booking-id")
+      h4 Receive results within 24 hours.
+    Button(id="book-now-btn" size="big" text="Book A Scan" :link="{ name: 'booking-id', params: { id: 'new' } }")
 </template>
 
 <script>

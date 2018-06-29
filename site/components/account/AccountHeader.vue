@@ -19,3 +19,32 @@
     }
   }
 </script>
+
+<style lang="postcss">
+  @import 'global/variables';
+
+  #account-head {
+    nav.account-nav {
+      lost-center: 500px;
+      justify-content: space-evenly;
+      padding: 30px * * *;
+      a {
+        &.router-link-active {
+          border-bottom: 1px solid $blue;
+        }
+        h4 {
+          color: $blue;
+        }
+      }
+    }
+    @media (--for-phone) {
+      nav.account-nav {
+        a {
+          h4 {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+</style>

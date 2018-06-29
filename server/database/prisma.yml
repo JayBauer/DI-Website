@@ -1,8 +1,7 @@
 datamodel: datamodel.graphql
-secret: ${env:PRISMA_SECRET}
 endpoint: ${env:PRISMA_ENDPOINT}
+secret: ${env:PRISMA_SECRET}
 
 hooks:
   post-deploy:
-    - graphql get-schema --project database
-    - graphql prepare
+    - graphql get-schema -p database

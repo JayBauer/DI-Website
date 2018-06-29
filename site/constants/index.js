@@ -2,8 +2,8 @@ export const USER_ID = 'graphcool-user-id'
 export const AUTH_TOKEN = 'supersecretappsecret'
 
 export const CONTACT = {
-  email: 'info@diagnosticillumination.com',
-  phone: '647 689 3881'
+  email: 'info@diagnosticintelligence.ca',
+  phone: '1 833 208 2777'
 }
 export const LOGO = {
   src: '/img/diagnostic-logo.png',

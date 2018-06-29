@@ -17,7 +17,7 @@
     section#book-now.contact-page
       h1 Book Now
       h4 Get Results back in two weeks.
-      Button(id="book-a-scan-btn" size="big" text="Book A Scan")
+      Button(id="book-now-btn" size="big" text="Book A Scan" :link="{ name: 'booking-id', params: { id: 'new' } }")
 
     location.contact-page
 </template>
@@ -43,7 +43,6 @@
 
 <style lang="postcss">
   @import 'global/variables';
-  @import 'components/forms';
 
   section.contact-page {
     &#contact {

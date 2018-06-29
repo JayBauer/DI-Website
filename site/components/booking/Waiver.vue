@@ -27,7 +27,7 @@
       div.form-row.form-row--single
         TextInput(v-model="date" placeholder="Date" type="date")
 
-    nav-buttons(next="Referral" previous="BodyParts" @clicked="navigate" :disabled="disabled")
+    nav-buttons(:next="$store.getters.currentUser ? 'Referral' : 'LogIn'" previous="BodyParts" @clicked="navigate" :disabled="disabled")
 </template>
 
 <script>
@@ -96,7 +96,6 @@
 
 <style lang="postcss">
   @import 'global/variables';
-  @import 'components/forms';
 
   #third-party-waiver {
     > h4 {

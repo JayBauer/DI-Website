@@ -33,7 +33,6 @@
 </template>
 
 <script>
-  import Cookie from 'js-cookie'
   import { CONTACT, LOGO } from '~/constants'
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
   import { faEnvelope } from '@fortawesome/fontawesome-free-solid'
@@ -52,6 +51,7 @@
         { name: 'contact', text: 'Contact' }
       ]
     }),
+
     computed: {
       userName() {
         return this.$store.getters.userName
@@ -60,6 +60,7 @@
         return faEnvelope
       }
     },
+
     methods: {
       navToggle() {
         this.showNav = !this.showNav

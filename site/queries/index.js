@@ -14,6 +14,9 @@ export const ME = gql `
       city
       province
       postal
+      stripe {
+        stripeId
+      }
     }
   }
 `
@@ -47,9 +50,10 @@ export const GET_BOOKING = gql `
         date
       }
       referral {
-        maple
+        pay
         upload {
           filename
+          url
         }
       }
       payment

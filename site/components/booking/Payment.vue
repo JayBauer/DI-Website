@@ -3,22 +3,22 @@
     h3 Final Payment
     h4 Complete the payment information below to finalize your MRI appointment. The Hospital will contact you within 24 hours to schedule your scan day and time.
     div.payment__totals
-      h3 Cost: #[span ${{ cost - maple }}]
+      h3 Cost: #[span ${{ cost - refPayment }}]
       h3 Discount: #[span ${{ discount }}]
-      template(v-if="maple == 100")
-        h3 Referral: #[span ${{ maple }}]
+      template(v-if="pay == 100")
+        h3 Referral: #[span ${{ refPayment }}]
       h3 Total: #[span ${{ total }}]
-    div.payment__form
-      template(v-if="paymentOpen")
-        card.stripe-card(:class="{ complete }" stripe="pk_test_7UqM3uMBb0D7cfMYdOT7mBJN" :options="stripeOptions" @change="complete = $event.complete")
-      Button(id="pay-now-btn" size="big" :text="paymentOpen ? 'Complete Payment' : 'Pay Now'" @click.native="pay")
+    template(v-if="paymentOpen")
+      PaymentCard(stripe="pk_test_7UqM3uMBb0D7cfMYdOT7mBJN")
+    Button(id="pay-now-btn" size="big" :text="paymentOpen ? 'Complete Payment' : 'Pay Now'" @click.native="pay")
 
-    nav-buttons(next="Referral" @clicked="navigate")
+    nav-buttons(previous="Referral" @clicked="navigate")
 </template>
 
 <script>
-  import { Card, createToken } from 'vue-stripe-elements-plus'
-  import { SAVE_CUSTOMER } from '~/mutations'
+  import PaymentCard from '~/components/booking/Paymentcard'
+  import { createToken } from 'vue-stripe-elements-plus'
+  import { PAYMENT } from '~/mutations'
 
   export default {
     name: 'Payment',
@@ -37,8 +37,8 @@
         return 0
         // return this.$store.getters.discountPrice
       },
-      maple() {
-        if(this.$store.getters.referral.maple == true) {
+      refPayment() {
+        if(this.$store.getters.referral.pay == true) {
           return 100
         }
         return 0
@@ -47,34 +47,27 @@
         return this.cost - this.discount
       }
     },
-    components: { Card },
+    components: { PaymentCard },
     methods: {
       navigate(component) {
         this.$store.dispatch('updateComponent', component)
       },
       pay() {
         if(this.paymentOpen) {
-          // createToken returns a Promise which resolves in a result object with
-          // either a token or an error key.
-          // See https://stripe.com/docs/api#tokens for the token object.
-          // See https://stripe.com/docs/api#errors for the error object.
-          // More general https://stripe.com/docs/stripe.js#stripe-create-token.
+          // createToken returns a Promise which resolves in a result object with either a token or an error key.
           createToken().then(data => {
             console.log(data.token)
             this.$apollo.mutate({
-              mutation: SAVE_CUSTOMER,
+              mutation: PAYMENT,
               variables: {
-                source: String(data.token.id),
-                email: 'test@elitedigital.ca'
+                source: data.token.id,
+                amount: 10000,
+                currency: 'USD'
               }
-            }).then(stripe => {
-              console.log('Stripe: ' + stripe)
-              this.$apollo.mutate({
-                mutation: PAYMENT,
-                variables: {
-                  customer: stripe.stripe_id
-                }
-              })
+            }).then(data => {
+              console.log('Stripe:', data)
+            }).catch(err => {
+              console.error(err)
             })
           })
         } else {
@@ -96,15 +89,6 @@
         justify-content: space-between;
         margin: 0;
         padding: 0;
-      }
-    }
-    .payment__form {
-      lost-center: 400px;
-      > div {
-        width: 400px;
-      }
-      .stripe-card {
-        padding: * * 50px *;
       }
     }
   }

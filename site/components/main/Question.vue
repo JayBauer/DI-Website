@@ -31,6 +31,36 @@
           el.style.transform = 'translateY(0)'
         }, delay)
       }
+      // beforeEnter (el) {
+      //   // Setup clone
+      //   var clone = el.cloneNode(true), h
+      //   clone.style.width = el.style.width
+      //   clone.style.visibility = 'hidden'
+      //   clone.style.removeProperty('display')
+      //   // if inner animation (might be undesired)
+      //   var desc = clone.querySelectorAll("*");
+      //   [].forEach.call(desc, function (item) {
+      //     // remove possible inline styles of display(=none)
+      //     item.style.removeProperty('display')
+      //   });
+      //   // get clone height
+      //   el.parentNode.appendChild(clone)
+      //   h = clone.clientHeight
+      //   clone.remove()
+      //   // Force animation instead of simple "setting a height"
+      //   el.style.height = "0px"
+      //   setTimeout(() => el.style.height = h + "px", 1)
+      // },
+      // afterEnter (el) {
+      //   el.style.removeProperty('height')
+      // },
+      // beforeLeave (el) {
+      //   el.style.height = el.clientHeight + "px"
+      //   setTimeout(() => el.style.height = "0px", 1)
+      // },
+      // afterLeave (el) {
+      //   el.style.removeProperty('height')
+      // }
     },
     components: {
       FaqArrow
@@ -72,7 +102,6 @@
       }
     }
     &__answer {
-      height: 100%;
       max-height: 0;
       overflow: hidden;
       p {

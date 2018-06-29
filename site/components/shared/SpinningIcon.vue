@@ -41,6 +41,7 @@
   @import "global/variables";
 
   .spinning-icon {
+    $speed: 1.5s;
     @media (--for-phone) {
       svg {
         width: 20px !important;
@@ -48,7 +49,7 @@
       }
     }
     g {
-      animation: spinLeft 1s infinite ease-in-out;
+      animation: spinLeft 1.5s infinite ease-in-out;
       transform-origin: 40.7px 40.81px;
     }
     .path {
@@ -58,12 +59,12 @@
       &:nth-of-type(1) {
         stroke-dasharray: 70;
         stroke-dashoffset: 0;
-        animation: draw 1s infinite ease-in-out;
+        animation: draw 1.5s infinite ease-in-out;
       }
       &:nth-of-type(2) {
         stroke-dasharray: 120;
         stroke-dashoffset: 0;
-        animation: draw 1s infinite ease-in-out;
+        animation: draw 1.5s infinite ease-in-out;
       }
     }
   }

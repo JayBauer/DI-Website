@@ -16,8 +16,8 @@ const mutations = {
   setUser(state, user) {
     state.user = user || null
   },
-  setName(state, name) {
-    state.userName = name || null
+  setName(state, userName) {
+    state.userName = userName || null
   },
   login(state, { id, token }) {
     state.user = id || null
@@ -27,6 +27,7 @@ const mutations = {
     }
   },
   logout(state) {
+    state.userName = null
     state.user = null
     if(process.browser) {
       Cookie.remove(USER_ID)
@@ -35,8 +36,18 @@ const mutations = {
   }
 }
 
+const actions = {
+  setUser({ commit }, payload) {
+    commit('setUser', payload)
+  },
+  setName({ commit }, payload) {
+    commit('setName', payload)
+  }
+}
+
 export default {
   state,
   getters,
-  mutations
+  mutations,
+  actions
 }
