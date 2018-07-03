@@ -35,11 +35,11 @@ div
 </template>
 
 <script>
-  import Card from '~/components/main/Card'
-  import Location from '~/components/main/Location'
-  import HowItWorks from '~/components/main/HowItWorks'
-  import BookNow from '~/components/main/BookNow'
-  import MainFooter from '~/components/MainFooter'
+  import Card from '@c/main/Card'
+  import Location from '@c/main/Location'
+  import HowItWorks from '@c/main/HowItWorks'
+  import BookNow from '@c/main/BookNow'
+  import MainFooter from '@c/MainFooter'
 
   export default {
     name: 'HomePage',
@@ -49,11 +49,6 @@ div
       HowItWorks,
       BookNow,
       MainFooter
-    },
-    methods: {
-      scrolled() {
-        console.log("SCROLLED BRUH")
-      }
     },
     head() {
       return {

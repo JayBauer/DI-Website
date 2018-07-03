@@ -16,9 +16,8 @@
     },
     methods: {
       saveBooking() {
-        const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment } = this.$store.getters.store
+        const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment, currentComponent } = this.$store.getters.store
         let imageUploaded = null
-        console.log(referral.upload)
 
         var saveBookingMutation = () => this.$apollo.mutate({
           mutation: SAVE_BOOKING,
@@ -40,7 +39,8 @@
               pay: referral.pay,
               upload: imageUploaded
             },
-            payment
+            payment,
+            progress: currentComponent
           }
         }).then(res => {
           console.log('Successful booking save')

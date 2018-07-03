@@ -1,5 +1,9 @@
 <template lang="pug">
   div.payment__form.credit-card-inputs(:class="{ complete }")
+    h4 Complete the payment information below to finalize your MRI appointment. The Hospital will contact you within 24 hours to schedule your scan day and time.
+    div.form-row
+      TextInput(v-model="nameOnCard" placeholder="Name On Card" type="name")
+      TextInput(v-model="postal" placeholder="Postal Code" type="postal")
     div.form-row.form-row--single
       div.form-input
         CardNumber.stripe-element.card-number(
@@ -24,21 +28,40 @@
 
 <script>
   import { CardNumber, CardExpiry, CardCvc } from 'vue-stripe-elements-plus'
+  import { ME } from '~/queries'
+
   export default {
     name: 'PaymentCard',
     props: [ 'stripe' ],
     data: () => ({
+      me: {},
+      stripeLoading: null,
       complete: false,
       number: false,
       expiry: false,
-      cvc: false
+      cvc: false,
+      nameOnCard: '',
+      postal: ''
     }),
+    apollo: {
+      me: {
+        query: ME,
+        loadingKey: 'loading',
+        result(data) {
+          return this.setUserData()
+        }
+      }
+    },
     components: {
       CardNumber,
       CardExpiry,
       CardCvc
     },
     methods: {
+      setUserData() {
+        this.nameOnCard = `${this.me.firstName} ${this.me.lastName}`
+        this.postal = this.me.postal
+      },
       update() {
         this.complete = this.number && this.expiry && this.cvc
         // field completed, find field to focus next
@@ -63,6 +86,16 @@
       number() { this.update() },
       expiry() { this.update() },
       cvc() { this.update() }
+    },
+    mounted() {
+      console.log(this.stripeLoading)
+      CardNumber.on('ready', () => {
+        console.log('YEEEP')
+      })
+      // document.querySelector('.stripe-element').addEventListener('load', () => {
+      //   this.stripeLoading = CardNumber.on(process.env.STRIPE_PK)
+      //   console.log(this.stripeLoading)
+      // })
     }
   }
 </script>
@@ -70,16 +103,22 @@
 <style lang="postcss">
   @import 'global/variables';
 
-  .stripe-element {
-    width: 100%;
-    font-family: "Muli", "Klinic Slab", sans-serif;
-    font-size: 15px/17px;
-    padding: 15px 20px;
-    color: $gray;
-    border: 1px solid;
-    border-color: $light-gray;
-    &::placeholder {
-      color: $light-gray;
+  .payment__form {
+    padding: 50px 0;
+    h4 {
+      padding: 0 0 25px;
+    }
+    .stripe-element {
+      width: 100%;
+      font-family: "Muli", "Klinic Slab", sans-serif;
+      font-size: 15px/17px;
+      padding: 15px 20px;
+      color: $gray;
+      border: 1px solid;
+      border-color: $light-gray;
+      &::placeholder {
+        color: $light-gray;
+      }
     }
   }
 </style>

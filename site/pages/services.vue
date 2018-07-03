@@ -6,7 +6,7 @@
         div.service-blocks--left
           transition(name="slide-up" appear)
             div.service-block
-              h4 Are you eligible for a private MRI in Ontario?
+              h4 Are you eligible for a private MRI scan in Ontario?
               p
                 | In Ontario, the Health Insurance Act (i.e. HIA) prohibits / prevents insured persons under the Ontario Health Insurance Plan (i.e. OHIP) from paying for insured services, such as an MRI scan. However, there are exceptions to the rule rendering an MRI examination an “uninsured service.”  The exceptions to the rule are as follows:
                 br

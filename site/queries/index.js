@@ -57,6 +57,7 @@ export const GET_BOOKING = gql `
         }
       }
       payment
+      progress
     }
   }
 `

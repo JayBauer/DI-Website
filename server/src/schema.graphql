@@ -56,7 +56,8 @@ type Mutation {
     bodyParts: Json!,
     waiver: WaiverCreateInput!,
     referral: ReferralCreateInput,
-    payment: Boolean
+    payment: Boolean,
+    progress: String
   ): Booking!
 
   deleteBooking(id: ID!): Booking!

@@ -28,6 +28,7 @@ type Booking {
   waiver: Waiver!
   referral: Referral @relation(name: "BookingReferral" onDelete: CASCADE)
   payment: Boolean! @default(value: "false")
+  progress: String! @default(value: "BookingFor")
 }
 
 type Referral {

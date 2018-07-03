@@ -60,10 +60,6 @@
     //   return /^\d+$/.test(params.id)
     // },
 
-    mounted() {
-      this.$store.dispatch('updateComponent', 'BookingFor')
-    },
-
     beforeDestroy() {
       this.$store.dispatch('resetBooking')
     },
@@ -74,7 +70,7 @@
       },
       initialValues(data) {
         if(data.data.booking) {
-          const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment } = data.data.booking
+          const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress } = data.data.booking
           const newStore = {
             bookingFor,
             ontarioRes,
@@ -90,11 +86,14 @@
             referral: {
               pay: referral.pay,
               upload: null,
-              previousImage: referral.upload.url
+              previousImage: referral.upload ? referral.upload.url : null
             },
             payment
           }
           this.$store.dispatch('setStore', newStore)
+          this.$store.dispatch('updateComponent', progress)
+        } else {
+          this.$store.dispatch('updateComponent', 'BookingFor')
         }
       }
     },
@@ -111,6 +110,8 @@
       Payment,
       SaveBooking
     },
+
+    middleware: 'auth',
 
     head() {
       return {

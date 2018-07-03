@@ -1,5 +1,5 @@
 # source: http://localhost:4466/diagnostic-illumination/dev
-# timestamp: Thu Jun 28 2018 16:06:45 GMT-0400 (EDT)
+# timestamp: Tue Jul 03 2018 12:21:34 GMT-0400 (EDT)
 
 type AggregateBooking {
   count: Int!
@@ -45,6 +45,7 @@ type Booking implements Node {
   waiver(where: WaiverWhereInput): Waiver!
   referral(where: ReferralWhereInput): Referral
   payment: Boolean!
+  progress: String!
 }
 
 """A connection to a list of items."""
@@ -62,6 +63,7 @@ input BookingCreateInput {
   ontarioRes: IsResident
   bodyParts: Json
   payment: Boolean
+  progress: String
   user: UserCreateOneWithoutBookingsInput!
   waiver: WaiverCreateOneInput!
   referral: ReferralCreateOneInput
@@ -77,6 +79,7 @@ input BookingCreateWithoutUserInput {
   ontarioRes: IsResident
   bodyParts: Json
   payment: Boolean
+  progress: String
   waiver: WaiverCreateOneInput!
   referral: ReferralCreateOneInput
 }
@@ -111,6 +114,8 @@ enum BookingOrderByInput {
   bodyParts_DESC
   payment_ASC
   payment_DESC
+  progress_ASC
+  progress_DESC
 }
 
 type BookingPreviousValues {
@@ -121,6 +126,7 @@ type BookingPreviousValues {
   ontarioRes: IsResident
   bodyParts: Json
   payment: Boolean!
+  progress: String!
 }
 
 type BookingSubscriptionPayload {
@@ -167,6 +173,7 @@ input BookingUpdateInput {
   ontarioRes: IsResident
   bodyParts: Json
   payment: Boolean
+  progress: String
   user: UserUpdateOneWithoutBookingsInput
   waiver: WaiverUpdateOneInput
   referral: ReferralUpdateOneInput
@@ -186,6 +193,7 @@ input BookingUpdateWithoutUserDataInput {
   ontarioRes: IsResident
   bodyParts: Json
   payment: Boolean
+  progress: String
   waiver: WaiverUpdateOneInput
   referral: ReferralUpdateOneInput
 }
@@ -318,6 +326,46 @@ input BookingWhereInput {
 
   """All values that are not equal to given value."""
   payment_not: Boolean
+  progress: String
+
+  """All values that are not equal to given value."""
+  progress_not: String
+
+  """All values that are contained in given list."""
+  progress_in: [String!]
+
+  """All values that are not contained in given list."""
+  progress_not_in: [String!]
+
+  """All values less than the given value."""
+  progress_lt: String
+
+  """All values less than or equal the given value."""
+  progress_lte: String
+
+  """All values greater than the given value."""
+  progress_gt: String
+
+  """All values greater than or equal the given value."""
+  progress_gte: String
+
+  """All values containing the given string."""
+  progress_contains: String
+
+  """All values not containing the given string."""
+  progress_not_contains: String
+
+  """All values starting with the given string."""
+  progress_starts_with: String
+
+  """All values not starting with the given string."""
+  progress_not_starts_with: String
+
+  """All values ending with the given string."""
+  progress_ends_with: String
+
+  """All values not ending with the given string."""
+  progress_not_ends_with: String
   user: UserWhereInput
   waiver: WaiverWhereInput
   referral: ReferralWhereInput

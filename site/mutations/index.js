@@ -110,7 +110,8 @@ mutation UpsertBooking(
   $bodyParts: Json!,
   $waiver: WaiverCreateInput!,
   $referral: ReferralCreateInput,
-  $payment: Boolean!
+  $payment: Boolean!,
+  $progress: String
 ) {
   saveBooking(
     id:$id
@@ -121,6 +122,7 @@ mutation UpsertBooking(
     waiver:$waiver
     referral:$referral
     payment:$payment
+    progress:$progress
   ) {
     id
     bookingFor
@@ -139,6 +141,7 @@ mutation UpsertBooking(
       }
     }
     payment
+    progress
   }
 }
 `

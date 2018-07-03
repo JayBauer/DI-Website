@@ -71,13 +71,13 @@ module.exports = {
     ** Run ESLint on save
     */
     extend (config, { isDev, isClient }) {
+      config.performance.maxAssetSize = 500000
       config.resolve.alias['@style'] = path.resolve(__dirname, './assets/css')
+      const alias = config.resolve.alias = config.resolve.alias || {}
+      alias['@r'] = '~'
+      alias['@c'] = '~/components/'
+      alias['@styles'] = '~/assets/css'
       if (isDev && isClient) {
-        const alias = config.resolve.alias = config.resolve.alias || {}
-        alias['@r'] = '~'
-        alias['@c'] = '~components/'
-        alias['@styles'] = '~assets/css'
-
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

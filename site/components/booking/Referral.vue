@@ -3,7 +3,7 @@
     template
       div.referral__nav
         h3 Do you need a referral?
-        h4 Click below to visit our referral partner Maple and see a doctor via video conference in 15 minutes or less!
+        h4 You will need a referral to proceed with your booking. If you have a referral you can upload it here. If you need a referral, you can opt to pay an additional $100 fee and a referral will be provided.
         Button.small-text(id="upload-ref-btn" size="big" text="Upload Referral" @click.native="selectedComponent = 'upload-referral'")
         Button.small-text(id="pay-ref-btn" size="big" text="Pay for a Referral" @click.native="selectedComponent = 'pay-referral'")
 

@@ -2,7 +2,7 @@ const { createWriteStream, unlink } = require('fs')
 const mkdirp = require('mkdirp')
 const shortid = require('shortid')
 
-const uploadDir = './uploads'
+const uploadDir = './src/uploads'
 mkdirp.sync(uploadDir)
 
 const storeUpload = ({ stream, filename }, path, sid) =>
@@ -23,7 +23,7 @@ function removeFile(url) {
 }
 
 const booking = {
-  async saveBooking(parent, { id, user, bookingFor, ontarioRes, bodyParts, waiver, referral, payment }, ctx, info) {
+  async saveBooking(parent, { id, user, bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress }, ctx, info) {
     console.log('Save Booking')
     const bookingExists = await ctx.db.query.booking({ where: { id } })
     if(!bookingExists) {
@@ -41,7 +41,8 @@ const booking = {
                 upload: referral.upload
               }
             },
-            payment
+            payment,
+            progress
           }
         },
         info
@@ -57,7 +58,8 @@ const booking = {
             bodyParts,
             waiver: { update: waiver },
             referral: { update: referral },
-            payment
+            payment,
+            progress
           }
         },
         info
