@@ -23,7 +23,7 @@ div.main-container
       me: {
         query: ME,
         result(data) {
-          this.$store.commit('setName', data.data.me.firstName)
+          if(data.data.me) this.$store.commit('setName', data.data.me.firstName)
         },
         skip() {
           return this.skipQuery

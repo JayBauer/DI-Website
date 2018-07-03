@@ -1,5 +1,5 @@
 # source: http://localhost:4466/diagnostic-illumination/dev
-# timestamp: Tue Jul 03 2018 12:21:34 GMT-0400 (EDT)
+# timestamp: Tue Jul 03 2018 16:47:58 GMT-0400 (EDT)
 
 type AggregateBooking {
   count: Int!

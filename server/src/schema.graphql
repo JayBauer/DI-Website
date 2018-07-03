@@ -1,4 +1,5 @@
 # import User from "./generated/prisma.graphql"
+# import Booking from "./generated/prisma.graphql"
 scalar Upload
 
 type Query {

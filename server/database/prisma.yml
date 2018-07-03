@@ -4,4 +4,5 @@ secret: ${env:PRISMA_SECRET}
 
 hooks:
   post-deploy:
-    - graphql get-schema -p database
+    - graphql get-schema --project database
+    - graphql prepare
