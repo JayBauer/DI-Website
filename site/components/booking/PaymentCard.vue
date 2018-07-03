@@ -87,16 +87,16 @@
       expiry() { this.update() },
       cvc() { this.update() }
     },
-    mounted() {
-      console.log(this.stripeLoading)
-      CardNumber.on('ready', () => {
-        console.log('YEEEP')
-      })
-      // document.querySelector('.stripe-element').addEventListener('load', () => {
-      //   this.stripeLoading = CardNumber.on(process.env.STRIPE_PK)
-      //   console.log(this.stripeLoading)
-      // })
-    }
+    // mounted() {
+    //   console.log(this.stripeLoading)
+    //   CardNumber.on('ready', () => {
+    //     console.log('YEEEP')
+    //   })
+    //   // document.querySelector('.stripe-element').addEventListener('load', () => {
+    //   //   this.stripeLoading = CardNumber.on(process.env.STRIPE_PK)
+    //   //   console.log(this.stripeLoading)
+    //   // })
+    // }
   }
 </script>
 
