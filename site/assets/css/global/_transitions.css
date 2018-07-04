@@ -83,3 +83,22 @@
   opacity: 0.5;
   transform: translateY(100%);
 }
+
+/* Error */
+.error-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.error-leave-active {
+  transition: all 0.3s;
+}
+
+.error-enter, .error-leave-to {
+  opacity: 0;
+  transform: translateY(-30%);
+}
+
+.error-enter-to, .error-leave {
+  opacity: 1;
+  transform: translateY(0);
+}

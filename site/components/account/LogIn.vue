@@ -6,7 +6,7 @@
       TextInput(v-model="password" type="password" placeholder="Password")
     div.form-row
       div.error-message(v-show="formError")
-        p {{ formError }}
+        h4 {{ formError }}
       Button(id="login-btn" size="big" text="Log In" @click.native="login")
 </template>
 
@@ -60,10 +60,15 @@
       lost-center: 450px;
       position: relative;
       .error-message {
-        position: absolute;
+        height: 10px;
         width: 100%;
         color: $error;
         text-align: center;
+        h4 {
+          font-size: 14px/14px;
+          color: $orange;
+          padding: 0 !important;
+        }
       }
     }
     .btn-big {
