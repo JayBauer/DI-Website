@@ -24,7 +24,7 @@ export const ME = gql `
 export const USER_BOOKINGS = gql `
   query UserBookings($user: UserWhereUniqueInput!) {
     bookings(user: $user) {
-      id
+      bookingNumber
       createdAt
       updatedAt
       payment
@@ -33,11 +33,11 @@ export const USER_BOOKINGS = gql `
 `
 
 export const GET_BOOKING = gql `
-  query Booking($id: ID!) {
-    booking(id:$id) {
-      id
+  query Booking($bookingNumber: String!) {
+    booking(bookingNumber:$bookingNumber) {
       createdAt
       updatedAt
+      bookingNumber
       bookingFor
       ontarioRes
       bodyParts

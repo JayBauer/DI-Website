@@ -1,19 +1,19 @@
 <template lang="pug">
   div.mobile-menu
     transition-group(name="stagger" tag="ul" :css="false" v-on:before-enter="beforeEnter" v-on:enter="enter" appear)
-      li(v-for="link, index in links" :key="link.link" :data-index="index")
-        nuxt-link(:to="{ name: link.link }") {{ link.text }}
+      li(v-for="link, index in links" :key="link.link.name" :data-index="index")
+        nuxt-link(:to="link.link") {{ link.text }}
 </template>
 <script>
   export default {
     name: "MobileMenu",
     data: () => ({
       links: [
-        { link: 'booking-id', text: 'Booking' },
-        { link: 'services', text: 'Services' },
-        { link: 'litigation', text: 'MRI for Litigation' },
-        { link: 'faq', text: 'FAQ' },
-        { link: 'contact', text: 'Contact' }
+        { link: { name: 'booking-id', params: { id: "new" } }, text: 'Booking' },
+        { link: { name: 'services' }, text: 'Services' },
+        { link: { name: 'litigation' }, text: 'MRI for Litigation' },
+        { link: { name: 'faq' }, text: 'FAQ' },
+        { link: { name: 'contact' }, text: 'Contact' }
       ]
     }),
     methods: {

@@ -103,7 +103,7 @@ export const UPDATE_PASSWORD = gql `
 
 export const SAVE_BOOKING = gql `
 mutation UpsertBooking(
-  $id: ID!,
+  $bookingNumber: String!,
   $user: ID!,
   $bookingFor: BookingFor!,
   $ontarioRes: IsResident!,
@@ -114,7 +114,7 @@ mutation UpsertBooking(
   $progress: String
 ) {
   saveBooking(
-    id:$id
+    bookingNumber:$bookingNumber
     user:$user
     bookingFor:$bookingFor
     ontarioRes:$ontarioRes
@@ -124,7 +124,7 @@ mutation UpsertBooking(
     payment:$payment
     progress:$progress
   ) {
-    id
+    bookingNumber
     bookingFor
     ontarioRes
     bodyParts
@@ -145,6 +145,15 @@ mutation UpsertBooking(
   }
 }
 `
+
+export const DELETE_BOOKING = gql`
+  mutation DeleteBooking($id:ID!) {
+    deleteBooking(id:$id) {
+      id
+    }
+  }
+`
+
 export const PAYMENT = gql `
   mutation NewPayment(
     $source:String!,
@@ -180,15 +189,3 @@ export const UPLOAD_FILE = gql `
     }
   }
 `
-
-// export const PAYMENT = gql `
-//   mutation NewPayment(
-//     customer:
-//   ) {
-//     newPayment(
-//
-//     ) {
-//
-//     }
-//   }
-// `

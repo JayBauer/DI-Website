@@ -102,3 +102,28 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Preloader */
+.preloader-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.preloader-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.preloader-enter {
+  opacity: 0;
+}
+
+.preloader-enter-to {
+  opacity: 1;
+}
+
+.preloader-leave {
+  opacity: 1;
+}
+
+.preloader-leave-to {
+  opacity: 0;
+}

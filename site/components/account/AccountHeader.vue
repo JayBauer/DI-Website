@@ -10,7 +10,6 @@
 <script>
   export default {
     name: 'AccountHeader',
-
     methods: {
       logout() {
         this.$store.commit('logout')

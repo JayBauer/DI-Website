@@ -45,7 +45,7 @@
         loadingKey: 'loading',
         variables() {
           return {
-            id: this.$route.params.id
+            bookingNumber: this.$route.params.id
           }
         },
         error(err) {
@@ -112,8 +112,6 @@
       ThankYou,
       SaveBooking
     },
-
-    middleware: 'auth',
 
     head() {
       return {

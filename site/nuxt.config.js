@@ -22,7 +22,15 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  // loading: '~/components/Loading.vue',
+  loading: {
+    color: '#f68938',
+    height: '5px'
+  },
+
+  performance: {
+    prefetch: false
+  },
 
   apollo: {
     clientConfigs: {

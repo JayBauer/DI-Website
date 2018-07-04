@@ -59,7 +59,9 @@
             }
           }).then(data => {
             console.log('Stripe:', data)
+            this.$store.dispatch('updatePayment', true)
             this.$store.dispatch('updateComponent', 'ThankYou')
+            this.saveBooking()
           }).catch(err => {
             console.error(err)
           })

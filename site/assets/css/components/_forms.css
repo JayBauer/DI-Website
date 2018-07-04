@@ -53,7 +53,7 @@ input {
         }
         &:checked + label::after {
           font-awesome: circle;
-          font-size: 25px;
+          font-size: 20px;
           color: $orange;
           border-color: $light-gray;
         }
@@ -61,7 +61,9 @@ input {
       @media (--for-tablet-port-down) {
         position: relative;
         width: 100%;
-        margin-left: auto;
+        max-width: 300px;
+        font-size: 16px/16px;
+        margin: 0 auto;
         text-align: left;
         padding: * * 20px *;
         input[type="radio"] {

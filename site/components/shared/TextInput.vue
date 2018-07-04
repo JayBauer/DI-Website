@@ -25,6 +25,9 @@
     data: () => ({
       blurred: false
     }),
+    mounted() {
+      this.validInput(this.value)
+    },
     methods: {
       validInput(value) {
         if(this.type == 'text' && this.validText(value)) this.$emit('validate', true)
@@ -56,7 +59,7 @@
         return re.test(phone)
       },
       validPostal(postal) {
-        var re = /^([ABCEGHJKLMNPRSTVXY][0-9][A-Z] [0-9][A-Z][0-9])*$/; // Canadian Postal Codes
+        var re = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/; // Canadian Postal Codes
         return re.test(postal)
       },
       validDate(date) {

@@ -1,7 +1,7 @@
 <template lang="pug">
   section#order-history.account-page
     template(v-if="loading > 0")
-      h4 Loading...
+      Preloader
     template(v-if="bookings.length == 0")
       h4 You haven't booked a scan yet! #[nuxt-link(:to="{ name: 'booking-id', params: { id: 'new' } }") Click here] to begin.
     template(v-else)
@@ -10,13 +10,14 @@
         h4 Booking Number
         h4 Status
       div(v-for="booking in bookings")
-        Order(:id="booking.id" :date="booking.updatedAt" :status="booking.payment" :key="booking.id")
+        Order(:id="booking.bookingNumber" :date="booking.updatedAt" :status="booking.payment" :key="booking.bookingNumber" @deleted="deleteBooking(booking.bookingNumber)")
 </template>
 
 <script>
   import Cookies from 'js-cookie'
   import Order from '~/components/account/Order'
   import { USER_BOOKINGS } from '~/queries'
+  import { DELETE_BOOKING } from '~/mutations'
   import { USER_ID } from '~/constants'
 
   export default {
@@ -44,6 +45,21 @@
     components: {
       Order
     },
+    methods: {
+      deleteBooking(bookingNumber) {
+        this.$apollo.mutate({
+          mutation: DELETE_BOOKING,
+          variables: {
+            bookingNumber
+          }
+        }).then(() => {
+          console.log('Deleted')
+          this.$apollo.queries.bookings.refetch()
+        }).catch(err => {
+          console.error(err)
+        })
+      }
+    },
     middleware: 'auth'
   }
 </script>
@@ -58,34 +74,6 @@
       a {
         color: $blue;
         font-weight: medium;
-      }
-    }
-    .single-order {
-      lost-center: 1000px;
-      align-items: center;
-      h4 {
-        lost-column: 1/3;
-        word-wrap: break-word;
-      }
-      &--headers {
-        padding: 50px 0 10px 0;
-        margin: * * 30px *;
-        color: $blue;
-        border-bottom: 1px solid $blue;
-      }
-      &--content {
-        padding: 10px *;
-        h4:nth-of-type(-n+2) {
-          font-weight: medium;
-          color: $blue;
-        }
-      }
-    }
-    @media (--for-phone) {
-      .single-order {
-        h4 {
-          font-size: 16px;
-        }
       }
     }
   }
