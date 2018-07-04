@@ -1,6 +1,7 @@
 const { createWriteStream, unlink } = require('fs')
 const mkdirp = require('mkdirp')
-const shortid = require('shortid')
+const shortid = require('short-id')
+shortid.configure({ length: 7 })
 
 const uploadDir = './src/uploads'
 mkdirp.sync(uploadDir)
@@ -23,14 +24,15 @@ function removeFile(url) {
 }
 
 const booking = {
-  async saveBooking(parent, { id, user, bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress }, ctx, info) {
+  async saveBooking(parent, { bookingNumber, user, bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress }, ctx, info) {
     console.log('Save Booking')
-    const bookingExists = await ctx.db.query.booking({ where: { id } })
+    const bookingExists = await ctx.db.query.booking({ where: { bookingNumber } })
     if(!bookingExists) {
       return ctx.db.mutation.createBooking(
         {
           data: {
             user: { connect: { id: user } },
+            bookingNumber: shortid.generate(),
             bookingFor,
             ontarioRes,
             bodyParts,
@@ -50,7 +52,7 @@ const booking = {
     } else {
       return ctx.db.mutation.updateBooking(
         {
-          where: { id },
+          where: { bookingNumber },
           data: {
             user: { connect: { id: user } },
             bookingFor,
@@ -67,8 +69,8 @@ const booking = {
     }
   },
 
-  async deleteBooking(parent, { id }, ctx, info) {
-    return ctx.db.mutation.deleteBooking({ where: { id } }, info)
+  async deleteBooking(parent, { bookingNumber }, ctx, info) {
+    return ctx.db.mutation.deleteBooking({ where: { bookingNumber } }, info)
   },
 
   async uploadFile(parent, { file, path }, ctx, info) {

@@ -1,5 +1,5 @@
 # source: http://localhost:4466/diagnostic-illumination/dev
-# timestamp: Tue Jul 03 2018 16:47:58 GMT-0400 (EDT)
+# timestamp: Wed Jul 04 2018 18:10:31 GMT-0400 (EDT)
 
 type AggregateBooking {
   count: Int!
@@ -34,8 +34,8 @@ type BatchPayload {
   count: Long!
 }
 
-type Booking implements Node {
-  id: ID!
+type Booking {
+  bookingNumber: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   user(where: UserWhereInput): User!
@@ -59,6 +59,7 @@ type BookingConnection {
 }
 
 input BookingCreateInput {
+  bookingNumber: String!
   bookingFor: BookingFor
   ontarioRes: IsResident
   bodyParts: Json
@@ -75,6 +76,7 @@ input BookingCreateManyWithoutUserInput {
 }
 
 input BookingCreateWithoutUserInput {
+  bookingNumber: String!
   bookingFor: BookingFor
   ontarioRes: IsResident
   bodyParts: Json
@@ -100,8 +102,8 @@ enum BookingFor {
 }
 
 enum BookingOrderByInput {
-  id_ASC
-  id_DESC
+  bookingNumber_ASC
+  bookingNumber_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -116,10 +118,12 @@ enum BookingOrderByInput {
   payment_DESC
   progress_ASC
   progress_DESC
+  id_ASC
+  id_DESC
 }
 
 type BookingPreviousValues {
-  id: ID!
+  bookingNumber: String!
   createdAt: DateTime!
   updatedAt: DateTime!
   bookingFor: BookingFor
@@ -169,6 +173,7 @@ input BookingSubscriptionWhereInput {
 }
 
 input BookingUpdateInput {
+  bookingNumber: String
   bookingFor: BookingFor
   ontarioRes: IsResident
   bodyParts: Json
@@ -189,6 +194,7 @@ input BookingUpdateManyWithoutUserInput {
 }
 
 input BookingUpdateWithoutUserDataInput {
+  bookingNumber: String
   bookingFor: BookingFor
   ontarioRes: IsResident
   bodyParts: Json
@@ -218,46 +224,46 @@ input BookingWhereInput {
 
   """Logical NOT on all given filters combined by AND."""
   NOT: [BookingWhereInput!]
-  id: ID
+  bookingNumber: String
 
   """All values that are not equal to given value."""
-  id_not: ID
+  bookingNumber_not: String
 
   """All values that are contained in given list."""
-  id_in: [ID!]
+  bookingNumber_in: [String!]
 
   """All values that are not contained in given list."""
-  id_not_in: [ID!]
+  bookingNumber_not_in: [String!]
 
   """All values less than the given value."""
-  id_lt: ID
+  bookingNumber_lt: String
 
   """All values less than or equal the given value."""
-  id_lte: ID
+  bookingNumber_lte: String
 
   """All values greater than the given value."""
-  id_gt: ID
+  bookingNumber_gt: String
 
   """All values greater than or equal the given value."""
-  id_gte: ID
+  bookingNumber_gte: String
 
   """All values containing the given string."""
-  id_contains: ID
+  bookingNumber_contains: String
 
   """All values not containing the given string."""
-  id_not_contains: ID
+  bookingNumber_not_contains: String
 
   """All values starting with the given string."""
-  id_starts_with: ID
+  bookingNumber_starts_with: String
 
   """All values not starting with the given string."""
-  id_not_starts_with: ID
+  bookingNumber_not_starts_with: String
 
   """All values ending with the given string."""
-  id_ends_with: ID
+  bookingNumber_ends_with: String
 
   """All values not ending with the given string."""
-  id_not_ends_with: ID
+  bookingNumber_not_ends_with: String
   createdAt: DateTime
 
   """All values that are not equal to given value."""
@@ -372,7 +378,7 @@ input BookingWhereInput {
 }
 
 input BookingWhereUniqueInput {
-  id: ID
+  bookingNumber: String
 }
 
 type Charge implements Node {

@@ -6,7 +6,7 @@ type Query {
   me: User
   user(id: ID!): User!
   users: [User!]!
-  booking(id: ID!): Booking
+  booking(bookingNumber: String!): Booking
   bookings(user: UserWhereUniqueInput!): [Booking!]!
   file(id: ID!): File
   files: [File!]!
@@ -50,7 +50,7 @@ type Mutation {
   ): User!
 
   saveBooking(
-    id: ID!,
+    bookingNumber: String!,
     user: ID!,
     bookingFor: BookingFor!,
     ontarioRes: IsResident!,
@@ -61,7 +61,7 @@ type Mutation {
     progress: String
   ): Booking!
 
-  deleteBooking(id: ID!): Booking!
+  deleteBooking(bookingNumber: String!): Booking!
 
   uploadFile(
     file: Upload!

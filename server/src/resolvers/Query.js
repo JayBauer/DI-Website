@@ -1,8 +1,8 @@
 const { getUserId } = require('../utils')
 
 const Query = {
-  booking(parent, { id }, ctx, info) {
-    return ctx.db.query.booking({ where: { id } }, info)
+  booking(parent, { bookingNumber }, ctx, info) {
+    return ctx.db.query.booking({ where: { bookingNumber } }, info)
   },
   bookings(parent, { user }, ctx, info) {
     return ctx.db.query.bookings({ where: { user } }, info)
