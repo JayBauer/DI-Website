@@ -6,15 +6,15 @@ export const CONTACT = {
   phone: '1 833 208 2777'
 }
 export const LOGO = {
-  src: '/img/diagnostic-logo.png',
-  blue: '/img/diagnostic-logo-blue.svg',
+  src: '/img/DI-logo--white-vector.svg',
+  blue: '/img/DI-logo--mixed-vector.svg',
   alt: 'Diagnostic Illumination Logo',
   text: {
-    src: '/img/di-logo-text.svg',
-    alt: 'Diagnostic Ilumination Logo - Text'
+    src: '/img/DI-logo-text--white.svg',
+    alt: 'Diagnostic Intelligence Logo - Text'
   },
   circle: {
-    src: '/img/di-logo-circle-blue.svg',
-    alt: 'Diagnostic Illumination Logo - Circle'
+    src: '/img/DI-logo-circle--blue.svg',
+    alt: 'Diagnostic Intelligence Logo - Circle'
   }
 }

@@ -59,6 +59,7 @@
             }
           }).then(data => {
             console.log('Stripe:', data)
+            this.$store.dispatch('updateComponent', 'ThankYou')
           }).catch(err => {
             console.error(err)
           })
@@ -72,7 +73,8 @@
   #payment {
     lost-flex-container: column;
     .payment__totals {
-      lost-center: 400px;
+      lost-center: 300px;
+      width: 300px;
       h3 {
         width: 100%;
         justify-content: space-between;

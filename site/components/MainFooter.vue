@@ -45,7 +45,7 @@
        height: 120px;
      }
      .footer-logo__text {
-       max-width: calc(100% - 60px);
+       height: 60px;
      }
    }
    .footer-info {
@@ -93,8 +93,14 @@
        .footer-logo__circle {
          position: absolute;
          top: 50%;
-         transform: translate(-105%, -50%);
-         height: 550%;
+         left: 0;
+         transform: translate(-70%, -50%);
+         height: 150px;
+       }
+       .footer-logo__text {
+         position: relative;
+         left: -15%;
+         height: 60px;
        }
      }
      .footer-info {

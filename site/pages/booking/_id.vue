@@ -22,6 +22,7 @@
   import SignUp from '~/components/booking/SignUpAuthWall'
   import Referral from '~/components/booking/Referral'
   import Payment from '~/components/booking/Payment'
+  import ThankYou from '~/components/booking/ThankYou'
   import SaveBooking from '~/components/booking/SaveBooking'
 
   import { USER_ID } from '~/constants'
@@ -108,6 +109,7 @@
       SignUp,
       Referral,
       Payment,
+      ThankYou,
       SaveBooking
     },
 

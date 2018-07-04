@@ -2,7 +2,9 @@
   nuxt-link(:to="link" :id="id" :class="'btn-' + size")
     svg(:height="size == 'big' ? '60' : '40'" :width="size == 'big' ? '100%' : '100'" xmlns="http://www.w3.org/2000/svg")
       rect.shape(:height="size == 'big' ? '60' : '40'" :width="size == 'big' ? '100%' : '100'")
-    p {{ text }}
+    p
+      slot
+      span {{ text }}
 </template>
 
 <script>
@@ -68,6 +70,12 @@
     }
     p {
       font-size: 14px/14px;
+      svg + span {
+        padding-left: 5px;
+      }
+      svg {
+        font-size: 15px;
+      }
     }
   }
 
@@ -79,6 +87,12 @@
     }
     p {
       font-size: 20px/20px;
+      svg + span {
+        padding-left: 15px;
+      }
+      svg {
+        font-size: 20px;
+      }
     }
     &.small-text {
       p {

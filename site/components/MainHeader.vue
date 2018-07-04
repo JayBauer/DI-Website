@@ -135,6 +135,10 @@
       justify-content: space-between;
       background-color: $blue;
       padding: 20px;
+      .nav-box__logo {
+        width: 100%;
+        max-width: 300px;
+      }
       .nav-box__nav-menu {
         align-self: flex-end;
         nav.nav-menu__login-nav {

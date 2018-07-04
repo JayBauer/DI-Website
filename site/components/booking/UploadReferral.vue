@@ -14,11 +14,19 @@
           | or click to browse
     div.upload-btns(v-else)
       h4 {{ image.name }}
-      Button.small-text(id="upload-btn" size="big" text="Confirm Upload" @click.native="readyUpload")
-      Button.small-text(id="remove-upload-btn" size="big" text="Delete File" @click.native="removeImage")
+      template(v-if="!success")
+        Button.small-text(id="remove-upload-btn" size="small" text="Delete" @click.native="removeImage")
+          font-awesome-icon(:icon="deleteIcon")
+        Button.small-text(id="upload-btn" size="small" text="Confirm" @click.native="readyUpload")
+          font-awesome-icon(:icon="confirmIcon")
+      template(v-else)
+        h4 File uploaded successfully!
 </template>
 
 <script>
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+  import { faCheck } from '@fortawesome/fontawesome-free-solid'
+  import { faTimes } from '@fortawesome/fontawesome-free-solid'
   import { UPLOAD_FILE } from '~/mutations'
 
   export default {
@@ -30,6 +38,12 @@
     computed: {
       existingImage() {
         return this.$store.getters.referral.previousImage
+      },
+      confirmIcon() {
+        return faCheck
+      },
+      deleteIcon() {
+        return faTimes
       }
     },
     methods: {
@@ -37,7 +51,6 @@
         var files = e.target.files || e.dataTransfer.files
         if (!files.length) return
         this.image = files[0]
-        this.success = true
         this.$store.dispatch('updateReferralPay', { pay: false, upload: this.image })
       },
       removeImage(e) {
@@ -46,7 +59,8 @@
         this.$store.dispatch('updateReferralPay', { pay: false, upload: {} })
       },
       readyUpload() {
-        this.$store.dispatch('updateComponent', 'Payment')
+        this.success = true
+        // this.$store.dispatch('updateComponent', 'Payment')
         // if(this.$store.getters.referral.previousImage) {
         //   this.$apollo.mutate({
         //     mutation: DELETE_FILE,
@@ -58,6 +72,9 @@
         //   })
         // }
       }
+    },
+    components: {
+      FontAwesomeIcon
     }
   }
 </script>
@@ -106,15 +123,16 @@
       }
     }
     .upload-btns {
-      lost-center: 600px;
+      lost-center: 300px;
       h4 {
         lost-column: 1/1;
+        font-weight: 700;
       }
       a {
         display: flex;
         justify-content: center;
         lost-column: 1/1;
-        padding: 20px;
+        padding: 10px;
         svg {
           max-width: 250px;
         }
