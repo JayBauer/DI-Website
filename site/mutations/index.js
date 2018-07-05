@@ -147,9 +147,10 @@ mutation UpsertBooking(
 `
 
 export const DELETE_BOOKING = gql`
-  mutation DeleteBooking($id:ID!) {
-    deleteBooking(id:$id) {
+  mutation DeleteBooking($bookingNumber:String!) {
+    deleteBooking(bookingNumber:$bookingNumber) {
       id
+      bookingNumber
     }
   }
 `
