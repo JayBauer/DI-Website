@@ -4,8 +4,6 @@
 </template>
 
 <script>
-  import { UPLOAD_FILE } from '~/mutations'
-
   export default {
     name: 'SaveBooking',
     computed: {

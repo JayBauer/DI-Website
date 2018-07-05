@@ -51,7 +51,7 @@ Vue.directive('scrolled', {
   }
 })
 
-import { SAVE_BOOKING } from '~/mutations'
+import { SAVE_BOOKING, UPLOAD_FILE } from '~/mutations'
 Vue.mixin({
   methods: {
     saveBooking() {
