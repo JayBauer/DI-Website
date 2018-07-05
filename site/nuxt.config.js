@@ -13,7 +13,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Diagnostic Intelligence' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/img/DI-logo--favicon.png' }
     ],
     script: [
       { src: 'https://js.stripe.com/v3/' }

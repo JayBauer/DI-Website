@@ -4,34 +4,74 @@
       h1 Contact
       form#contact-form.contact-form
         div.form-row
-          TextInput(type='text' name='fname' placeholder='First Name')
-          TextInput(type='text' name='lname' placeholder='Last Name')
+          TextInput(v-model="firstName" type='text' placeholder='First Name' @validate="value => valid.firstName = value")
+          TextInput(v-model="lastName" type='text' placeholder='Last Name' @validate="value => valid.lastName = value")
         div.form-row
-          TextInput(type='text' name='phone' placeholder='Phone Number')
-          TextInput(type='text' name='email' placeholder='Email Address')
+          TextInput(v-model="phone" type='text' placeholder='Phone Number' @validate="value => valid.phone = value")
+          TextInput(v-model="email" type='text' placeholder='Email Address' @validate="value => valid.email = value")
         div.form-row.form-row--single.form-input
-          textarea(name='message' placeholder='Message' form='contact-form')
+          textarea(v-model="message" name='message' placeholder='Message' form='contact-form')
+        div.form-row.complete-error
+          transition(name="error")
+            template(v-if="!!success")
+              h4 {{ success }}
         div.form-row
-          Button(id="submit-btn" size="big" text="Submit")
+          Button(id="submit-btn" size="big" text="Submit" @click.native="sendEmail")
 
     section#book-now.contact-page
       h1 Book Now
       h4 Get Results back in two weeks.
       Button(id="book-now-btn" size="big" text="Book A Scan" :link="{ name: 'booking-id', params: { id: 'new' } }")
-
     location.contact-page
 </template>
 
 <script>
+  import axios from 'axios'
   import Location from '~/components/main/Location'
 
   export default {
     name: 'Contact',
     data: () => ({
-
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      message: '',
+      success: '',
+      valid: {
+        phone: false,
+        email: false
+      }
     }),
     components: {
       Location
+    },
+    methods: {
+      sendEmail() {
+        const { firstName, lastName, phone, email, message } = this.$data
+        console.log('START')
+        if(!!firstName && !!lastName && !!phone && !!email && !!message && this.valid.phone && this.valid.email) {
+          this.firstName = ''
+          this.lastName = ''
+          this.phone = ''
+          this.email = ''
+          this.message = ''
+          this.success = ''
+          axios.post(`${process.env.SERVER_IP}:${process.env.SERVER_PORT}/send`, { firstName, lastName, email, phone, message })
+          .then((res) => {
+            this.success = 'Your message has been sent. Thank you for your inquiry.'
+            console.log(this.success)
+          })
+          .catch((err) => {
+            console.log(err)
+            this.success = 'There was a problem sending your inquiry. Please try again.'
+            console.log(this.success)
+          })
+        } else {
+          console.log('NOPE')
+          this.success = 'Please fill out all fields.'
+        }
+      }
     },
     head() {
       return {
@@ -64,6 +104,17 @@
           textarea {
             height: 275px;
             margin: * * 50px *;
+          }
+        }
+        .complete-error {
+          position: relative;
+          top: -30px;
+          height: 10px;
+          h4 {
+            color: $white;
+            padding: 0 !important;
+            text-align: center;
+            margin: 0 auto;
           }
         }
       }
