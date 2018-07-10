@@ -8,7 +8,8 @@ function getUserId(ctx) {
     return userId
   }
 
-  throw new AuthError()
+  // throw new AuthError()
+  console.error('Not authorized')
 }
 
 class AuthError extends Error {

@@ -95,9 +95,9 @@ Vue.mixin({
             file: referral.upload,
             path: '/uploads/'
           }
-        }).then(data => {
-          console.log('UPLOAD: ', data.data.uploadFile.url)
-          imageUploaded = { connect: { url: data.data.uploadFile.url } }
+        }).then(({ data }) => {
+          console.log('UPLOAD: ', data.uploadFile.url)
+          imageUploaded = { connect: { url: data.uploadFile.url } }
           saveBookingMutation()
         }).catch(err => {
           console.error(err)

@@ -33,6 +33,7 @@
 </template>
 
 <script>
+  import { ME } from '~/queries'
   import { CONTACT, LOGO } from '~/constants'
   import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
   import { faEnvelope } from '@fortawesome/fontawesome-free-solid'
@@ -41,6 +42,7 @@
   export default {
     name: 'Header',
     data: () => ({
+      me: {},
       showNav: false,
       email: CONTACT.email,
       logo: LOGO,
@@ -51,6 +53,17 @@
         { name: 'contact', text: 'Contact' }
       ]
     }),
+
+    apollo: {
+      me: {
+        query: ME,
+        prefetch: true,
+        manual: true,
+        result({ data }) {
+          this.$store.commit('setName', data.me.firstName)
+        }
+      }
+    },
 
     computed: {
       userName() {

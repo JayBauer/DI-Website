@@ -35,7 +35,7 @@ server.post('/send', (req, res) => {
   // setup email data with unicode symbols
   let mailOptions = {
     from: email, // sender address
-    to: 'jbauer@elitedigital.ca', // list of receivers
+    to: process.env.PRIMARY_EMAIL, // list of receivers
     subject: 'New message from: ' + firstName + ' ' + lastName, // Subject line
     text: `Email: ${email}\nPhone: ${phone}\nMessage: ${message}`,
     html: `<p>Email: ${email}</p><br/><p>Phone: ${phone}</p><br/><br/><p>${message}</p>`

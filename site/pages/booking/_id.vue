@@ -51,7 +51,7 @@
         error(err) {
           console.log('Error! ' + err)
         },
-        result(data) {
+        result({ data }) {
           this.initialValues(data)
         }
       }
@@ -70,8 +70,8 @@
         this.selectedComponent = value
       },
       initialValues(data) {
-        if(data.data.booking) {
-          const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress } = data.data.booking
+        if(data.booking) {
+          const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress } = data.booking
           const newStore = {
             bookingFor,
             ontarioRes,
