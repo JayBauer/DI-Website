@@ -4,9 +4,8 @@ const stripeApi = require('stripe')(process.env.STRIPE_SK)
 const stripe = {
   async makePayment(parent, { source, amount, currency }, ctx, info) {
     const userId = getUserId(ctx)
-    const getUser = await ctx.db.query.user({ where: { id: userId } })
-    const getStripe = await ctx.db.query.stripeCustomers({ where: { user: { id: getUser.id } } })
-    var stripeId;
+    const getStripe = await ctx.db.query.stripeCustomers({ where: { user: { id: userId } } })
+    var stripeId
 
     if(!getStripe[0]) {
       const customer = await stripeApi.customers.create({ source, email: getUser.email })
