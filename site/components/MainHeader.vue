@@ -66,7 +66,9 @@
         prefetch: true,
         manual: true,
         result({ data }) {
-          this.$store.commit('setName', data.me.firstName)
+          if (data.me) {
+            this.$store.commit('setName', data.me.firstName)
+          }
         }
       }
     },
