@@ -12,16 +12,21 @@
     name: 'Button',
     props: {
       id: {
-        type: String
+        type: String,
+        required: true
       },
       size: {
-        type: String
+        type: String,
+        required: false,
+        default: 'big'
       },
       text: {
-        type: String
+        type: String,
+        required: true
       },
       link: {
         type: Object,
+        required: false,
         default: () => ({})
       }
     }

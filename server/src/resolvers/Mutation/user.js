@@ -1,4 +1,4 @@
-const { getUserId } = require('../../utils')
+const { getUserId } = require('../utils')
 
 const user = {
   async updateUser(parent, { id, ...args }, ctx, info) {

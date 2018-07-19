@@ -7,7 +7,20 @@
 <script>
   export default {
     name: 'RadioButton',
-    props: ['name', 'val', 'label'],
+    props: {
+      name: {
+        type: String,
+        required: true,
+      },
+      val: {
+        type: String,
+        required: true
+      },
+      label: {
+        type: String,
+        required: true
+      }
+    },
     methods: {
       updateInput(event) {
         this.$emit('input', event.target.value)

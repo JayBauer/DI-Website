@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const USER_BOOKINGS = gql `
+export const USER_BOOKINGS = gql`
   query UserBookings($user: UserWhereUniqueInput!) {
     bookings(user: $user) {
       bookingNumber
@@ -11,9 +11,9 @@ export const USER_BOOKINGS = gql `
   }
 `
 
-export const GET_BOOKING = gql `
+export const GET_BOOKING = gql`
   query Booking($bookingNumber: String!) {
-    booking(bookingNumber:$bookingNumber) {
+    booking(bookingNumber: $bookingNumber) {
       createdAt
       updatedAt
       bookingNumber

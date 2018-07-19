@@ -3,9 +3,9 @@
     div.quote-box__top
       h1 Quote:
       div.quote-box__cost
-        h4 Cost: ${{ price }}
-        h4 Discount: -${{ discount }}
-        h4 Total: ${{ price - discount }}
+        h4 Cost: ${{ $store.getters.totalPrice }}
+        h4 Discount: -${{ $store.getters.discount }}
+        h4 Total: ${{ $store.getters.finalPrice }}
       h4 Check multiple body parts if applicable, multiple body part discounts will apply.
     div.quote-box__bottom
       button(@click="next" disabled="disabled")
@@ -18,13 +18,21 @@
 
   export default {
     name: 'Quote',
-    props: ['price', 'discount'],
+    components: {
+      Button
+    },
     data: () => ({
       scrolled: ''
     }),
+    beforeMount () {
+      window.addEventListener('scroll', this.handleScroll)
+    },
+    beforeDestroy () {
+      window.removeEventListener('scroll', this.handleScroll)
+    },
     methods: {
       handleScroll() {
-        if(window.scrollY > 650) {
+        if (window.scrollY > 650) {
           this.scrolled = 'fixed'
         } else {
           this.scrolled = ''
@@ -33,15 +41,6 @@
       next() {
         this.$store.dispatch('updateComponent', 'Waiver')
       }
-    },
-    beforeMount () {
-      window.addEventListener('scroll', this.handleScroll);
-    },
-    beforeDestroy () {
-      window.removeEventListener('scroll', this.handleScroll);
-    },
-    components: {
-      Button
     }
   }
 </script>

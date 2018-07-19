@@ -1,0 +1,29 @@
+type Query {
+  booking(bookingNumber: String!): Booking
+  bookings(user: UserWhereUniqueInput!): [Booking!]!
+  file(id: ID!): File
+  files: [File!]!
+}
+
+type Mutation {
+  saveBooking(
+    bookingNumber: String!,
+    user: ID!,
+    bookingFor: BookingFor!,
+    ontarioRes: IsResident!,
+    bodyParts: Json!,
+    waiver: WaiverCreateInput!,
+    referral: ReferralCreateInput,
+    payment: Boolean,
+    progress: String
+  ): Booking!
+
+  deleteBooking(bookingNumber: String!): Booking!
+
+  uploadFile(
+    file: Upload!
+    path: String!
+  ): File!
+
+  deleteFile(url: String!): File!
+}

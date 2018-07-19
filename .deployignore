@@ -27,3 +27,4 @@ site/store/**
 .eslintrc
 README.md
 stylelint.config.js
+stylelint.config.json

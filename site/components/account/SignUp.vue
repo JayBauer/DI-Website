@@ -67,7 +67,7 @@
 
     methods: {
       signup() {
-        if(this.formValid) {
+        if (this.formValid) {
           this.incomplete = false
           const { email, password, firstName, lastName, phone, address1, address2, city, province, postal } = this.$data
           this.$apollo.mutate({

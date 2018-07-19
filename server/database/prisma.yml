@@ -1,4 +1,8 @@
-datamodel: datamodel.graphql
+datamodel:
+  - datamodel/enums.graphql
+  - datamodel/booking.graphql
+  - datamodel/user.graphql
+  
 endpoint: ${env:PRISMA_ENDPOINT}
 secret: ${env:PRISMA_SECRET}
 

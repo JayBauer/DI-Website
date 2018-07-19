@@ -25,29 +25,29 @@ div
 
   export default {
     name: 'FAQ',
+    components: {
+      Question,
+      HowItWorks,
+      BookNow
+    },
     data: () => ({
       questions
     }),
     computed: {
       leftQuestions() {
-        let leftQuestions = [];
-        for(let i = 0; i < this.questions.length; i+=2) {
+        let leftQuestions = []
+        for (let i = 0; i < this.questions.length; i+=2) {
           leftQuestions.push(this.questions[i])
         }
         return leftQuestions
       },
       rightQuestions() {
-        let rightQuestions = [];
-        for(let i = 1; i < this.questions.length; i+=2) {
+        let rightQuestions = []
+        for (let i = 1; i < this.questions.length; i+=2) {
           rightQuestions.push(this.questions[i])
         }
         return rightQuestions
       }
-    },
-    components: {
-      Question,
-      HowItWorks,
-      BookNow
     },
     head() {
       return {

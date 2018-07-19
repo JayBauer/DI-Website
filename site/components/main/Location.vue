@@ -28,6 +28,9 @@
 
   export default {
     name: 'Location',
+    components: {
+      FontAwesomeIcon
+    },
     data: () => ({
       email: CONTACT.email
     }),
@@ -35,9 +38,6 @@
       icon() {
         return faEnvelope
       }
-    },
-    components: {
-      FontAwesomeIcon
     }
   }
 </script>

@@ -4,6 +4,23 @@
 
 <script>
   export default {
-    props: [ 'src', 'color', 'width', 'height' ]
+    props: {
+      src: {
+        type: String,
+        required: true
+      },
+      color: {
+        type: String,
+        required: true
+      },
+      width: {
+        type: String,
+        required: true
+      },
+      height: {
+        type: String,
+        required: true
+      },
+    }
   }
 </script>

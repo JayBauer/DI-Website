@@ -11,7 +11,23 @@
 <script>
   export default {
     name: 'NavButtons',
-    props: [ 'next', 'previous', 'disabled' ],
+    props: {
+      next: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      previous: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      disabled: {
+        type: Boolean,
+        required: false,
+        default: false
+      }
+    },
     methods: {
       onClick(e) {
         this.$emit('clicked', e)

@@ -1,0 +1,8 @@
+scalar Upload
+# import User from "../generated/prisma.graphql"
+# import Booking from "../generated/prisma.graphql"
+
+# import AuthPayload from './auth.graphql'
+# import Mutation.*, Query.* from './user.graphql'
+# import Mutation.*, Query.* from './booking.graphql'
+# import Mutation.*, Query.* from './payments.graphql'

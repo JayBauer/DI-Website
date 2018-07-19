@@ -21,7 +21,27 @@
 <script>
   export default {
     name: 'TextInput',
-    props: [ 'value', 'placeholder', 'type', 'disabled' ],
+    props: {
+      value: {
+        type: String,
+        required: true
+      },
+      type: {
+        type: String,
+        required: false,
+        default: 'text'
+      },
+      placeholder: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      disabled: {
+        type: Boolean,
+        required: false,
+        default: false
+      }
+    },
     data: () => ({
       blurred: false
     }),
@@ -30,40 +50,40 @@
     },
     methods: {
       validInput(value) {
-        if(this.type == 'text' && this.validText(value)) this.$emit('validate', true)
-        else if(this.type == 'name' && this.validName(value)) this.$emit('validate', true)
-        else if(this.type == 'email' && this.validEmail(value)) this.$emit('validate', true)
-        else if(this.type == 'password' && this.validPassword(value)) this.$emit('validate', true)
-        else if(this.type == 'phone' && this.validPhone(value)) this.$emit('validate', true)
-        else if(this.type == 'postal' && this.validPostal(value)) this.$emit('validate', true)
+        if (this.type == 'text' && this.validText(value)) this.$emit('validate', true)
+        else if (this.type == 'name' && this.validName(value)) this.$emit('validate', true)
+        else if (this.type == 'email' && this.validEmail(value)) this.$emit('validate', true)
+        else if (this.type == 'password' && this.validPassword(value)) this.$emit('validate', true)
+        else if (this.type == 'phone' && this.validPhone(value)) this.$emit('validate', true)
+        else if (this.type == 'postal' && this.validPostal(value)) this.$emit('validate', true)
         else this.$emit('validate', false)
       },
       validText(text) {
-        var re = /./;
+        var re = /./
         return re.test(text)
       },
       validName(name) {
-        var re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g;
+        var re = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/g
         return re.test(name)
       },
       validEmail(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         return re.test(email)
       },
       validPassword(password) {
-        var re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 8 characters and one number
+        var re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/ // At least 8 characters and one number
         return re.test(password)
       },
       validPhone(phone) {
-        var re = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/g; // Covers large range of international phone formats
+        var re = /((?:\+|00)[17](?: |\-)?|(?:\+|00)[1-9]\d{0,2}(?: |\-)?|(?:\+|00)1\-\d{3}(?: |\-)?)?(0\d|\([0-9]{3}\)|[1-9]{0,3})(?:((?: |\-)[0-9]{2}){4}|((?:[0-9]{2}){4})|((?: |\-)[0-9]{3}(?: |\-)[0-9]{4})|([0-9]{7}))/g // Covers large range of international phone formats
         return re.test(phone)
       },
       validPostal(postal) {
-        var re = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/; // Canadian Postal Codes
+        var re = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/ // Canadian Postal Codes
         return re.test(postal)
       },
       validDate(date) {
-        var re = /^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/; // MM/DD/YYYY formatting
+        var re = /^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/ // MM/DD/YYYY formatting
         return re.test(date)
       }
     }

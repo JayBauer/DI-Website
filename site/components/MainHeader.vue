@@ -41,6 +41,12 @@
 
   export default {
     name: 'Header',
+
+    components: {
+      FontAwesomeIcon,
+      MobileMenu
+    },
+
     data: () => ({
       me: {},
       showNav: false,
@@ -79,10 +85,6 @@
         this.showNav = !this.showNav
         document.body.style.overflow = this.showNav ? 'hidden' : 'auto'
       }
-    },
-    components: {
-      FontAwesomeIcon,
-      MobileMenu
     }
   }
 </script>

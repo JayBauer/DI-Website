@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const express = require('express')
 
 const server = new GraphQLServer({
-  typeDefs: 'src/schema.graphql',
+  typeDefs: 'src/schema/index.graphql',
   resolvers,
   context: req => ({
     ...req,
@@ -28,8 +28,8 @@ server.post('/send', (req, res) => {
     host: 'smtp.ethereal.email',
     port: 587,
     auth: {
-      user: 'icmhjktu475bdvwp@ethereal.email',
-      pass: 'uxqxhx2xS9ru6ngBMt'
+      user: process.env.EMAIL_TRANSPORT_USER,
+      pass: process.env.EMAIL_TRANSPORT_PASS,
     }
   })
   // setup email data with unicode symbols
@@ -55,7 +55,7 @@ server.post('/send', (req, res) => {
 })
 
 const options = {
-  port: 8101,
+  port: process.env.SERVER_PORT,
   endpoint: '/',
   subscriptions: '/subscriptions',
   playground: '/playground',

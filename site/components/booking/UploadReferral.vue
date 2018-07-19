@@ -31,6 +31,9 @@
 
   export default {
     name: 'UploadReferral',
+    components: {
+      FontAwesomeIcon
+    },
     data: () => ({
       success: false,
       image: null
@@ -72,9 +75,6 @@
         //   })
         // }
       }
-    },
-    components: {
-      FontAwesomeIcon
     }
   }
 </script>

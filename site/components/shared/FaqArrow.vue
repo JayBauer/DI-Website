@@ -21,7 +21,7 @@
     },
     computed: {
       arrowColor() {
-        switch(this.color) {
+        switch (this.color) {
           case 'blue': return '#1d5480'
           case 'orange': return '#f68938'
           case 'yellow': return '#f8ca6b'

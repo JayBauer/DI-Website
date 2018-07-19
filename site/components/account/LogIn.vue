@@ -11,9 +11,7 @@
 </template>
 
 <script>
-  import Cookie from 'js-cookie'
   import { LOGIN } from '~/mutations'
-  import { USER_ID, AUTH_TOKEN } from '~/constants'
 
   export default {
     name: 'LogIn',
@@ -39,10 +37,10 @@
           this.$store.commit('setName', firstName)
           this.$emit('loggedIn', true)
         }).catch(err => {
-          if(err.graphQLErrors) {
-            this.formError = err.message.replace('GraphQL error:', ' ').trim()
+          if (err.graphQLErrors) {
+            this.formError = err.message.replace('GraphQL error: ', '').trim()
           }
-          if(err.networkError) {
+          if (err.networkError) {
             this.formError = 'Unable to connect to server'
           }
           this.$emit('loggedIn', false)

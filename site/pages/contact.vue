@@ -31,6 +31,9 @@
 
   export default {
     name: 'Contact',
+    components: {
+      Location
+    },
     data: () => ({
       firstName: '',
       lastName: '',
@@ -43,14 +46,11 @@
         email: false
       }
     }),
-    components: {
-      Location
-    },
     methods: {
       sendEmail() {
         const { firstName, lastName, phone, email, message } = this.$data
         console.log('START')
-        if(!!firstName && !!lastName && !!phone && !!email && !!message && this.valid.phone && this.valid.email) {
+        if (!!firstName && !!lastName && !!phone && !!email && !!message && this.valid.phone && this.valid.email) {
           this.firstName = ''
           this.lastName = ''
           this.phone = ''

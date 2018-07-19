@@ -18,18 +18,18 @@
 
   export default {
     name: 'Referral',
+    components: {
+      'upload-referral': UploadReferral,
+      'pay-referral': PayReferral
+    },
     data: () => ({
       selectedComponent: ''
     }),
     computed: {
       uploaded() {
         let { referral } = this.$store.getters
-        if(!!referral.pay || !!referral.upload || !!referral.previousImage) return true
+        if (!!referral.pay || !!referral.upload || !!referral.previousImage) return true
       }
-    },
-    components: {
-      'upload-referral': UploadReferral,
-      'pay-referral': PayReferral
     },
     methods: {
       navigate(component) {

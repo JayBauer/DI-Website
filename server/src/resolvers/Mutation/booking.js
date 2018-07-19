@@ -9,7 +9,7 @@ mkdirp.sync(uploadDir)
 const storeUpload = ({ stream, filename }, path, sid) =>
   new Promise((resolve, reject) =>
     stream
-      .pipe(createWriteStream('.' + path + sid + filename))
+      .pipe(createWriteStream('..' + path + sid + filename))
       .on("finish", () => resolve())
       .on("error", reject)
 )

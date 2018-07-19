@@ -12,9 +12,31 @@
   import CustomSvg from '~/components/shared/CustomSvg'
   export default {
     name: 'Card',
-    props: [ 'color', 'src', 'alt', 'width', 'height' ],
     components: {
       CustomSvg
+    },
+    props: {
+      color: {
+        type: String,
+        required: true
+      },
+      src: {
+        type: String,
+        required: true
+      },
+      alt: {
+        type: String,
+        required: false,
+        default: ''
+      },
+      width: {
+        type: String,
+        required: true
+      },
+      height: {
+        type: String,
+        required: true
+      }
     }
   }
 </script>

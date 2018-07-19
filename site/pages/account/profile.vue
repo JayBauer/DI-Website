@@ -99,7 +99,7 @@
       saveUser() {
         const { firstName, lastName, phone, email, address1, address2, city, province, postal } = this.$data
 
-        if(
+        if (
           this.valid.firstName &&
           this.valid.lastName &&
           this.valid.phone &&
@@ -136,7 +136,7 @@
         const { oldPassword, newPassword, confirmPassword } = this.$data
         const oldPassCheck = await bcrypt.compareSync(oldPassword, this.me.password)
 
-        if(oldPassCheck && newPassword == confirmPassword && (this.validPass.password && this.validPass.passwordConfirm)) {
+        if (oldPassCheck && newPassword == confirmPassword && (this.validPass.password && this.validPass.passwordConfirm)) {
           this.$apollo.mutate({
             mutation: UPDATE_PASSWORD,
             variables: {

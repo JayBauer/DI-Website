@@ -1,11 +1,19 @@
 # source: http://localhost:4466/diagnostic-illumination/dev
-# timestamp: Wed Jul 04 2018 18:10:31 GMT-0400 (EDT)
+# timestamp: Thu Jul 19 2018 11:54:51 GMT-0400 (EDT)
+
+type AggregateBodyPart {
+  count: Int!
+}
 
 type AggregateBooking {
   count: Int!
 }
 
 type AggregateCharge {
+  count: Int!
+}
+
+type AggregateDiscount {
   count: Int!
 }
 
@@ -32,6 +40,264 @@ type AggregateWaiver {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type BodyPart {
+  name: String!
+  shortName: String!
+  type: PartType!
+  price: String!
+  selected: Boolean!
+}
+
+"""A connection to a list of items."""
+type BodyPartConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [BodyPartEdge]!
+  aggregate: AggregateBodyPart!
+}
+
+input BodyPartCreateInput {
+  name: String!
+  shortName: String!
+  type: PartType!
+  price: String!
+  selected: Boolean
+}
+
+"""An edge in a connection."""
+type BodyPartEdge {
+  """The item at the end of the edge."""
+  node: BodyPart!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum BodyPartOrderByInput {
+  name_ASC
+  name_DESC
+  shortName_ASC
+  shortName_DESC
+  type_ASC
+  type_DESC
+  price_ASC
+  price_DESC
+  selected_ASC
+  selected_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type BodyPartPreviousValues {
+  name: String!
+  shortName: String!
+  type: PartType!
+  price: String!
+  selected: Boolean!
+}
+
+type BodyPartSubscriptionPayload {
+  mutation: MutationType!
+  node: BodyPart
+  updatedFields: [String!]
+  previousValues: BodyPartPreviousValues
+}
+
+input BodyPartSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BodyPartSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BodyPartSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BodyPartSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: BodyPartWhereInput
+}
+
+input BodyPartUpdateInput {
+  name: String
+  shortName: String
+  type: PartType
+  price: String
+  selected: Boolean
+}
+
+input BodyPartWhereInput {
+  """Logical AND on all given filters."""
+  AND: [BodyPartWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [BodyPartWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [BodyPartWhereInput!]
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  shortName: String
+
+  """All values that are not equal to given value."""
+  shortName_not: String
+
+  """All values that are contained in given list."""
+  shortName_in: [String!]
+
+  """All values that are not contained in given list."""
+  shortName_not_in: [String!]
+
+  """All values less than the given value."""
+  shortName_lt: String
+
+  """All values less than or equal the given value."""
+  shortName_lte: String
+
+  """All values greater than the given value."""
+  shortName_gt: String
+
+  """All values greater than or equal the given value."""
+  shortName_gte: String
+
+  """All values containing the given string."""
+  shortName_contains: String
+
+  """All values not containing the given string."""
+  shortName_not_contains: String
+
+  """All values starting with the given string."""
+  shortName_starts_with: String
+
+  """All values not starting with the given string."""
+  shortName_not_starts_with: String
+
+  """All values ending with the given string."""
+  shortName_ends_with: String
+
+  """All values not ending with the given string."""
+  shortName_not_ends_with: String
+  type: PartType
+
+  """All values that are not equal to given value."""
+  type_not: PartType
+
+  """All values that are contained in given list."""
+  type_in: [PartType!]
+
+  """All values that are not contained in given list."""
+  type_not_in: [PartType!]
+  price: String
+
+  """All values that are not equal to given value."""
+  price_not: String
+
+  """All values that are contained in given list."""
+  price_in: [String!]
+
+  """All values that are not contained in given list."""
+  price_not_in: [String!]
+
+  """All values less than the given value."""
+  price_lt: String
+
+  """All values less than or equal the given value."""
+  price_lte: String
+
+  """All values greater than the given value."""
+  price_gt: String
+
+  """All values greater than or equal the given value."""
+  price_gte: String
+
+  """All values containing the given string."""
+  price_contains: String
+
+  """All values not containing the given string."""
+  price_not_contains: String
+
+  """All values starting with the given string."""
+  price_starts_with: String
+
+  """All values not starting with the given string."""
+  price_not_starts_with: String
+
+  """All values ending with the given string."""
+  price_ends_with: String
+
+  """All values not ending with the given string."""
+  price_not_ends_with: String
+  selected: Boolean
+
+  """All values that are not equal to given value."""
+  selected_not: Boolean
+}
+
+input BodyPartWhereUniqueInput {
+  name: String
 }
 
 type Booking {
@@ -632,6 +898,190 @@ input ChargeWhereUniqueInput {
 
 scalar DateTime
 
+type Discount {
+  swi: Boolean!
+  spine: Int!
+  body: Int!
+  extremities: Int!
+}
+
+"""A connection to a list of items."""
+type DiscountConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DiscountEdge]!
+  aggregate: AggregateDiscount!
+}
+
+input DiscountCreateInput {
+  swi: Boolean
+  spine: Int
+  body: Int
+  extremities: Int
+}
+
+"""An edge in a connection."""
+type DiscountEdge {
+  """The item at the end of the edge."""
+  node: Discount!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum DiscountOrderByInput {
+  swi_ASC
+  swi_DESC
+  spine_ASC
+  spine_DESC
+  body_ASC
+  body_DESC
+  extremities_ASC
+  extremities_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type DiscountPreviousValues {
+  swi: Boolean!
+  spine: Int!
+  body: Int!
+  extremities: Int!
+}
+
+type DiscountSubscriptionPayload {
+  mutation: MutationType!
+  node: Discount
+  updatedFields: [String!]
+  previousValues: DiscountPreviousValues
+}
+
+input DiscountSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DiscountSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DiscountSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DiscountSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: DiscountWhereInput
+}
+
+input DiscountUpdateInput {
+  swi: Boolean
+  spine: Int
+  body: Int
+  extremities: Int
+}
+
+input DiscountWhereInput {
+  """Logical AND on all given filters."""
+  AND: [DiscountWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [DiscountWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [DiscountWhereInput!]
+  swi: Boolean
+
+  """All values that are not equal to given value."""
+  swi_not: Boolean
+  spine: Int
+
+  """All values that are not equal to given value."""
+  spine_not: Int
+
+  """All values that are contained in given list."""
+  spine_in: [Int!]
+
+  """All values that are not contained in given list."""
+  spine_not_in: [Int!]
+
+  """All values less than the given value."""
+  spine_lt: Int
+
+  """All values less than or equal the given value."""
+  spine_lte: Int
+
+  """All values greater than the given value."""
+  spine_gt: Int
+
+  """All values greater than or equal the given value."""
+  spine_gte: Int
+  body: Int
+
+  """All values that are not equal to given value."""
+  body_not: Int
+
+  """All values that are contained in given list."""
+  body_in: [Int!]
+
+  """All values that are not contained in given list."""
+  body_not_in: [Int!]
+
+  """All values less than the given value."""
+  body_lt: Int
+
+  """All values less than or equal the given value."""
+  body_lte: Int
+
+  """All values greater than the given value."""
+  body_gt: Int
+
+  """All values greater than or equal the given value."""
+  body_gte: Int
+  extremities: Int
+
+  """All values that are not equal to given value."""
+  extremities_not: Int
+
+  """All values that are contained in given list."""
+  extremities_in: [Int!]
+
+  """All values that are not contained in given list."""
+  extremities_not_in: [Int!]
+
+  """All values less than the given value."""
+  extremities_lt: Int
+
+  """All values less than or equal the given value."""
+  extremities_lte: Int
+
+  """All values greater than the given value."""
+  extremities_gt: Int
+
+  """All values greater than or equal the given value."""
+  extremities_gte: Int
+}
+
 type File implements Node {
   id: ID!
   createdAt: DateTime!
@@ -1042,42 +1492,51 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
   createBooking(data: BookingCreateInput!): Booking!
+  createBodyPart(data: BodyPartCreateInput!): BodyPart!
   createReferral(data: ReferralCreateInput!): Referral!
   createWaiver(data: WaiverCreateInput!): Waiver!
   createStripeCustomer(data: StripeCustomerCreateInput!): StripeCustomer!
   createCharge(data: ChargeCreateInput!): Charge!
   createFile(data: FileCreateInput!): File!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  createDiscount(data: DiscountCreateInput!): Discount!
+  createUser(data: UserCreateInput!): User!
   updateBooking(data: BookingUpdateInput!, where: BookingWhereUniqueInput!): Booking
+  updateBodyPart(data: BodyPartUpdateInput!, where: BodyPartWhereUniqueInput!): BodyPart
   updateStripeCustomer(data: StripeCustomerUpdateInput!, where: StripeCustomerWhereUniqueInput!): StripeCustomer
   updateCharge(data: ChargeUpdateInput!, where: ChargeWhereUniqueInput!): Charge
   updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
-  deleteUser(where: UserWhereUniqueInput!): User
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   deleteBooking(where: BookingWhereUniqueInput!): Booking
+  deleteBodyPart(where: BodyPartWhereUniqueInput!): BodyPart
   deleteStripeCustomer(where: StripeCustomerWhereUniqueInput!): StripeCustomer
   deleteCharge(where: ChargeWhereUniqueInput!): Charge
   deleteFile(where: FileWhereUniqueInput!): File
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
   upsertBooking(where: BookingWhereUniqueInput!, create: BookingCreateInput!, update: BookingUpdateInput!): Booking!
+  upsertBodyPart(where: BodyPartWhereUniqueInput!, create: BodyPartCreateInput!, update: BodyPartUpdateInput!): BodyPart!
   upsertStripeCustomer(where: StripeCustomerWhereUniqueInput!, create: StripeCustomerCreateInput!, update: StripeCustomerUpdateInput!): StripeCustomer!
   upsertCharge(where: ChargeWhereUniqueInput!, create: ChargeCreateInput!, update: ChargeUpdateInput!): Charge!
   upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   updateManyBookings(data: BookingUpdateInput!, where: BookingWhereInput): BatchPayload!
+  updateManyBodyParts(data: BodyPartUpdateInput!, where: BodyPartWhereInput): BatchPayload!
   updateManyReferrals(data: ReferralUpdateInput!, where: ReferralWhereInput): BatchPayload!
   updateManyWaivers(data: WaiverUpdateInput!, where: WaiverWhereInput): BatchPayload!
   updateManyStripeCustomers(data: StripeCustomerUpdateInput!, where: StripeCustomerWhereInput): BatchPayload!
   updateManyCharges(data: ChargeUpdateInput!, where: ChargeWhereInput): BatchPayload!
   updateManyFiles(data: FileUpdateInput!, where: FileWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  updateManyDiscounts(data: DiscountUpdateInput!, where: DiscountWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   deleteManyBookings(where: BookingWhereInput): BatchPayload!
+  deleteManyBodyParts(where: BodyPartWhereInput): BatchPayload!
   deleteManyReferrals(where: ReferralWhereInput): BatchPayload!
   deleteManyWaivers(where: WaiverWhereInput): BatchPayload!
   deleteManyStripeCustomers(where: StripeCustomerWhereInput): BatchPayload!
   deleteManyCharges(where: ChargeWhereInput): BatchPayload!
   deleteManyFiles(where: FileWhereInput): BatchPayload!
+  deleteManyDiscounts(where: DiscountWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1107,26 +1566,38 @@ type PageInfo {
   endCursor: String
 }
 
+enum PartType {
+  BRAIN
+  SPINE
+  BODY
+  EXTREMITIES
+}
+
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   bookings(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Booking]!
+  bodyParts(where: BodyPartWhereInput, orderBy: BodyPartOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BodyPart]!
   referrals(where: ReferralWhereInput, orderBy: ReferralOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Referral]!
   waivers(where: WaiverWhereInput, orderBy: WaiverOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Waiver]!
   stripeCustomers(where: StripeCustomerWhereInput, orderBy: StripeCustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [StripeCustomer]!
   charges(where: ChargeWhereInput, orderBy: ChargeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Charge]!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
-  user(where: UserWhereUniqueInput!): User
+  discounts(where: DiscountWhereInput, orderBy: DiscountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Discount]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   booking(where: BookingWhereUniqueInput!): Booking
+  bodyPart(where: BodyPartWhereUniqueInput!): BodyPart
   stripeCustomer(where: StripeCustomerWhereUniqueInput!): StripeCustomer
   charge(where: ChargeWhereUniqueInput!): Charge
   file(where: FileWhereUniqueInput!): File
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user(where: UserWhereUniqueInput!): User
   bookingsConnection(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BookingConnection!
+  bodyPartsConnection(where: BodyPartWhereInput, orderBy: BodyPartOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BodyPartConnection!
   referralsConnection(where: ReferralWhereInput, orderBy: ReferralOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ReferralConnection!
   waiversConnection(where: WaiverWhereInput, orderBy: WaiverOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): WaiverConnection!
   stripeCustomersConnection(where: StripeCustomerWhereInput, orderBy: StripeCustomerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): StripeCustomerConnection!
   chargesConnection(where: ChargeWhereInput, orderBy: ChargeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ChargeConnection!
   filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+  discountsConnection(where: DiscountWhereInput, orderBy: DiscountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DiscountConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1512,13 +1983,15 @@ input StripeCustomerWhereUniqueInput {
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   booking(where: BookingSubscriptionWhereInput): BookingSubscriptionPayload
+  bodyPart(where: BodyPartSubscriptionWhereInput): BodyPartSubscriptionPayload
   referral(where: ReferralSubscriptionWhereInput): ReferralSubscriptionPayload
   waiver(where: WaiverSubscriptionWhereInput): WaiverSubscriptionPayload
   stripeCustomer(where: StripeCustomerSubscriptionWhereInput): StripeCustomerSubscriptionPayload
   charge(where: ChargeSubscriptionWhereInput): ChargeSubscriptionPayload
   file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
+  discount(where: DiscountSubscriptionWhereInput): DiscountSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User implements Node {

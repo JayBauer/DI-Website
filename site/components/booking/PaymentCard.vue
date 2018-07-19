@@ -32,7 +32,17 @@
 
   export default {
     name: 'PaymentCard',
-    props: [ 'stripe' ],
+    components: {
+      CardNumber,
+      CardExpiry,
+      CardCvc
+    },
+    props: {
+      stripe: {
+        type: String,
+        required: true
+      }
+    },
     data: () => ({
       me: {},
       stripeLoading: null,
@@ -52,10 +62,10 @@
         }
       }
     },
-    components: {
-      CardNumber,
-      CardExpiry,
-      CardCvc
+    watch: {
+      number() { this.update() },
+      expiry() { this.update() },
+      cvc() { this.update() }
     },
     methods: {
       setUserData() {
@@ -64,39 +74,21 @@
       },
       update() {
         this.complete = this.number && this.expiry && this.cvc
-        // field completed, find field to focus next
-        if(this.number) {
-          if(!this.expiry) {
+        if (this.number) {
+          if (!this.expiry) {
             this.$refs.cardExpiry.focus()
-          } else if(!this.cvc) {
+          } else if (!this.cvc) {
             this.$refs.cardCvc.focus()
           }
-        } else if(this.expiry) {
-          if(!this.cvc) {
+        } else if (this.expiry) {
+          if (!this.cvc) {
             this.$refs.cardCvc.focus()
-          } else if(!this.number) {
+          } else if (!this.number) {
             this.$refs.cardNumber.focus()
           }
         }
-        // no focus magic for the CVC field as it gets complete with three
-        // numbers, but can also have four
       }
     },
-    watch: {
-      number() { this.update() },
-      expiry() { this.update() },
-      cvc() { this.update() }
-    },
-    // mounted() {
-    //   console.log(this.stripeLoading)
-    //   CardNumber.on('ready', () => {
-    //     console.log('YEEEP')
-    //   })
-    //   // document.querySelector('.stripe-element').addEventListener('load', () => {
-    //   //   this.stripeLoading = CardNumber.on(process.env.STRIPE_PK)
-    //   //   console.log(this.stripeLoading)
-    //   // })
-    // }
   }
 </script>
 

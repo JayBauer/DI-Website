@@ -1,0 +1,13 @@
+type Query {
+  stripe(where: StripeCustomerWhereInput!): StripeCustomer
+}
+
+type Mutation {
+  makePayment(
+    source: String!,
+    amount: Float!,
+    currency: String!
+  ): Charge!
+
+  deleteStripeCustomer(stripeId: String!): StripeCustomer!
+}

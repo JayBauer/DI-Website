@@ -12,6 +12,9 @@
 
   export default {
     name: 'PayReferral',
+    components: {
+      FontAwesomeIcon
+    },
     computed: {
       referral() {
         return this.$store.getters.referral
@@ -25,8 +28,5 @@
         this.$store.dispatch('updateReferralPay', { pay: true, upload: null })
       }
     },
-    components: {
-      FontAwesomeIcon
-    }
   }
 </script>

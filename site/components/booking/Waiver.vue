@@ -51,7 +51,7 @@
 
     computed: {
       disabled() {
-        if(
+        if (
           (this.selectedParties.length > 0 || (this.otherPartySelect == true && this.otherPartyText != '')) &&
           this.agree == true &&
           this.firstName != '' &&

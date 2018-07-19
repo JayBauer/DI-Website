@@ -22,6 +22,7 @@
       custom-svg(src="small-circle.svg" :color="componentList[7].color" width="12" height="12")
       custom-svg(src="small-circle.svg" :color="componentList[7].circle" width="12" height="12")
       custom-svg(src="phone.svg" :color="componentList[8].color" width="43" height="44")
+    p {{ $store.getters.referral }}
 </template>
 
 <script>
@@ -69,20 +70,20 @@
     methods: {
       changeStyles() {
         this.offset = 0
-        for(var i = 0; i < this.componentList.length; i++) {
+        for (var i = 0; i < this.componentList.length; i++) {
           this.componentList[i].color = this.orange
           this.componentList[i].circle = this.white
-          if(this.componentList[i].comp == this.currentComponent) {
-            for(var j = 0; j <= i; j++) {
+          if (this.componentList[i].comp == this.currentComponent) {
+            for (var j = 0; j <= i; j++) {
               this.componentList[j].color = this.blue
               this.componentList[j].circle = this.blue
             }
           }
         }
-        if(window.innerWidth <= 600) {
-          for(var i = 0; i < this.componentList.length; i++) {
-            if(this.componentList[i].comp == this.currentComponent) {
-              for(var j = 0; j <= i; j++) {
+        if (window.innerWidth <= 600) {
+          for (var i = 0; i < this.componentList.length; i++) {
+            if (this.componentList[i].comp == this.currentComponent) {
+              for (var j = 0; j <= i; j++) {
                 this.navWidth = this.componentList[j].width
                 this.offset += this.componentList[j].offset
               }

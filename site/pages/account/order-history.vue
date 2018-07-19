@@ -22,6 +22,9 @@
 
   export default {
     name: 'Profile',
+    components: {
+      Order
+    },
     data: () => ({
       bookings: {},
       loading: 0
@@ -41,9 +44,6 @@
     },
     mounted() {
       this.$apollo.queries.bookings.refetch()
-    },
-    components: {
-      Order
     },
     methods: {
       deleteBooking(bookingNumber) {

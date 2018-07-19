@@ -21,7 +21,7 @@ const mutations = {
   },
   login(state, { id, token }) {
     state.user = id || null
-    if(process.browser) {
+    if (process.browser) {
       Cookie.set(USER_ID, id, { expires: 7 })
       Cookie.set(AUTH_TOKEN, token, { expires: 7 })
     }
@@ -29,7 +29,7 @@ const mutations = {
   logout(state) {
     state.userName = null
     state.user = null
-    if(process.browser) {
+    if (process.browser) {
       Cookie.remove(USER_ID)
       Cookie.remove(AUTH_TOKEN)
     }

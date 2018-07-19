@@ -2,11 +2,11 @@
   div#payment
     h3 Final Payment
     div.payment__totals
-      h3 Cost: #[span ${{ cost - refPayment }}]
-      h3 Discount: #[span ${{ discount }}]
+      h3 Cost: #[span ${{ $store.getters.totalPrice - refPayment }}]
       template(v-if="$store.getters.referral.pay")
         h3 Referral: #[span ${{ refPayment }}]
-      h3 Total: #[span ${{ total }}]
+      h3 Discount: #[span -${{ $store.getters.discount }}]
+      h3 Total: #[span ${{ $store.getters.finalPrice }}]
     PaymentCard(:stripe="publicKey")
     Button(id="pay-now-btn" size="big" text="Pay Now" @click.native="pay")
     nav-buttons(previous="Referral" @clicked="navigate")
@@ -19,29 +19,18 @@
 
   export default {
     name: 'Payment',
+    components: {
+      PaymentCard
+    },
     data: () => ({
       complete: false,
       publicKey: process.env.STRIPE_PK
     }),
     computed: {
-      cost() {
-        return this.$store.getters.totalPrice
-      },
-      discount() {
-        return 0
-        // return this.$store.getters.discountPrice
-      },
       refPayment() {
-        if(this.$store.getters.referral.pay == true) {
-          return 100
-        }
-        return 0
-      },
-      total() {
-        return this.cost - this.discount
+        return this.$store.getters.referral.pay ? 100 : 0
       }
     },
-    components: { PaymentCard },
     methods: {
       navigate(component) {
         this.$store.dispatch('updateComponent', component)
@@ -54,7 +43,7 @@
             mutation: PAYMENT,
             variables: {
               source: data.token.id,
-              amount: 10000,
+              amount: this.$store.getters.finalPrice * 100,
               currency: 'USD'
             }
           }).then(data => {

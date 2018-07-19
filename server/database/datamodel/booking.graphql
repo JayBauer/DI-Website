@@ -1,22 +1,3 @@
-type User {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  email: String! @unique
-  password: String!
-  isAdmin: Boolean! @default(value: "false")
-  firstName: String!
-  lastName: String!
-  phone: String!
-  address1: String!
-  address2: String
-  city: String!
-  province: String!
-  postal: String!
-  bookings: [Booking!]! @relation(name: "UserBookings", onDelete: CASCADE)
-  stripe: StripeCustomer @relation(name: "Stripe")
-}
-
 type Booking {
   bookingNumber: String! @unique
   createdAt: DateTime!
@@ -29,6 +10,14 @@ type Booking {
   referral: Referral @relation(name: "BookingReferral" onDelete: CASCADE)
   payment: Boolean! @default(value: "false")
   progress: String! @default(value: "BookingFor")
+}
+
+type BodyPart {
+  name: String! @unique
+  shortName: String!
+  type: PartType!
+  price: String!
+  selected: Boolean! @default(value: false)
 }
 
 type Referral {
@@ -76,13 +65,9 @@ type File {
   url: String! @unique
 }
 
-enum BookingFor {
-  PATIENT
-  MYSELF
-  CLIENT
-}
-
-enum IsResident {
-  YES
-  NO
+type Discount {
+  swi: Boolean! @default(value: false)
+  spine: Int! @default(value: 0)
+  body: Int! @default(value: 0)
+  extremities: Int! @default(value: 0)
 }

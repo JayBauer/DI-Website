@@ -11,7 +11,23 @@
 
   export default {
     name: 'Order',
-    props: ['id', 'date', 'status'],
+    components: {
+      FontAwesomeIcon
+    },
+    props: {
+      id: {
+        type: String,
+        required: true
+      },
+      date: {
+        type: String,
+        required: true
+      },
+      status: {
+        type: String,
+        required: true
+      }
+    },
     computed: {
       trashIcon() {
         return faTrash
@@ -22,9 +38,6 @@
         var newDate = new Date(date)
         return newDate.toLocaleDateString('en-US')
       }
-    },
-    components: {
-      FontAwesomeIcon
     }
   }
 </script>

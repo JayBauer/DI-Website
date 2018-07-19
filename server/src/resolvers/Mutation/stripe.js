@@ -1,4 +1,4 @@
-const { getUserId } = require('../../utils')
+const { getUserId } = require('../utils')
 const stripeApi = require('stripe')(process.env.STRIPE_SK)
 
 const stripe = {

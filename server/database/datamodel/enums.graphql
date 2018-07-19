@@ -1,0 +1,17 @@
+enum BookingFor {
+  PATIENT
+  MYSELF
+  CLIENT
+}
+
+enum IsResident {
+  YES
+  NO
+}
+
+enum PartType {
+  BRAIN
+  SPINE
+  BODY
+  EXTREMITIES
+}

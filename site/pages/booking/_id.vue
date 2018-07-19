@@ -30,6 +30,19 @@
 
   export default {
     name: 'Booking',
+    components: {
+      BookingHeaderNav,
+      BookingFor,
+      Resident,
+      BodyParts,
+      Waiver,
+      LogIn,
+      SignUp,
+      Referral,
+      Payment,
+      ThankYou,
+      SaveBooking
+    },
     data: () => ({
       booking: {}
     }),
@@ -38,7 +51,6 @@
         return this.$store.getters.currentComponent
       }
     },
-
     apollo: {
       booking: {
         query: GET_BOOKING,
@@ -70,7 +82,7 @@
         this.selectedComponent = value
       },
       initialValues(data) {
-        if(data.booking) {
+        if (data.booking) {
           const { bookingFor, ontarioRes, bodyParts, waiver, referral, payment, progress } = data.booking
           const newStore = {
             bookingFor,
@@ -97,20 +109,6 @@
           this.$store.dispatch('updateComponent', 'BookingFor')
         }
       }
-    },
-
-    components: {
-      BookingHeaderNav,
-      BookingFor,
-      Resident,
-      BodyParts,
-      Waiver,
-      LogIn,
-      SignUp,
-      Referral,
-      Payment,
-      ThankYou,
-      SaveBooking
     },
 
     head() {
