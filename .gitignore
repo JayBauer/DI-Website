@@ -36,3 +36,6 @@ uploads/
 *.sln
 
 etc.txt
+
+# Temporary
+README.md
