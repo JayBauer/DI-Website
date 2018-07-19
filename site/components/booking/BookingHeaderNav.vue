@@ -22,7 +22,6 @@
       custom-svg(src="small-circle.svg" :color="componentList[7].color" width="12" height="12")
       custom-svg(src="small-circle.svg" :color="componentList[7].circle" width="12" height="12")
       custom-svg(src="phone.svg" :color="componentList[8].color" width="43" height="44")
-    p {{ $store.getters.referral }}
 </template>
 
 <script>
