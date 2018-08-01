@@ -1,7 +1,11 @@
 const path = require('path')
 
 module.exports = {
-	modules: ['@nuxtjs/apollo', '@nuxtjs/dotenv'],
+	modules: [
+		'@nuxtjs/apollo',
+		'@nuxtjs/dotenv',
+		'@nuxtjs/sitemap'
+	],
 	/*
 	** Headers of the page
 	*/
@@ -14,6 +18,10 @@ module.exports = {
 				hid: 'description',
 				name: 'description',
 				content: 'Diagnostic Intelligence'
+			},
+			{
+				name: 'msvalidate.01',
+				content: 'DC5BA6A27DEC789154A717AA36018347'
 			}
 		],
 		link: [
@@ -21,6 +29,29 @@ module.exports = {
 		],
 		script: [{ src: 'https://js.stripe.com/v3/' }]
 	},
+	/*
+	** Sitemap
+	*/
+	sitemap: {
+    path: '/sitemap.xml',
+    hostname: 'http://diagnosticintelligence.ca',
+    cacheTime: 1000 * 60 * 15,
+    gzip: true,
+    generate: false, // Enable me when using nuxt generate
+    // exclude: [
+    //   '/secret',
+    //   '/admin/**'
+    // ],
+    // routes: [
+    //   '/page/1',
+    //   {
+    //     url: '/page/2',
+    //     changefreq: 'daily',
+    //     priority: 1,
+    //     lastmodISO: '2017-06-30T13:30:00.000Z'
+    //   }
+    // ]
+  },
 	/*
 	** Customize the progress bar color
 	*/

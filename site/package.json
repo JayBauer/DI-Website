@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "SERVER_PORT=8101 SERVER_IP='http://localhost' APP_SECRET='supersecretappsecret' STRIPE_PK='pk_test_7UqM3uMBb0D7cfMYdOT7mBJN' nuxt build",
+    "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path ../.gitignore stylelint.config.js .",
@@ -36,6 +36,7 @@
   "devDependencies": {
     "@nuxtjs/apollo": "^3.0.6",
     "@nuxtjs/dotenv": "^1.1.1",
+    "@nuxtjs/sitemap": "^0.1.1",
     "apollo-upload-client": "^8.0.0",
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.6",

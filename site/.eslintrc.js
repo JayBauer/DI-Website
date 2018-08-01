@@ -22,7 +22,8 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    "semi": [2, "never"],
+    "semi": [1, "never"],
+    "wrap-regex": 2,
     "no-console": "off",
     "vue/max-attributes-per-line": "off",
     "keyword-spacing": 1,
