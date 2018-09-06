@@ -55,6 +55,16 @@ export const UPLOAD_FILE = gql`
 	}
 `
 
+export const DELETE_FILE = gql`
+	mutation UploadFile($url: String!) {
+		uploadFile(url: $url) {
+			id
+			filename
+			url
+		}
+	}
+`
+
 export const PAYMENT = gql`
 	mutation NewPayment($source: String!, $amount: Float!, $currency: String!) {
 		makePayment(source: $source, amount: $amount, currency: $currency) {

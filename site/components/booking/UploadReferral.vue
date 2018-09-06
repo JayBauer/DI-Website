@@ -24,10 +24,11 @@
 </template>
 
 <script>
+	import axios from 'axios'
 	import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 	import { faCheck } from '@fortawesome/fontawesome-free-solid'
 	import { faTimes } from '@fortawesome/fontawesome-free-solid'
-	import { UPLOAD_FILE } from '~/mutations'
+	import { UPLOAD_FILE, DELETE_FILE } from '~/mutations'
 
 	export default {
 		name: 'UploadReferral',
@@ -53,7 +54,6 @@
 			onFileChange(e) {
 				var files = e.target.files || e.dataTransfer.files
 				if (!files.length) return
-				this.image = files[0]
 				this.$store.dispatch('updateReferralPay', {
 					pay: false,
 					upload: this.image
@@ -65,18 +65,48 @@
 				this.$store.dispatch('updateReferralPay', { pay: false, upload: {} })
 			},
 			readyUpload() {
-				this.success = true
-			// this.$store.dispatch('updateComponent', 'Payment')
-			// if(this.$store.getters.referral.previousImage) {
-			//   this.$apollo.mutate({
-			//     mutation: DELETE_FILE,
-			//     variables: {
-			//       url: this.$store.getters.referral.previousImage
-			//     }
-			//   }).then(data => {
-			//     console.log('Deleted image')
-			//   })
-			// }
+				let formData = new FormData()
+				formData.append('file', this.image)
+				formData.append('filename', this.image.name)
+				axios.post(
+					'/uploads',
+					formData,
+					{
+						headers: {
+							'Content-Type': 'multipart/form-data'
+						},
+						onUploadProgress: function(progressEvent) {
+							this.uploadPercentage = parseInt(Math.round((progressEvent.loaded * 100 / progressEvent.total)))
+						}.bind(this)
+					}
+				).then(res => {
+					console.log('Upload Successful; Response -> ', res)
+				}).catch(err => {
+					console.error('Upload Failed; Error -> ', err)
+				})
+				
+				if (this.$store.getters.referral.previousImage != '') {
+					this.$apollo
+						.mutate({
+							mutation: DELETE_FILE,
+							variables: {
+								url: this.$store.getters.referral.previousImage
+							}
+						}).then(data => {
+							console.log('Deleted image')
+						})
+				}
+				this.$apollo
+					.mutate({
+						mutation: UPLOAD_FILE,
+						variables: {
+							file: this.$store.getters.referral.upload,
+							path: './src/uploads/'
+						}
+					}).then(data => {
+						console.log('Upload Successful')
+						this.success = true
+					})
 			}
 		}
 	}

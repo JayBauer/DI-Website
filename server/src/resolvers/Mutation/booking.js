@@ -9,7 +9,7 @@ mkdirp.sync(uploadDir)
 const storeUpload = ({ stream, filename }, path, sid) =>
   new Promise((resolve, reject) =>
     stream
-      .pipe(createWriteStream('.' + path + sid + filename))
+      .pipe(createWriteStream(path + sid + filename))
       .on("finish", () => resolve())
       .on("error", reject)
 )
@@ -93,7 +93,7 @@ const booking = {
 
   async deleteFile(parent, { url }, ctx, info) {
     const fileExists = await ctx.db.query.file({ where: { url } })
-    if(fileExists) {
+    if (fileExists) {
       removeFile(url)
       return ctx.db.mutation.deleteFile({ where: { url } })
     } else {

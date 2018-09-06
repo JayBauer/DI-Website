@@ -100,7 +100,7 @@
 	@import 'global/variables';
 
 	.form-input {
-		input textarea {
+		input, textarea {
 			width: 100%;
 			font-family: 'Muli', 'Klinic Slab', sans-serif;
 			font-size: 15px/17px;
